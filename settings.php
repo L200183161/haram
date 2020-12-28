@@ -1,22 +1,24 @@
 ﻿<?php
-	require_once 'includes/library.php';
-	session_start();
-	$app = new AppLib();
-	$is_login = $app->is_user();
-	if (!$is_login) {
-		redirect('login.php');
-	}if (isset($_POST['submit'])) {
-		$name = htmlspecialchars($_POST['company']);
-		$address = htmlspecialchars($_POST['address']);
-		$country = htmlspecialchars($_POST['country']);
-		$postal_code = htmlspecialchars($_POST['postal_code']);
-		$email = htmlspecialchars($_POST['email']);
-		$phone = htmlspecialchars($_POST['phone']);
-		$app->set_company($name,$address,$country,$postal_code,$email,$phone);
-	}
+require_once 'includes/library.php';
+session_start();
+$app = new AppLib();
+$is_login = $app->is_user();
+if (!$is_login) {
+	redirect('login.php');
+}
+if (isset($_POST['submit'])) {
+	$name = htmlspecialchars($_POST['company']);
+	$address = htmlspecialchars($_POST['address']);
+	$country = htmlspecialchars($_POST['country']);
+	$postal_code = htmlspecialchars($_POST['postal_code']);
+	$email = htmlspecialchars($_POST['email']);
+	$phone = htmlspecialchars($_POST['phone']);
+	$app->set_company($name, $address, $country, $postal_code, $email, $phone);
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
@@ -24,7 +26,7 @@
 	<meta name="keywords" content="admin, estimates, bootstrap, business, corporate, creative, management, minimal, modern, accounts, invoice, html5, responsive, CRM, Projects">
 	<meta name="author" content="Dreamguys - Bootstrap Admin Template">
 	<meta name="robots" content="noindex, nofollow">
-	<title>Settings - HRMS admin template</title>
+	<title>Settings - HaRaM</title>
 	<!-- Favicon -->
 	<link rel="shortcut icon" type="image/x-icon" href="assets/img/favicon.png">
 	<!-- Bootstrap CSS -->
@@ -48,7 +50,7 @@
 	<!-- Main Wrapper -->
 	<div class="main-wrapper">
 		<!-- Header -->
-		<?php  
+		<?php
 		// <!-- Header -->
 		include_once 'includes/header.php';
 		// <!-- /Header -->
@@ -117,7 +119,7 @@
 									</div>
 								</div>
 							</div>
-							
+
 							<div class="submit-section">
 								<button type="submit" name="submit" class="btn btn-primary submit-btn">Save</button>
 							</div>

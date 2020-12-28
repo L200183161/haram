@@ -1,14 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.1
+-- version 5.0.4
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 13, 2020 at 01:05 AM
--- Server version: 10.4.11-MariaDB
--- PHP Version: 7.4.2
+-- Generation Time: Dec 28, 2020 at 07:17 PM
+-- Server version: 10.4.16-MariaDB
+-- PHP Version: 7.4.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -51,7 +50,8 @@ CREATE TABLE `assets` (
 --
 
 INSERT INTO `assets` (`id`, `assetName`, `assetId`, `PurchaseDate`, `PurchaseFrom`, `Manufacturer`, `Model`, `Status`, `Supplier`, `AssetCondition`, `Warranty`, `Price`, `AssetUser`, `Description`, `DateTime`) VALUES
-(1, 'Macbook Book', '#AST-031256', '2020-09-23', 'Amazon', 'Apple Inc.', '2020', 1, 'Amazon', 'In good shape', '12 Months', 1900, 'Mushe abdul-Hakim', 'This is the description of the laptop', '2020-09-23 23:57:26');
+(1, 'Macbook Book', '#AST-031256', '2020-09-23', 'Amazon', 'Apple Inc.', '2020', 1, 'Amazon', 'In good shape', '12 Months', 1900, 'Mushe abdul-Hakim', 'This is the description of the laptop', '2020-09-23 23:57:26'),
+(5, 'Dadar Gula', '#AST-786032', '0000-00-00', 'Amajon', 'Hujan', 'Model Lama', 3, 'JNE', 'Rusak', '21', 20000, 'John Doe', 'Tolong Diapprove mas', '2020-12-26 09:56:01');
 
 -- --------------------------------------------------------
 
@@ -81,7 +81,8 @@ CREATE TABLE `clients` (
 
 INSERT INTO `clients` (`id`, `FirstName`, `LastName`, `UserName`, `Email`, `Password`, `ClientId`, `Phone`, `Company`, `Address`, `Status`, `Picture`, `date`) VALUES
 (1, 'Yahuza', 'Abdul-Hakim', 'Vendetta', 'musheabdulhakim@protonmail.ch', '$2y$10$xU1zDRigag7ZMGs0Egcqoei0SrtZJRX/p425h4qOi5OMKFz32k0UC', 'CLT-613498', '233209229025', 'Microsoft Inc', 'Live from home', 1, 'd41d8cd98f00b204e9800998ecf8427e1601112041', '2020-09-26'),
-(2, 'Vendetta', 'Alkaline', 'alkaline', 'musheabdulhakim99@gmail.com', '$2y$10$qUL2APr762X.vvJuNQvqludvabDa.Y3TRHOa.M/qq8WFoeoh7IaWG', 'CLT-217594', '233209229025', 'Falcon Systems', 'Live from home', 1, 'd41d8cd98f00b204e9800998ecf8427e1601112339', '2020-09-26');
+(2, 'Vendetta', 'Alkaline', 'alkaline', 'musheabdulhakim99@gmail.com', '$2y$10$qUL2APr762X.vvJuNQvqludvabDa.Y3TRHOa.M/qq8WFoeoh7IaWG', 'CLT-217594', '233209229025', 'Falcon Systems', 'Live from home', 1, 'd41d8cd98f00b204e9800998ecf8427e1601112339', '2020-09-26'),
+(6, 'Donny Rizal ', 'Adhi Pratama', 'dude', 'dude@gmail.com', '$2y$10$OjGRR6GlAzCl6yP/taWI7uxIB2DOwOTeA4OBDUfU5bJRUdm9SJ8FO', 'CLT-543872', '089', 'dude', 'dude', 1, 'd41d8cd98f00b204e9800998ecf8427e1609003455', '2020-12-27');
 
 -- --------------------------------------------------------
 
@@ -283,14 +284,15 @@ INSERT INTO `overtime` (`id`, `Employee`, `OverTime_Date`, `Hours`, `Type`, `Des
 
 CREATE TABLE `users` (
   `id` int(11) NOT NULL,
-  `FirstName` varchar(200) NOT NULL,
-  `LastName` varchar(200) NOT NULL,
-  `UserName` varchar(200) NOT NULL,
-  `Email` varchar(100) NOT NULL,
-  `Password` varchar(200) NOT NULL,
-  `Phone` varchar(20) NOT NULL,
-  `Address` varchar(200) NOT NULL,
-  `Picture` varchar(255) NOT NULL,
+  `firstname` varchar(200) NOT NULL,
+  `lastname` varchar(200) NOT NULL,
+  `username` varchar(200) NOT NULL,
+  `email` varchar(100) NOT NULL,
+  `password` varchar(200) NOT NULL,
+  `role` varchar(100) NOT NULL,
+  `phone` varchar(20) NOT NULL,
+  `address` varchar(200) NOT NULL,
+  `picture` varchar(255) NOT NULL,
   `dateTime` datetime NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -298,9 +300,9 @@ CREATE TABLE `users` (
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `FirstName`, `LastName`, `UserName`, `Email`, `Password`, `Phone`, `Address`, `Picture`, `dateTime`) VALUES
-(6, 'Barry', 'Cudo', 'Barry', 'barrycuda@example.com', '$2y$10$zb2ibzzBKJHQaMeMoMZqTuRxERFAZl0LZUya8yJkxKa8JM6yzQEXy', '9876543210', 'Los Angeles, California', 'avatar-19.jpg', '2020-09-21 19:04:47'),
-(7, 'Yahuza', 'Abdul-Hakim', 'Vendetta', 'musheabdulhakim@protonmail.ch', '$2y$10$f3acNJ/slpOfQvZy.u6OfOM6GOLTTjz3IYUIbMMQuixXjmgeRQ0Ga', '233209229025', 'San Francisco Bay Area', 'my-passport-photo.jpg', '2020-09-21 19:05:43');
+INSERT INTO `users` (`id`, `firstname`, `lastname`, `username`, `email`, `password`, `role`, `phone`, `address`, `picture`, `dateTime`) VALUES
+(1, 'Donny', 'Rizal', 'donny', 'donnyrizaladhip@rocketmail.com', '$2y$10$HZIJ8wvC4epQ.rTcA1h8feG2z5FfqzX21yYFq8i8Y9SJCTs4QYBqa', 'employee', '08996596007', 'Rembang, Jawa Tengah', 'avatar-19.jpg', '2020-09-21 19:04:47'),
+(2, 'Administrasi', 'Super', 'admin', 'Adminstrasibro@gmail.com', '$2y$10$.V/X26KC6UHWdSzPSyGgzuZLYpyvjrcRlxdQlpbTYqXnCPr2g2F9O', 'admin', '---', 'Nowhere', 'my-passport-photo.jpg', '2020-09-21 19:05:43');
 
 -- --------------------------------------------------------
 
@@ -309,8 +311,8 @@ INSERT INTO `users` (`id`, `FirstName`, `LastName`, `UserName`, `Email`, `Passwo
 --
 
 CREATE TABLE `user_role` (
-  `id` int(11) NOT NULL,
   `role` varchar(100) NOT NULL,
+  `id` int(11) NOT NULL,
   `date` date NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -318,9 +320,9 @@ CREATE TABLE `user_role` (
 -- Dumping data for table `user_role`
 --
 
-INSERT INTO `user_role` (`id`, `role`, `date`) VALUES
-(1, 'admin\r\n', '2020-09-21'),
-(2, 'employee', '2020-09-21');
+INSERT INTO `user_role` (`role`, `id`, `date`) VALUES
+('admin\r\n', 1, '2020-09-21'),
+('employee', 2, '2020-09-21');
 
 --
 -- Indexes for dumped tables
@@ -399,13 +401,15 @@ ALTER TABLE `overtime`
 --
 ALTER TABLE `users`
   ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `Email` (`Email`);
+  ADD UNIQUE KEY `Email` (`email`),
+  ADD KEY `role` (`role`);
 
 --
 -- Indexes for table `user_role`
 --
 ALTER TABLE `user_role`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`role`),
+  ADD KEY `id` (`id`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -415,13 +419,13 @@ ALTER TABLE `user_role`
 -- AUTO_INCREMENT for table `assets`
 --
 ALTER TABLE `assets`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `clients`
 --
 ALTER TABLE `clients`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `departments`

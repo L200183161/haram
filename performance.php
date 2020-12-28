@@ -1,12 +1,13 @@
 ﻿<?php
-	require_once 'includes/library.php';
-	session_start();
-	$app = new AppLib();
-	$is_login = $app->is_user();
-	if (!$is_login) {
-		header('location:login.php');
-	}
-?><!DOCTYPE html>
+require_once 'includes/library.php';
+session_start();
+$app = new AppLib();
+$is_login = $app->is_user();
+if (!$is_login) {
+	header('location:login.php');
+}
+?>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -16,7 +17,7 @@
 	<meta name="keywords" content="admin, estimates, bootstrap, business, corporate, creative, management, minimal, modern, accounts, invoice, html5, responsive, CRM, Projects">
 	<meta name="author" content="Dreamguys - Bootstrap Admin Template">
 	<meta name="robots" content="noindex, nofollow">
-	<title>Performance Review - HRMS admin template</title>
+	<title>Performance Review - HaRaM</title>
 	<!-- Favicon -->
 	<link rel="shortcut icon" type="image/x-icon" href="assets/img/favicon.png">
 	<!-- Bootstrap CSS -->
@@ -40,7 +41,7 @@
 	<!-- Main Wrapper -->
 	<div class="main-wrapper">
 		<!-- Header -->
-		<?php  
+		<?php
 		// <!-- Header -->
 		include_once 'includes/header.php';
 		// <!-- /Header -->
@@ -1184,25 +1185,26 @@
 	<script src="assets/js/app.js"></script>
 	<!-- Add Table Row JS -->
 	<script>
-	$(function() {
-		$(document).on("click", '.btn-add-row', function() {
-			var id = $(this).closest("table.table-review").attr('id'); // Id of particular table
-			console.log(id);
-			var div = $("<tr />");
-			div.php(GetDynamicTextBox(id));
-			$("#" + id + "_tbody").append(div);
-		});
-		$(document).on("click", "#comments_remove", function() {
-			$(this).closest("tr").prev().find('td:last-child').php('<button type="button" class="btn btn-danger" id="comments_remove"><i class="fa fa-trash-o"></i></button>');
-			$(this).closest("tr").remove();
-		});
+		$(function() {
+			$(document).on("click", '.btn-add-row', function() {
+				var id = $(this).closest("table.table-review").attr('id'); // Id of particular table
+				console.log(id);
+				var div = $("<tr />");
+				div.php(GetDynamicTextBox(id));
+				$("#" + id + "_tbody").append(div);
+			});
+			$(document).on("click", "#comments_remove", function() {
+				$(this).closest("tr").prev().find('td:last-child').php('<button type="button" class="btn btn-danger" id="comments_remove"><i class="fa fa-trash-o"></i></button>');
+				$(this).closest("tr").remove();
+			});
 
-		function GetDynamicTextBox(table_id) {
-			$('#comments_remove').remove();
-			var rowsLength = document.getElementById(table_id).getElementsByTagName("tbody")[0].getElementsByTagName("tr").length + 1;
-			return '<td>' + rowsLength + '</td>' + '<td><input type="text" name = "DynamicTextBox" class="form-control" value = "" ></td>' + '<td><input type="text" name = "DynamicTextBox" class="form-control" value = "" ></td>' + '<td><input type="text" name = "DynamicTextBox" class="form-control" value = "" ></td>' + '<td><button type="button" class="btn btn-danger" id="comments_remove"><i class="fa fa-trash-o"></i></button></td>'
-		}
-	});
+			function GetDynamicTextBox(table_id) {
+				$('#comments_remove').remove();
+				var rowsLength = document.getElementById(table_id).getElementsByTagName("tbody")[0].getElementsByTagName("tr").length + 1;
+				return '<td>' + rowsLength + '</td>' + '<td><input type="text" name = "DynamicTextBox" class="form-control" value = "" ></td>' + '<td><input type="text" name = "DynamicTextBox" class="form-control" value = "" ></td>' + '<td><input type="text" name = "DynamicTextBox" class="form-control" value = "" ></td>' + '<td><button type="button" class="btn btn-danger" id="comments_remove"><i class="fa fa-trash-o"></i></button></td>'
+			}
+		});
 	</script>
 </body>
+
 </html>

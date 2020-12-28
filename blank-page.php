@@ -8,7 +8,7 @@
 		<meta name="keywords" content="admin, estimates, bootstrap, business, corporate, creative, management, minimal, modern, accounts, invoice, php5, responsive, CRM, Projects">
 		<meta name="author" content="Dreamguys - Bootstrap Admin Template">
 		<meta name="robots" content="noindex, nofollow">
-		<title>Blank Page - HRMS admin template</title>
+		<title>Blank Page - HaRaM</title>
 		<!-- Favicon -->
 		<link rel="shortcut icon" type="image/x-icon" href="assets/img/favicon.png">
 		<!-- Bootstrap CSS -->
@@ -47,7 +47,7 @@
 				</a>
 				<!-- Header Title -->
 				<div class="page-title-box">
-					<h3>Dreamguy's Technologies</h3>
+					<h3>HaRaM</h3>
 				</div>
 				<!-- /Header Title -->
 				<a id="mobile_btn" class="mobile_btn" href="#sidebar"><i class="fa fa-bars"></i></a>

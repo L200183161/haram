@@ -1,12 +1,13 @@
 ﻿<?php
-	require_once 'includes/library.php';
-	session_start();
-	$app = new AppLib();
-	$is_login = $app->is_user();
-	if (!$is_login) {
-		header('location:login.php');
-	}
-?><!DOCTYPE html>
+require_once 'includes/library.php';
+session_start();
+$app = new AppLib();
+$is_login = $app->is_user();
+if (!$is_login) {
+	header('location:login.php');
+}
+?>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -16,7 +17,7 @@
 	<meta name="keywords" content="admin, estimates, bootstrap, business, corporate, creative, management, minimal, modern, accounts, invoice, html5, responsive, CRM, Projects">
 	<meta name="author" content="Dreamguys - Bootstrap Admin Template">
 	<meta name="robots" content="noindex, nofollow">
-	<title>Salary - HRMS admin template</title>
+	<title>Salary - HaRaM</title>
 	<!-- Favicon -->
 	<link rel="shortcut icon" type="image/x-icon" href="assets/img/favicon.png">
 	<!-- Bootstrap CSS -->
@@ -38,7 +39,7 @@
 	<!-- Main Wrapper -->
 	<div class="main-wrapper">
 		<!-- Header -->
-		<?php  
+		<?php
 		// <!-- Header -->
 		include_once 'includes/header.php';
 		// <!-- /Header -->
@@ -79,7 +80,7 @@
 									<div class="col-sm-6 m-b-20">
 										<img src="assets/img/logo2.png" class="inv-logo" alt="">
 										<ul class="list-unstyled mb-0">
-											<li>Dreamguy's Technologies</li>
+											<li>HaRaM</li>
 											<li>3864 Quiet Valley Lane,</li>
 											<li>Sherman Oaks, CA, 91403</li>
 										</ul>

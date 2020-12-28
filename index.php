@@ -5,9 +5,9 @@ $app = new AppLib();
 $is_login = $app->is_user();
 if (!$is_login) {
 	header('location:login.php');
-}
-?>
-﻿
+} ?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -18,7 +18,7 @@ if (!$is_login) {
 	<meta name="keywords" content="admin, estimates, bootstrap, business, corporate, creative, management, minimal, modern, accounts, invoice, html5, responsive, CRM, Projects">
 	<meta name="author" content="Dreamguys - Bootstrap Admin Template">
 	<meta name="robots" content="noindex, nofollow">
-	<title>Dashboard - HRMS admin template</title>
+	<title>Dashboard - HaRaM</title>
 	<!-- Favicon -->
 	<link rel="shortcut icon" type="image/x-icon" href="assets/img/favicon.png">
 	<!-- Bootstrap CSS -->
@@ -48,6 +48,7 @@ if (!$is_login) {
 		// <!-- Sidebar -->
 		include_once 'includes/sidebar.php';
 		// <!-- /Sidebar -->
+
 		?>
 		<!-- Page Wrapper -->
 		<div class="page-wrapper">

@@ -1,12 +1,13 @@
 ﻿<?php
-	require_once 'includes/library.php';
-	session_start();
-	$app = new AppLib();
-	$is_login = $app->is_user();
-	if (!$is_login) {
-		header('location:login.php');
-	}
-?><!DOCTYPE html>
+require_once 'includes/library.php';
+session_start();
+$app = new AppLib();
+$is_login = $app->is_user();
+if (!$is_login) {
+	header('location:login.php');
+}
+?>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -16,7 +17,7 @@
 	<meta name="keywords" content="admin, estimates, bootstrap, business, corporate, creative, management, minimal, modern, accounts, invoice, html5, responsive, CRM, Projects">
 	<meta name="author" content="Dreamguys - Bootstrap Admin Template">
 	<meta name="robots" content="noindex, nofollow">
-	<title>Clients - HRMS admin template</title>
+	<title>Clients - HaRaM</title>
 	<!-- Favicon -->
 	<link rel="shortcut icon" type="image/x-icon" href="assets/img/favicon.png">
 	<!-- Bootstrap CSS -->
@@ -40,13 +41,13 @@
 	<!-- Main Wrapper -->
 	<div class="main-wrapper">
 		<!-- Header -->
-		<?php 
+		<?php
 		include_once 'includes/header.php';
 		// <!-- /Header -->
 		// <!-- Sidebar -->
-			include_once 'includes/sidebar.php';
+		include_once 'includes/sidebar.php';
 		//<!-- /Sidebar -->
-			?>
+		?>
 		<!-- Page Wrapper -->
 		<div class="page-wrapper">
 			<!-- Page Content -->

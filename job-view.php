@@ -1,13 +1,15 @@
 ﻿<?php
-	require_once 'includes/library.php';
-	session_start();
-	$app = new AppLib();
-	$is_login = $app->is_user();
-	if (!$is_login) {
-		header('location:login.php');
-	}
-?><!DOCTYPE html>
+require_once 'includes/library.php';
+session_start();
+$app = new AppLib();
+$is_login = $app->is_user();
+if (!$is_login) {
+	header('location:login.php');
+}
+?>
+<!DOCTYPE html>
 <html lang="en">
+
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
@@ -15,7 +17,7 @@
 	<meta name="keywords" content="admin, estimates, bootstrap, business, corporate, creative, management, minimal, modern, accounts, invoice, html5, responsive, CRM, Projects">
 	<meta name="author" content="Dreamguys - Bootstrap Admin Template">
 	<meta name="robots" content="noindex, nofollow">
-	<title>Jobs - HRMS admin template</title>
+	<title>Jobs - HaRaM</title>
 	<!-- Favicon -->
 	<link rel="shortcut icon" type="image/x-icon" href="assets/img/favicon.png">
 	<!-- Bootstrap CSS -->
@@ -53,7 +55,7 @@
 			<!-- /Logo -->
 			<!-- Header Title -->
 			<div class="page-title-box float-left">
-				<h3>Dreamguy's Technologies</h3>
+				<h3>HaRaM</h3>
 			</div>
 			<!-- /Header Title -->
 			<!-- Header Menu -->
@@ -188,7 +190,7 @@
 							<div class="info-list">
 								<span><i class="fa fa-map-signs"></i></span>
 								<h5>Location</h5>
-								<p> Dreamguy's Technologies
+								<p> HaRaM
 									<br> 3864 Quiet Valley Lane,
 									<br> Sherman Oaks,
 									<br> California, 91403</p>
@@ -259,4 +261,5 @@
 	<!-- Custom JS -->
 	<script src="assets/js/app.js"></script>
 </body>
+
 </html>

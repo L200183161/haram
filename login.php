@@ -61,7 +61,7 @@ if (isset($_POST['login'])) {
 	<meta name="keywords" content="admin, estimates, bootstrap, business, corporate, creative, management, minimal, modern, accounts, invoice, html5, responsive, CRM, Projects">
 	<meta name="author" content="Dreamguys - Bootstrap Admin Template">
 	<meta name="robots" content="noindex, nofollow">
-	<title>Login - HRMS admin template</title>
+	<title>Login - HaRaM</title>
 	<!-- Favicon -->
 	<link rel="shortcut icon" type="image/x-icon" href="assets/img/favicon.png">
 	<!-- Bootstrap CSS -->
@@ -85,7 +85,7 @@ if (isset($_POST['login'])) {
 			<div class="container">
 				<!-- Account Logo -->
 				<div class="account-logo">
-					<a href="index.php"><img src="assets/img/logo2.png" alt="Dreamguy's Technologies"></a>
+					<a href="index.php"><img src="assets/img/logo2.png" alt="HaRaM"></a>
 				</div>
 				<!-- /Account Logo -->
 				<div class="account-box">
