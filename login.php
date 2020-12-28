@@ -7,19 +7,26 @@ if (isset($_POST['login'])) {
 
 	$username = htmlspecialchars($_POST['username']);
 	$password = htmlspecialchars($_POST['password']);
-	$sql = "SELECT username, password from users where username = '$username'";
+	$sql = "SELECT * from users where username = '$username'";
 	// $query = $dbh->prepare($sql);
 	// $query->bindParam(':username',$username,PDO::PARAM_STR);
 	// $query-> execute();
 	// $results = $query->fetchAll(PDO::FETCH_OBJ);
-	$results = $dbh->query($sql);
+	$results = $dbh->query($sql); //penting asuuu plisss
 	if ($results->rowCount() > 0) {
 		foreach ($results as $row) {
 			$_SESSION['role'] = $row['role'];
 			$_SESSION['userlogin'] = $_POST['username'];
 			if (password_verify($password, $row['password'])) {
-				$_SESSION['userlogin'] = $_POST['username'];
-				echo "<script>window.location.href= 'index.php'; </script>";
+				if ($row['role'] == 'admin') {
+					$_SESSION['userlogin'] = $_POST['username'];
+					$_SESSION['role'] = "admin";
+					header("location:index.php");
+				} else if ($row['role'] == 'employee') {
+					$_SESSION['userlogin'] = $_POST['username'];
+					$_SESSION['role'] = "employee";
+					header("location:error.php");
+				}
 			} else {
 				$wrongpassword = '
 				<div class="alert alert-danger alert-dismissible fade show" role="alert">
@@ -36,7 +43,7 @@ if (isset($_POST['login'])) {
 	else {
 		$wrongusername = '
 			<div class="alert alert-danger alert-dismissible fade show" role="alert">
-				<strong>Oh Snapp!🙃</strong> Alert <b class="alert-link">UserName: </b> You entered a wrong UserName.
+				<strong>Oh Snapp!🙃</strong> Alert <b class="alert-link">User </b> is not found in our database.
 				<button type="button" class="close" data-dismiss="alert" aria-label="Close">
 					<span aria-hidden="true">&times;</span>
 				</button>
