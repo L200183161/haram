@@ -66,11 +66,11 @@ if (!$is_login) {
 					<div class="col-md-12">
 						<div class="welcome-box">
 							<div class="welcome-img">
-								<img alt="" src="assets/img/profiles/avatar-02.jpg">
+								<img alt="" src="uploads/profiles/<?php echo $_SESSION['photo']; ?>">
 							</div>
 							<div class="welcome-det">
-								<h3>Welcome, John Doe</h3>
-								<p>Monday, 20 May 2019</p>
+								<h3>Welcome, <?php $app->logged_user(); ?></h3>
+								<p><?php echo date("l, d F Y"); ?></p>
 							</div>
 						</div>
 					</div>

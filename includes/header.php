@@ -34,18 +34,9 @@
 			</div>
 		</li>
 		<!-- /Search -->
-		<?php
-		// require_once 'includes/config.php';
-		$dbh = Database();
-		$sql = "SELECT * from users";
-		$query = $dbh->prepare($sql);
-		$query->execute();
-		$result = $query->fetch(PDO::FETCH_OBJ);
-		$cnt = 1;
-		?>
 		<li class="nav-item dropdown has-arrow main-drop">
 			<a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
-				<span class="user-img"><img src="uploads/profiles/<?php echo $result->picture; ?>" alt="avatar">
+				<span class="user-img"><img src="uploads/profiles/<?php echo $_SESSION['photo'] ?>" alt="avatar">
 					<span class="status online"></span></span>
 				<span><?php $app->logged_user(); ?></span>
 			</a>

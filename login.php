@@ -17,6 +17,7 @@ if (isset($_POST['login'])) {
 		foreach ($results as $row) {
 			$_SESSION['role'] = $row['role'];
 			$_SESSION['userlogin'] = $_POST['username'];
+			$_SESSION['photo'] = $row['picture'];
 			if (password_verify($password, $row['password'])) {
 				if ($row['role'] == 'admin') {
 					$_SESSION['userlogin'] = $_POST['username'];
@@ -25,7 +26,7 @@ if (isset($_POST['login'])) {
 				} else if ($row['role'] == 'employee') {
 					$_SESSION['userlogin'] = $_POST['username'];
 					$_SESSION['role'] = "employee";
-					header("location:error.php");
+					header("location:employee-dashboard.php");
 				}
 			} else {
 				$wrongpassword = '
@@ -129,7 +130,7 @@ if (isset($_POST['login'])) {
 							</div>
 
 							<div class="account-footer">
-								<p>Having Trouble? report an issue on github <a target="https://github.com/MusheAbdulHakim/smarthr/issues" href="https://github.com/MusheAbdulHakim/smarthr/issues">Github issues</a></p>
+								<p>Having Trouble? <a href="mailto:donnyrizaladhip@rocketmail.com?subject=Hello%20sir%2C%20help%20me%20plz">Contact Us</a></p>
 							</div>
 						</form>
 						<!-- /Account Form -->
