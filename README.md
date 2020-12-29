@@ -1,12 +1,12 @@
-#Smarthr---hr-payroll-project-employee-management-System
+#Smarthr
 
-#Installation
- 1. clone the repository into your desired web server.
- 2. create database name 'smarthr'
- import the sql file inside the database folder
- run it on the browser and you are good to go.
+#Member of Group
 
-# a huge part of the project is still under development.most of it is still just html files and no backend has been added to it yet so feel free to fork it and contribute.And don't forget to star the repository.
+1.  Donny Rizal Adhi Pratama (L200183161) --Backend and Front End
+2.  M. Faqih Eza Ammar (L200183178) --Frontend
+3.  M. Rifqy Fauzy (L200184090) --Documentation
+
+# Keep it mind tho, this isn't finished yet. so let's just hope for the best.
 
 #screenshots
 
@@ -15,4 +15,4 @@
 ![Dashboard](screenshots/clients.png?raw=true "Clients page")
 ![Dashboard](screenshots/employees.png?raw=true "employees page")
 
-# smarthr
+# Smarthr

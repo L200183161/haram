@@ -155,8 +155,8 @@ if (!$is_login) {
 									<tr>
 										<td>
 											<h2 class="table-avatar">
-												<a class="avatar avatar-xs" href="profile.html"><img alt="" src="assets/img/profiles/avatar-09.jpg"></a>
-												<a href="profile.html">John Doe</a>
+												<a class="avatar avatar-xs" href="profile.php"><img alt="" src="assets/img/profiles/avatar-09.jpg"></a>
+												<a href="profile.php">John Doe</a>
 											</h2>
 										</td>
 										<td><a href="javascript:void(0);" data-toggle="modal" data-target="#attendance_info"><i class="fa fa-check text-success"></i></a></td>
@@ -203,8 +203,8 @@ if (!$is_login) {
 									<tr>
 										<td>
 											<h2 class="table-avatar">
-												<a class="avatar avatar-xs" href="profile.html"><img alt="" src="assets/img/profiles/avatar-09.jpg"></a>
-												<a href="profile.html">Richard Miles</a>
+												<a class="avatar avatar-xs" href="profile.php"><img alt="" src="assets/img/profiles/avatar-09.jpg"></a>
+												<a href="profile.php">Richard Miles</a>
 											</h2>
 										</td>
 										<td><a href="javascript:void(0);" data-toggle="modal" data-target="#attendance_info"><i class="fa fa-check text-success"></i></a></td>
@@ -241,8 +241,8 @@ if (!$is_login) {
 									<tr>
 										<td>
 											<h2 class="table-avatar">
-												<a class="avatar avatar-xs" href="profile.html"><img alt="" src="assets/img/profiles/avatar-10.jpg"></a>
-												<a href="profile.html">John Smith</a>
+												<a class="avatar avatar-xs" href="profile.php"><img alt="" src="assets/img/profiles/avatar-10.jpg"></a>
+												<a href="profile.php">John Smith</a>
 											</h2>
 										</td>
 										<td><a href="javascript:void(0);" data-toggle="modal" data-target="#attendance_info"><i class="fa fa-check text-success"></i></a></td>
@@ -279,8 +279,8 @@ if (!$is_login) {
 									<tr>
 										<td>
 											<h2 class="table-avatar">
-												<a class="avatar avatar-xs" href="profile.html"><img alt="" src="assets/img/profiles/avatar-05.jpg"></a>
-												<a href="profile.html">Mike Litorus</a>
+												<a class="avatar avatar-xs" href="profile.php"><img alt="" src="assets/img/profiles/avatar-05.jpg"></a>
+												<a href="profile.php">Mike Litorus</a>
 											</h2>
 										</td>
 										<td><a href="javascript:void(0);" data-toggle="modal" data-target="#attendance_info"><i class="fa fa-check text-success"></i></a></td>
@@ -317,8 +317,8 @@ if (!$is_login) {
 									<tr>
 										<td>
 											<h2 class="table-avatar">
-												<a class="avatar avatar-xs" href="profile.html"><img alt="" src="assets/img/profiles/avatar-11.jpg"></a>
-												<a href="profile.html">Wilmer Deluna</a>
+												<a class="avatar avatar-xs" href="profile.php"><img alt="" src="assets/img/profiles/avatar-11.jpg"></a>
+												<a href="profile.php">Wilmer Deluna</a>
 											</h2>
 										</td>
 										<td><a href="javascript:void(0);" data-toggle="modal" data-target="#attendance_info"><i class="fa fa-check text-success"></i></a></td>
@@ -355,8 +355,8 @@ if (!$is_login) {
 									<tr>
 										<td>
 											<h2 class="table-avatar">
-												<a class="avatar avatar-xs" href="profile.html"><img alt="" src="assets/img/profiles/avatar-12.jpg"></a>
-												<a href="profile.html">Jeffrey Warden</a>
+												<a class="avatar avatar-xs" href="profile.php"><img alt="" src="assets/img/profiles/avatar-12.jpg"></a>
+												<a href="profile.php">Jeffrey Warden</a>
 											</h2>
 										</td>
 										<td><a href="javascript:void(0);" data-toggle="modal" data-target="#attendance_info"><i class="fa fa-check text-success"></i></a></td>
@@ -393,8 +393,8 @@ if (!$is_login) {
 									<tr>
 										<td>
 											<h2 class="table-avatar">
-												<a class="avatar avatar-xs" href="profile.html"><img alt="" src="assets/img/profiles/avatar-13.jpg"></a>
-												<a href="profile.html">Bernardo Galaviz</a>
+												<a class="avatar avatar-xs" href="profile.php"><img alt="" src="assets/img/profiles/avatar-13.jpg"></a>
+												<a href="profile.php">Bernardo Galaviz</a>
 											</h2>
 										</td>
 										<td><a href="javascript:void(0);" data-toggle="modal" data-target="#attendance_info"><i class="fa fa-check text-success"></i></a></td>
@@ -431,8 +431,8 @@ if (!$is_login) {
 									<tr>
 										<td>
 											<h2 class="table-avatar">
-												<a class="avatar avatar-xs" href="profile.html"><img alt="" src="assets/img/profiles/avatar-01.jpg"></a>
-												<a href="profile.html">Lesley Grauer</a>
+												<a class="avatar avatar-xs" href="profile.php"><img alt="" src="assets/img/profiles/avatar-01.jpg"></a>
+												<a href="profile.php">Lesley Grauer</a>
 											</h2>
 										</td>
 										<td><a href="javascript:void(0);" data-toggle="modal" data-target="#attendance_info"><i class="fa fa-check text-success"></i></a></td>
@@ -469,8 +469,8 @@ if (!$is_login) {
 									<tr>
 										<td>
 											<h2 class="table-avatar">
-												<a class="avatar avatar-xs" href="profile.html"><img alt="" src="assets/img/profiles/avatar-16.jpg"></a>
-												<a href="profile.html">Jeffery Lalor</a>
+												<a class="avatar avatar-xs" href="profile.php"><img alt="" src="assets/img/profiles/avatar-16.jpg"></a>
+												<a href="profile.php">Jeffery Lalor</a>
 											</h2>
 										</td>
 										<td><a href="javascript:void(0);" data-toggle="modal" data-target="#attendance_info"><i class="fa fa-check text-success"></i></a></td>
@@ -507,8 +507,8 @@ if (!$is_login) {
 									<tr>
 										<td>
 											<h2 class="table-avatar">
-												<a class="avatar avatar-xs" href="profile.html"><img alt="" src="assets/img/profiles/avatar-04.jpg"></a>
-												<a href="profile.html">Loren Gatlin</a>
+												<a class="avatar avatar-xs" href="profile.php"><img alt="" src="assets/img/profiles/avatar-04.jpg"></a>
+												<a href="profile.php">Loren Gatlin</a>
 											</h2>
 										</td>
 										<td><a href="javascript:void(0);" data-toggle="modal" data-target="#attendance_info"><i class="fa fa-check text-success"></i></a></td>

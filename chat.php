@@ -59,13 +59,13 @@ if (!$is_login) {
 								<div class="navbar">
 									<div class="user-details mr-auto">
 										<div class="float-left user-img">
-											<a class="avatar" href="profile.html" title="Mike Litorus">
+											<a class="avatar" href="profile.php" title="Mike Litorus">
 												<img src="assets/img/profiles/avatar-05.jpg" alt="" class="rounded-circle">
 												<span class="status online"></span>
 											</a>
 										</div>
 										<div class="user-info float-left">
-											<a href="profile.html" title="Mike Litorus"><span>Mike Litorus</span> <i class="typing-text">Typing...</i></a>
+											<a href="profile.php" title="Mike Litorus"><span>Mike Litorus</span> <i class="typing-text">Typing...</i></a>
 											<span class="last-seen">Last seen today at 7:50 AM</span>
 										</div>
 									</div>
@@ -124,7 +124,7 @@ if (!$is_login) {
 												</div>
 												<div class="chat chat-left">
 													<div class="chat-avatar">
-														<a href="profile.html" class="avatar">
+														<a href="profile.php" class="avatar">
 															<img alt="" src="assets/img/profiles/avatar-05.jpg">
 														</a>
 													</div>
@@ -190,7 +190,7 @@ if (!$is_login) {
 												</div>
 												<div class="chat chat-left">
 													<div class="chat-avatar">
-														<a href="profile.html" class="avatar">
+														<a href="profile.php" class="avatar">
 															<img alt="" src="assets/img/profiles/avatar-05.jpg">
 														</a>
 													</div>
@@ -290,7 +290,7 @@ if (!$is_login) {
 												</div>
 												<div class="chat chat-left">
 													<div class="chat-avatar">
-														<a href="profile.html" class="avatar">
+														<a href="profile.php" class="avatar">
 															<img alt="" src="assets/img/profiles/avatar-05.jpg">
 														</a>
 													</div>
@@ -402,7 +402,7 @@ if (!$is_login) {
 												</div>
 												<div class="chat chat-left">
 													<div class="chat-avatar">
-														<a href="profile.html" class="avatar">
+														<a href="profile.php" class="avatar">
 															<img alt="" src="assets/img/profiles/avatar-05.jpg">
 														</a>
 													</div>
@@ -445,7 +445,7 @@ if (!$is_login) {
 												</div>
 												<div class="chat chat-left">
 													<div class="chat-avatar">
-														<a href="profile.html" class="avatar">
+														<a href="profile.php" class="avatar">
 															<img alt="" src="assets/img/profiles/avatar-05.jpg">
 														</a>
 													</div>
@@ -496,7 +496,7 @@ if (!$is_login) {
 											<div class="chats">
 												<div class="chat chat-left">
 													<div class="chat-avatar">
-														<a href="profile.html" class="avatar">
+														<a href="profile.php" class="avatar">
 															<img alt="" src="assets/img/profiles/avatar-02.jpg">
 														</a>
 													</div>
@@ -518,7 +518,7 @@ if (!$is_login) {
 												</div>
 												<div class="chat chat-left">
 													<div class="chat-avatar">
-														<a href="profile.html" class="avatar">
+														<a href="profile.php" class="avatar">
 															<img alt="" src="assets/img/profiles/avatar-02.jpg">
 														</a>
 													</div>
@@ -542,7 +542,7 @@ if (!$is_login) {
 												</div>
 												<div class="chat chat-left">
 													<div class="chat-avatar">
-														<a href="profile.html" class="avatar">
+														<a href="profile.php" class="avatar">
 															<img alt="" src="assets/img/profiles/avatar-05.jpg">
 														</a>
 													</div>
@@ -564,7 +564,7 @@ if (!$is_login) {
 												</div>
 												<div class="chat chat-left">
 													<div class="chat-avatar">
-														<a href="profile.html" class="avatar">
+														<a href="profile.php" class="avatar">
 															<img alt="" src="assets/img/profiles/avatar-02.jpg">
 														</a>
 													</div>

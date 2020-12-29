@@ -3,8 +3,17 @@ require_once 'includes/library.php';
 session_start();
 $app = new AppLib();
 $is_login = $app->is_user();
+$dbh = Database();
 if (!$is_login) {
 	header('location:login.php');
+} elseif (isset($_GET['delid'])) {
+	$rid = intval($_GET['delid']);
+	$sql = "DELETE from assets where id=:rid";
+	$query = $dbh->prepare($sql);
+	$query->bindParam(':rid', $rid, PDO::PARAM_STR);
+	$query->execute();
+	echo "<script>alert('Asset Has Been Deleted');</script>";
+	echo "<script>window.location.href ='assets.php'</script>";
 }
 ?>
 <!DOCTYPE html>
@@ -116,409 +125,72 @@ if (!$is_login) {
 					</div>
 				</div>
 				<!-- /Search Filter -->
+
 				<div class="row">
 					<div class="col-md-12">
 						<div class="table-responsive">
-							<table class="table table-striped custom-table mb-0 datatable">
+							<table class="table table-striped custom-table mb-0 dataTable">
 								<thead>
 									<tr>
-										<th>Asset User</th>
-										<th>Asset Name</th>
-										<th>Asset Id</th>
-										<th>Purchase Date</th>
-										<th>Warrenty</th>
-										<th>Warrenty End</th>
-										<th>Amount</th>
+										<th class="text-left">Asset User</th>
+										<th class="text-left">Asset Name</th>
+										<th class="text-left">Asset Id</th>
+										<th class="text-left">Purchase Date</th>
+										<th class="text-left">Warrenty</th>
+										<th class="text-left">Amount</th>
 										<th class="text-center">Status</th>
-										<th class="text-right"></th>
+										<th class="text-danger text-right">Setting</th>
 									</tr>
 								</thead>
-								<tbody>
-									<tr>
-										<td>Richard Miles</td>
-										<td>
-											<strong>Dell Laptop</strong>
-										</td>
-										<td>#AST-0001</td>
-										<td>5 Jan 2019</td>
-										<td>12 Months</td>
-										<td>5 Jan 2019</td>
-										<td>$1215</td>
-										<td class="text-center">
-											<div class="dropdown action-label">
-												<a class="btn btn-white btn-sm btn-rounded dropdown-toggle" href="#" data-toggle="dropdown" aria-expanded="false">
-													<i class="fa fa-dot-circle-o text-danger"></i> Pending
-												</a>
-												<div class="dropdown-menu dropdown-menu-right">
-													<a class="dropdown-item" href="#"><i class="fa fa-dot-circle-o text-danger"></i> Pending</a>
-													<a class="dropdown-item" href="#"><i class="fa fa-dot-circle-o text-success"></i> Approved</a>
-													<a class="dropdown-item" href="#"><i class="fa fa-dot-circle-o text-info"></i> Returned</a>
-												</div>
-											</div>
-										</td>
-										<td class="text-right">
-											<div class="dropdown dropdown-action">
-												<a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="material-icons">more_vert</i></a>
-												<div class="dropdown-menu dropdown-menu-right">
-													<a class="dropdown-item" href="#" data-toggle="modal" data-target="#edit_asset"><i class="fa fa-pencil m-r-5"></i> Edit</a>
-													<a class="dropdown-item" href="#" data-toggle="modal" data-target="#delete_asset"><i class="fa fa-trash-o m-r-5"></i> Delete</a>
-												</div>
-											</div>
-										</td>
-									</tr>
-									<tr>
-										<td>John Doe</td>
-										<td>
-											<strong>Seagate Harddisk</strong>
-										</td>
-										<td>#AST-0002</td>
-										<td>14 Jan 2019</td>
-										<td>12 Months</td>
-										<td>14 Jan 2019</td>
-										<td>$300</td>
-										<td class="text-center">
-											<div class="dropdown action-label">
-												<a class="btn btn-white btn-sm btn-rounded dropdown-toggle" href="#" data-toggle="dropdown" aria-expanded="false">
-													<i class="fa fa-dot-circle-o text-success"></i> Approved
-												</a>
-												<div class="dropdown-menu dropdown-menu-right">
-													<a class="dropdown-item" href="#"><i class="fa fa-dot-circle-o text-danger"></i> Pending</a>
-													<a class="dropdown-item" href="#"><i class="fa fa-dot-circle-o text-success"></i> Approved</a>
-													<a class="dropdown-item" href="#"><i class="fa fa-dot-circle-o text-info"></i> Returned</a>
-												</div>
-											</div>
-										</td>
-										<td class="text-right">
-											<div class="dropdown dropdown-action">
-												<a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="material-icons">more_vert</i></a>
-												<div class="dropdown-menu dropdown-menu-right">
-													<a class="dropdown-item" href="#" data-toggle="modal" data-target="#edit_asset"><i class="fa fa-pencil m-r-5"></i> Edit</a>
-													<a class="dropdown-item" href="#" data-toggle="modal" data-target="#delete_asset"><i class="fa fa-trash-o m-r-5"></i> Delete</a>
-												</div>
-											</div>
-										</td>
-									</tr>
-									<tr>
-										<td>John Smith</td>
-										<td>
-											<strong>Canon Portable Printer</strong>
-										</td>
-										<td>#AST-0003</td>
-										<td>14 Jan 2019</td>
-										<td>12 Months</td>
-										<td>14 Jan 2019</td>
-										<td>$2500</td>
-										<td class="text-center">
-											<div class="dropdown action-label">
-												<a class="btn btn-white btn-sm btn-rounded dropdown-toggle" href="#" data-toggle="dropdown" aria-expanded="false">
-													<i class="fa fa-dot-circle-o text-info"></i> Returned
-												</a>
-												<div class="dropdown-menu dropdown-menu-right">
-													<a class="dropdown-item" href="#"><i class="fa fa-dot-circle-o text-danger"></i> Pending</a>
-													<a class="dropdown-item" href="#"><i class="fa fa-dot-circle-o text-success"></i> Approved</a>
-													<a class="dropdown-item" href="#"><i class="fa fa-dot-circle-o text-info"></i> Returned</a>
-												</div>
-											</div>
-										</td>
-										<td class="text-right">
-											<div class="dropdown dropdown-action">
-												<a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="material-icons">more_vert</i></a>
-												<div class="dropdown-menu dropdown-menu-right">
-													<a class="dropdown-item" href="#" data-toggle="modal" data-target="#edit_asset"><i class="fa fa-pencil m-r-5"></i> Edit</a>
-													<a class="dropdown-item" href="#" data-toggle="modal" data-target="#delete_asset"><i class="fa fa-trash-o m-r-5"></i> Delete</a>
-												</div>
-											</div>
-										</td>
-									</tr>
-									<tr>
-										<td>Mike Litorus</td>
-										<td>
-											<strong>Dell Laptop</strong>
-										</td>
-										<td>#AST-0004</td>
-										<td>5 Jan 2019</td>
-										<td>12 Months</td>
-										<td>5 Jan 2019</td>
-										<td>$1215</td>
-										<td class="text-center">
-											<div class="dropdown action-label">
-												<a class="btn btn-white btn-sm btn-rounded dropdown-toggle" href="#" data-toggle="dropdown" aria-expanded="false">
-													<i class="fa fa-dot-circle-o text-danger"></i> Pending
-												</a>
-												<div class="dropdown-menu dropdown-menu-right">
-													<a class="dropdown-item" href="#"><i class="fa fa-dot-circle-o text-danger"></i> Pending</a>
-													<a class="dropdown-item" href="#"><i class="fa fa-dot-circle-o text-success"></i> Approved</a>
-													<a class="dropdown-item" href="#"><i class="fa fa-dot-circle-o text-info"></i> Returned</a>
-												</div>
-											</div>
-										</td>
-										<td class="text-right">
-											<div class="dropdown dropdown-action">
-												<a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="material-icons">more_vert</i></a>
-												<div class="dropdown-menu dropdown-menu-right">
-													<a class="dropdown-item" href="#" data-toggle="modal" data-target="#edit_asset"><i class="fa fa-pencil m-r-5"></i> Edit</a>
-													<a class="dropdown-item" href="#" data-toggle="modal" data-target="#delete_asset"><i class="fa fa-trash-o m-r-5"></i> Delete</a>
-												</div>
-											</div>
-										</td>
-									</tr>
-									<tr>
-										<td>Wilmer Deluna</td>
-										<td>
-											<strong>Seagate Harddisk</strong>
-										</td>
-										<td>#AST-0005</td>
-										<td>14 Jan 2019</td>
-										<td>12 Months</td>
-										<td>14 Jan 2019</td>
-										<td>$300</td>
-										<td class="text-center">
-											<div class="dropdown action-label">
-												<a class="btn btn-white btn-sm btn-rounded dropdown-toggle" href="#" data-toggle="dropdown" aria-expanded="false">
-													<i class="fa fa-dot-circle-o text-success"></i> Approved
-												</a>
-												<div class="dropdown-menu dropdown-menu-right">
-													<a class="dropdown-item" href="#"><i class="fa fa-dot-circle-o text-danger"></i> Pending</a>
-													<a class="dropdown-item" href="#"><i class="fa fa-dot-circle-o text-success"></i> Approved</a>
-													<a class="dropdown-item" href="#"><i class="fa fa-dot-circle-o text-info"></i> Returned</a>
-												</div>
-											</div>
-										</td>
-										<td class="text-right">
-											<div class="dropdown dropdown-action">
-												<a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="material-icons">more_vert</i></a>
-												<div class="dropdown-menu dropdown-menu-right">
-													<a class="dropdown-item" href="#" data-toggle="modal" data-target="#edit_asset"><i class="fa fa-pencil m-r-5"></i> Edit</a>
-													<a class="dropdown-item" href="#" data-toggle="modal" data-target="#delete_asset"><i class="fa fa-trash-o m-r-5"></i> Delete</a>
-												</div>
-											</div>
-										</td>
-									</tr>
-									<tr>
-										<td>Jeffrey Warden</td>
-										<td>
-											<strong>Canon Portable Printer</strong>
-										</td>
-										<td>#AST-0006</td>
-										<td>14 Jan 2019</td>
-										<td>12 Months</td>
-										<td>14 Jan 2019</td>
-										<td>$2500</td>
-										<td class="text-center">
-											<div class="dropdown action-label">
-												<a class="btn btn-white btn-sm btn-rounded dropdown-toggle" href="#" data-toggle="dropdown" aria-expanded="false">
-													<i class="fa fa-dot-circle-o text-info"></i> Returned
-												</a>
-												<div class="dropdown-menu dropdown-menu-right">
-													<a class="dropdown-item" href="#"><i class="fa fa-dot-circle-o text-danger"></i> Pending</a>
-													<a class="dropdown-item" href="#"><i class="fa fa-dot-circle-o text-success"></i> Approved</a>
-													<a class="dropdown-item" href="#"><i class="fa fa-dot-circle-o text-info"></i> Returned</a>
-												</div>
-											</div>
-										</td>
-										<td class="text-right">
-											<div class="dropdown dropdown-action">
-												<a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="material-icons">more_vert</i></a>
-												<div class="dropdown-menu dropdown-menu-right">
-													<a class="dropdown-item" href="#" data-toggle="modal" data-target="#edit_asset"><i class="fa fa-pencil m-r-5"></i> Edit</a>
-													<a class="dropdown-item" href="#" data-toggle="modal" data-target="#delete_asset"><i class="fa fa-trash-o m-r-5"></i> Delete</a>
-												</div>
-											</div>
-										</td>
-									</tr>
-									<tr>
-										<td>Bernardo Galaviz</td>
-										<td>
-											<strong>Dell Laptop</strong>
-										</td>
-										<td>#AST-0007</td>
-										<td>5 Jan 2019</td>
-										<td>12 Months</td>
-										<td>5 Jan 2019</td>
-										<td>$1215</td>
-										<td class="text-center">
-											<div class="dropdown action-label">
-												<a class="btn btn-white btn-sm btn-rounded dropdown-toggle" href="#" data-toggle="dropdown" aria-expanded="false">
-													<i class="fa fa-dot-circle-o text-danger"></i> Pending
-												</a>
-												<div class="dropdown-menu dropdown-menu-right">
-													<a class="dropdown-item" href="#"><i class="fa fa-dot-circle-o text-danger"></i> Pending</a>
-													<a class="dropdown-item" href="#"><i class="fa fa-dot-circle-o text-success"></i> Approved</a>
-													<a class="dropdown-item" href="#"><i class="fa fa-dot-circle-o text-info"></i> Returned</a>
-												</div>
-											</div>
-										</td>
-										<td class="text-right">
-											<div class="dropdown dropdown-action">
-												<a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="material-icons">more_vert</i></a>
-												<div class="dropdown-menu dropdown-menu-right">
-													<a class="dropdown-item" href="#" data-toggle="modal" data-target="#edit_asset"><i class="fa fa-pencil m-r-5"></i> Edit</a>
-													<a class="dropdown-item" href="#" data-toggle="modal" data-target="#delete_asset"><i class="fa fa-trash-o m-r-5"></i> Delete</a>
-												</div>
-											</div>
-										</td>
-									</tr>
-									<tr>
-										<td>Lesley Grauer</td>
-										<td>
-											<strong>Seagate Harddisk</strong>
-										</td>
-										<td>#AST-0008</td>
-										<td>14 Jan 2019</td>
-										<td>12 Months</td>
-										<td>14 Jan 2019</td>
-										<td>$300</td>
-										<td class="text-center">
-											<div class="dropdown action-label">
-												<a class="btn btn-white btn-sm btn-rounded dropdown-toggle" href="#" data-toggle="dropdown" aria-expanded="false">
-													<i class="fa fa-dot-circle-o text-success"></i> Approved
-												</a>
-												<div class="dropdown-menu dropdown-menu-right">
-													<a class="dropdown-item" href="#"><i class="fa fa-dot-circle-o text-danger"></i> Pending</a>
-													<a class="dropdown-item" href="#"><i class="fa fa-dot-circle-o text-success"></i> Approved</a>
-													<a class="dropdown-item" href="#"><i class="fa fa-dot-circle-o text-info"></i> Returned</a>
-												</div>
-											</div>
-										</td>
-										<td class="text-right">
-											<div class="dropdown dropdown-action">
-												<a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="material-icons">more_vert</i></a>
-												<div class="dropdown-menu dropdown-menu-right">
-													<a class="dropdown-item" href="#" data-toggle="modal" data-target="#edit_asset"><i class="fa fa-pencil m-r-5"></i> Edit</a>
-													<a class="dropdown-item" href="#" data-toggle="modal" data-target="#delete_asset"><i class="fa fa-trash-o m-r-5"></i> Delete</a>
-												</div>
-											</div>
-										</td>
-									</tr>
-									<tr>
-										<td>Jeffery Lalor</td>
-										<td>
-											<strong>Canon Portable Printer</strong>
-										</td>
-										<td>#AST-0009</td>
-										<td>14 Jan 2019</td>
-										<td>12 Months</td>
-										<td>14 Jan 2019</td>
-										<td>$2500</td>
-										<td class="text-center">
-											<div class="dropdown action-label">
-												<a class="btn btn-white btn-sm btn-rounded dropdown-toggle" href="#" data-toggle="dropdown" aria-expanded="false">
-													<i class="fa fa-dot-circle-o text-info"></i> Returned
-												</a>
-												<div class="dropdown-menu dropdown-menu-right">
-													<a class="dropdown-item" href="#"><i class="fa fa-dot-circle-o text-danger"></i> Pending</a>
-													<a class="dropdown-item" href="#"><i class="fa fa-dot-circle-o text-success"></i> Approved</a>
-													<a class="dropdown-item" href="#"><i class="fa fa-dot-circle-o text-info"></i> Returned</a>
-												</div>
-											</div>
-										</td>
-										<td class="text-right">
-											<div class="dropdown dropdown-action">
-												<a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="material-icons">more_vert</i></a>
-												<div class="dropdown-menu dropdown-menu-right">
-													<a class="dropdown-item" href="#" data-toggle="modal" data-target="#edit_asset"><i class="fa fa-pencil m-r-5"></i> Edit</a>
-													<a class="dropdown-item" href="#" data-toggle="modal" data-target="#delete_asset"><i class="fa fa-trash-o m-r-5"></i> Delete</a>
-												</div>
-											</div>
-										</td>
-									</tr>
-									<tr>
-										<td>Loren Gatlin</td>
-										<td>
-											<strong>Dell Laptop</strong>
-										</td>
-										<td>#AST-0010</td>
-										<td>5 Jan 2019</td>
-										<td>12 Months</td>
-										<td>5 Jan 2019</td>
-										<td>$1215</td>
-										<td class="text-center">
-											<div class="dropdown action-label">
-												<a class="btn btn-white btn-sm btn-rounded dropdown-toggle" href="#" data-toggle="dropdown" aria-expanded="false">
-													<i class="fa fa-dot-circle-o text-danger"></i> Pending
-												</a>
-												<div class="dropdown-menu dropdown-menu-right">
-													<a class="dropdown-item" href="#"><i class="fa fa-dot-circle-o text-danger"></i> Pending</a>
-													<a class="dropdown-item" href="#"><i class="fa fa-dot-circle-o text-success"></i> Approved</a>
-													<a class="dropdown-item" href="#"><i class="fa fa-dot-circle-o text-info"></i> Returned</a>
-												</div>
-											</div>
-										</td>
-										<td class="text-right">
-											<div class="dropdown dropdown-action">
-												<a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="material-icons">more_vert</i></a>
-												<div class="dropdown-menu dropdown-menu-right">
-													<a class="dropdown-item" href="#" data-toggle="modal" data-target="#edit_asset"><i class="fa fa-pencil m-r-5"></i> Edit</a>
-													<a class="dropdown-item" href="#" data-toggle="modal" data-target="#delete_asset"><i class="fa fa-trash-o m-r-5"></i> Delete</a>
-												</div>
-											</div>
-										</td>
-									</tr>
-									<tr>
-										<td>Tarah Shropshire</td>
-										<td>
-											<strong>Seagate Harddisk</strong>
-										</td>
-										<td>#AST-0011</td>
-										<td>14 Jan 2019</td>
-										<td>12 Months</td>
-										<td>14 Jan 2019</td>
-										<td>$300</td>
-										<td class="text-center">
-											<div class="dropdown action-label">
-												<a class="btn btn-white btn-sm btn-rounded dropdown-toggle" href="#" data-toggle="dropdown" aria-expanded="false">
-													<i class="fa fa-dot-circle-o text-success"></i> Approved
-												</a>
-												<div class="dropdown-menu dropdown-menu-right">
-													<a class="dropdown-item" href="#"><i class="fa fa-dot-circle-o text-danger"></i> Pending</a>
-													<a class="dropdown-item" href="#"><i class="fa fa-dot-circle-o text-success"></i> Approved</a>
-													<a class="dropdown-item" href="#"><i class="fa fa-dot-circle-o text-info"></i> Returned</a>
-												</div>
-											</div>
-										</td>
-										<td class="text-right">
-											<div class="dropdown dropdown-action">
-												<a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="material-icons">more_vert</i></a>
-												<div class="dropdown-menu dropdown-menu-right">
-													<a class="dropdown-item" href="#" data-toggle="modal" data-target="#edit_asset"><i class="fa fa-pencil m-r-5"></i> Edit</a>
-													<a class="dropdown-item" href="#" data-toggle="modal" data-target="#delete_asset"><i class="fa fa-trash-o m-r-5"></i> Delete</a>
-												</div>
-											</div>
-										</td>
-									</tr>
-									<tr>
-										<td>Catherine Manseau</td>
-										<td>
-											<strong>Canon Portable Printer</strong>
-										</td>
-										<td>#AST-0012</td>
-										<td>14 Jan 2019</td>
-										<td>12 Months</td>
-										<td>14 Jan 2019</td>
-										<td>$2500</td>
-										<td class="text-center">
-											<div class="dropdown action-label">
-												<a class="btn btn-white btn-sm btn-rounded dropdown-toggle" href="#" data-toggle="dropdown" aria-expanded="false">
-													<i class="fa fa-dot-circle-o text-info"></i> Returned
-												</a>
-												<div class="dropdown-menu dropdown-menu-right">
-													<a class="dropdown-item" href="#"><i class="fa fa-dot-circle-o text-danger"></i> Pending</a>
-													<a class="dropdown-item" href="#"><i class="fa fa-dot-circle-o text-success"></i> Approved</a>
-													<a class="dropdown-item" href="#"><i class="fa fa-dot-circle-o text-info"></i> Returned</a>
-												</div>
-											</div>
-										</td>
-										<td class="text-right">
-											<div class="dropdown dropdown-action">
-												<a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="material-icons">more_vert</i></a>
-												<div class="dropdown-menu dropdown-menu-right">
-													<a class="dropdown-item" href="#" data-toggle="modal" data-target="#edit_asset"><i class="fa fa-pencil m-r-5"></i> Edit</a>
-													<a class="dropdown-item" href="#" data-toggle="modal" data-target="#delete_asset"><i class="fa fa-trash-o m-r-5"></i> Delete</a>
-												</div>
-											</div>
-										</td>
-									</tr>
-								</tbody>
+								<!-- code to show the table -->
+
+								<?php
+								$sql = "SELECT * FROM assets";
+								// $query = $dbh->prepare($sql);
+								// $query->execute();
+								// $results = $query->fetchAll(PDO::FETCH_OBJ);
+								$results2 = $dbh->query($sql);
+								$cnt = 1;
+								if ($query->rowCount() > 0) {
+									foreach ($results2 as $row) {
+										$newdate = date("l d-m-Y", strtotime($row['PurchaseDate'])); //Convert to d/m/Y
+								?>
+										<tbody>
+											<tr>
+												<td><?php echo htmlentities($row['AssetUser']); ?></td>
+												<td>
+													<strong><?php echo htmlentities($row['assetName']); ?></strong>
+												</td>
+												<td><?php echo htmlentities($row['assetId']); ?></td>
+												<td><?php echo htmlentities($row['PurchaseDate']); ?></td>
+												<td><?php echo htmlentities($row['Warranty']), " Months"; ?></td>
+												<td><?php echo "Rp " . number_format((htmlentities($row['Price'])), 2, ',', '.'); ?></td>
+												<td class="text-center">
+													<div class="dropdown action-label">
+														<a class="btn btn-white btn-sm btn-rounded dropdown-toggle" href="#" data-toggle="dropdown" aria-expanded="false">
+															<i class="fa fa-dot-circle-o text-danger"></i> Pending
+														</a>
+														<div class="dropdown-menu dropdown-menu-right">
+															<a class="dropdown-item" href="#"><i class="fa fa-dot-circle-o text-danger"></i> Pending</a>
+															<a class="dropdown-item" href="#"><i class="fa fa-dot-circle-o text-success"></i> Approved</a>
+															<a class="dropdown-item" href="#"><i class="fa fa-dot-circle-o text-info"></i> Returned</a>
+														</div>
+													</div>
+												</td>
+												<td class="text-right">
+													<div class="dropdown dropdown-action">
+														<a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="material-icons">more_vert</i></a>
+														<div class="dropdown-menu dropdown-menu-right">
+															<a class="dropdown-item" href="#" data-toggle="modal" data-target="#edit_asset"><i class="fa fa-pencil m-r-5"></i> Edit</a>
+															<a class="dropdown-item" href="#" data-toggle="modal" data-target="#delete_asset"><i class="fa fa-trash-o m-r-5"></i> Delete</a>
+														</div>
+													</div>
+												</td>
+											</tr>
+										</tbody>
+								<?php $cnt += 1;
+									}
+								} ?>
 							</table>
 						</div>
 					</div>
@@ -526,6 +198,50 @@ if (!$is_login) {
 			</div>
 			<!-- /Page Content -->
 			<!-- Add Asset Modal -->
+			<?php
+			// adding assets begins here
+			if (isset($_POST['add_asset'])) {
+				$asset = htmlspecialchars($_POST['asset_name']);
+				$asset_id = htmlspecialchars($_POST['asset_id']);
+				$purchase_date = htmlspecialchars($_POST['purchase_date']);
+				$purchase_from = htmlspecialchars($_POST['purchase_from']);
+				$manufacturer = htmlspecialchars($_POST['manufacturer']);
+				$model = htmlspecialchars($_POST['model']);
+				$status = htmlspecialchars($_POST['status']);
+				$supplier = htmlspecialchars($_POST['supplier']);
+				$condition = htmlspecialchars($_POST['condition']);
+				$warrant = htmlspecialchars($_POST['warranty']);
+				$price = htmlspecialchars($_POST['value']);
+				$asset_user = htmlspecialchars($_POST['asset_user']);
+				$description = htmlspecialchars($_POST['description']);
+				$sql = "INSERT INTO `assets` ( `assetName`, `assetId`, `PurchaseDate`, `PurchaseFrom`, `Manufacturer`, `Model`, `Status`, `Supplier`, `AssetCondition`, `Warranty`, `Price`, `AssetUser`, `Description`)
+				VALUES (:name, :id, :purchaseDate, :purchasefrom, :manufacturer, :model, :stats, :supplier, :condition, :warranty, :price, :user, :describe)";
+				$query = $dbh->prepare($sql);
+				$query->bindParam(':name', $asset, PDO::PARAM_STR);
+				$query->bindParam(':id', $asset_id, PDO::PARAM_STR);
+				$query->bindParam(':purchaseDate', $purchase_date, PDO::PARAM_STR);
+				$query->bindParam(':purchasefrom', $purchase_from, PDO::PARAM_STR);
+				$query->bindParam(':manufacturer', $manufacturer, PDO::PARAM_STR);
+				$query->bindParam(':model', $model, PDO::PARAM_STR);
+				$query->bindParam(':stats', $status, PDO::PARAM_INT);
+				$query->bindParam(':supplier', $supplier, PDO::PARAM_STR);
+				$query->bindParam(':condition', $condition, PDO::PARAM_STR);
+				$query->bindParam(':warranty', $warrant, PDO::PARAM_STR);
+				$query->bindParam(':price', $price, PDO::PARAM_INT);
+				$query->bindParam(':user', $asset_user, PDO::PARAM_STR);
+				$query->bindParam(':describe', $description, PDO::PARAM_STR);
+				$query->execute();
+				$lastinserted = $dbh->lastInsertId();
+				if ($lastinserted > 0) {
+					echo "<script>alert('Asset Has Been Added');</script>";
+					echo "<script>window.location.href='assets.php';</script>";
+				} else {
+					echo "<script>alert('Something Went Wrong Please Again.');</script>";
+				}
+			}
+			//adding assets code ends here.
+			$set = '1234567890';
+			$id = substr(str_shuffle($set), 0, 6); ?>
 			<div id="add_asset" class="modal custom-modal fade" role="dialog">
 				<div class="modal-dialog modal-md" role="document">
 					<div class="modal-content">
@@ -536,18 +252,18 @@ if (!$is_login) {
 							</button>
 						</div>
 						<div class="modal-body">
-							<form>
+							<form method="POST">
 								<div class="row">
 									<div class="col-md-6">
 										<div class="form-group">
 											<label>Asset Name</label>
-											<input class="form-control" type="text">
+											<input name="asset_name" class="form-control" type="text">
 										</div>
 									</div>
 									<div class="col-md-6">
 										<div class="form-group">
 											<label>Asset Id</label>
-											<input class="form-control" type="text">
+											<input readonly name="asset_id" value="<?php echo '#AST-' . $id; ?>" class="form-control" type="text">
 										</div>
 									</div>
 								</div>
@@ -555,13 +271,13 @@ if (!$is_login) {
 									<div class="col-md-6">
 										<div class="form-group">
 											<label>Purchase Date</label>
-											<input class="form-control datetimepicker" type="text">
+											<input name="purchase_date" value="<?php echo date('dd/mm/yy'); ?>" class="form-control" type="date">
 										</div>
 									</div>
 									<div class="col-md-6">
 										<div class="form-group">
 											<label>Purchase From</label>
-											<input class="form-control" type="text">
+											<input name="purchase_from" class="form-control" type="text">
 										</div>
 									</div>
 								</div>
@@ -569,53 +285,58 @@ if (!$is_login) {
 									<div class="col-md-6">
 										<div class="form-group">
 											<label>Manufacturer</label>
-											<input class="form-control" type="text">
+											<input name="manufacturer" class="form-control" type="text">
 										</div>
 									</div>
 									<div class="col-md-6">
 										<div class="form-group">
 											<label>Model</label>
-											<input class="form-control" type="text">
+											<input name="model" class="form-control" type="text">
 										</div>
 									</div>
 								</div>
 								<div class="row">
 									<div class="col-md-6">
 										<div class="form-group">
-											<label>Serial Number</label>
-											<input class="form-control" type="text">
+											<label>Status</label>
+											<select name="status" class="select">
+												<option value="0">Pending</option>
+												<option value="1">Approved</option>
+												<option value="2">Deployed</option>
+												<option value="3">Damaged</option>
+											</select>
 										</div>
 									</div>
 									<div class="col-md-6">
 										<div class="form-group">
 											<label>Supplier</label>
-											<input class="form-control" type="text">
+											<input name="supplier" class="form-control" type="text">
 										</div>
 									</div>
 									<div class="col-md-6">
 										<div class="form-group">
 											<label>Condition</label>
-											<input class="form-control" type="text">
+											<input name="condition" class="form-control" type="text">
 										</div>
 									</div>
 									<div class="col-md-6">
 										<div class="form-group">
 											<label>Warranty</label>
-											<input class="form-control" type="text" placeholder="In Months">
+											<input name="warranty" class="form-control" type="text" placeholder="In Months">
 										</div>
 									</div>
 								</div>
 								<div class="row">
 									<div class="col-md-6">
 										<div class="form-group">
-											<label>Value</label>
-											<input placeholder="$1800" class="form-control" type="text">
+											<label>Value/Price</label>
+											<input placeholder="1800" name="value" class="form-control" type="text">
 										</div>
 									</div>
 									<div class="col-md-6">
 										<div class="form-group">
 											<label>Asset User</label>
-											<select class="select">
+											<select name="asset_user" class="select">
 												<option>John Doe</option>
 												<option>Richard Miles</option>
 											</select>
@@ -624,23 +345,13 @@ if (!$is_login) {
 									<div class="col-md-12">
 										<div class="form-group">
 											<label>Description</label>
-											<textarea class="form-control"></textarea>
+											<textarea name="description" class="form-control"></textarea>
 										</div>
 									</div>
-									<div class="col-md-6">
-										<div class="form-group">
-											<label>Status</label>
-											<select class="select">
-												<option>Pending</option>
-												<option>Approved</option>
-												<option>Deployed</option>
-												<option>Damaged</option>
-											</select>
-										</div>
-									</div>
+
 								</div>
 								<div class="submit-section">
-									<button class="btn btn-primary submit-btn">Submit</button>
+									<button type="submit" name="add_asset" class="btn btn-primary submit-btn">Submit</button>
 								</div>
 							</form>
 						</div>
@@ -783,7 +494,7 @@ if (!$is_login) {
 							<div class="modal-btn delete-action">
 								<div class="row">
 									<div class="col-6">
-										<a href="javascript:void(0);" class="btn btn-primary continue-btn">Delete</a>
+										<a href="assets.php?delid=<?php echo $row->id; ?>" type="submit" class="btn btn-primary continue-btn">Delete</a>
 									</div>
 									<div class="col-6">
 										<a href="javascript:void(0);" data-dismiss="modal" class="btn btn-primary cancel-btn">Cancel</a>
@@ -816,6 +527,7 @@ if (!$is_login) {
 	<script src="assets/js/bootstrap-datetimepicker.min.js"></script>
 	<!-- Custom JS -->
 	<script src="assets/js/app.js"></script>
+
 </body>
 
 </html>

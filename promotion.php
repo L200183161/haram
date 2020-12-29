@@ -94,8 +94,8 @@ if (!$is_login) {
 										<td>1</td>
 										<td>
 											<h2 class="table-avatar blue-link">
-												<a href="profile.html" class="avatar"><img alt="" src="assets/img/profiles/avatar-02.jpg"></a>
-												<a href="profile.html">John Doe</a>
+												<a href="profile.php" class="avatar"><img alt="" src="assets/img/profiles/avatar-02.jpg"></a>
+												<a href="profile.php">John Doe</a>
 											</h2>
 										</td>
 										<td>Web Development</td>

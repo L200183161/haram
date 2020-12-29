@@ -83,7 +83,7 @@ if (!$is_login) {
 													<h5 class="company-role m-t-0 mb-0">Barry Cuda</h5>
 													<small class="text-muted">CEO</small>
 													<div class="staff-id">Employee ID : CLT-0001</div>
-													<div class="staff-msg"><a href="chat.html" class="btn btn-custom">Send Message</a></div>
+													<div class="staff-msg"><a href="chat.php" class="btn btn-custom">Send Message</a></div>
 												</div>
 											</div>
 											<div class="col-md-7">
@@ -743,6 +743,6 @@ if (!$is_login) {
 	<!-- Custom JS -->
 	<script src="assets/js/app.js"></script>
 </body>
-<!-- Copied from https://dreamguys.co.in/smarthr/orange/client-profile.html by Cyotek WebCopy 1.8.0.652, Friday, August 28, 2020, 10:33:50 AM -->
+<!-- Copied from https://dreamguys.co.in/smarthr/orange/client-profile.php by Cyotek WebCopy 1.8.0.652, Friday, August 28, 2020, 10:33:50 AM -->
 
 </html>
