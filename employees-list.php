@@ -2,9 +2,18 @@
 require_once 'includes/library.php';
 session_start();
 $app = new AppLib();
+$dbh = Database();
 $is_login = $app->is_user();
 if (!$is_login) {
 	header('location:login.php');
+} elseif (isset($_GET['delid'])) {
+	$rid = intval($_GET['delid']);
+	$sql = "DELETE from employees where id=:rid";
+	$query = $dbh->prepare($sql);
+	$query->bindParam(':rid', $rid, PDO::PARAM_STR);
+	$query->execute();
+	echo "<script>alert('Employee Has Been Deleted');</script>";
+	echo "<script>window.location.href ='employees-list.php'</script>";
 }
 ?>
 <!DOCTYPE html>
@@ -56,6 +65,7 @@ if (!$is_login) {
 		<div class="page-wrapper">
 			<!-- Page Content -->
 			<div class="content container-fluid">
+
 				<!-- Page Header -->
 				<div class="page-header">
 					<div class="row align-items-center">
@@ -69,13 +79,14 @@ if (!$is_login) {
 						<div class="col-auto float-right ml-auto">
 							<a href="#" class="btn add-btn" data-toggle="modal" data-target="#add_employee"><i class="fa fa-plus"></i> Add Employee</a>
 							<div class="view-icons">
-								<a href="employees.php" class="grid-view btn btn-link"><i class="fa fa-th"></i></a>
-								<a href="employees-list.php" class="list-view btn btn-link active"><i class="fa fa-bars"></i></a>
+								<a href="employees.php" title="Grid View" class="grid-view btn btn-link active"><i class="fa fa-th"></i></a>
+								<a href="employees-list.php" title="Tabular View" class="list-view btn btn-link"><i class="fa fa-bars"></i></a>
 							</div>
 						</div>
 					</div>
 				</div>
 				<!-- /Page Header -->
+
 				<!-- Search Filter -->
 				<div class="row filter-row">
 					<div class="col-sm-6 col-md-3">
@@ -107,6 +118,7 @@ if (!$is_login) {
 					</div>
 				</div>
 				<!-- /Search Filter -->
+
 				<div class="row">
 					<div class="col-md-12">
 						<div class="table-responsive">
@@ -122,241 +134,109 @@ if (!$is_login) {
 										<th class="text-right no-sort">Action</th>
 									</tr>
 								</thead>
-								<tbody>
-									<tr>
-										<td>
-											<h2 class="table-avatar">
-												<a href="profile.php" class="avatar"><img alt="" src="assets/img/profiles/avatar-02.jpg"></a>
-												<a href="profile.php">John Doe <span>Web Designer</span></a>
-											</h2>
-										</td>
-										<td>FT-0001</td>
-										<td>johndoe@example.com</td>
-										<td>9876543210</td>
-										<td>1 Jan 2013</td>
-										<td>
-											<div class="dropdown">
-												<a href="" class="btn btn-white btn-sm btn-rounded dropdown-toggle" data-toggle="dropdown" aria-expanded="false">Web Developer </a>
-												<div class="dropdown-menu">
-													<a class="dropdown-item" href="#">Software Engineer</a>
-													<a class="dropdown-item" href="#">Software Tester</a>
-													<a class="dropdown-item" href="#">Frontend Developer</a>
-													<a class="dropdown-item" href="#">UI/UX Developer</a>
-												</div>
-											</div>
-										</td>
-										<td class="text-right">
-											<div class="dropdown dropdown-action">
-												<a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="material-icons">more_vert</i></a>
-												<div class="dropdown-menu dropdown-menu-right">
-													<a class="dropdown-item" href="#" data-toggle="modal" data-target="#edit_employee"><i class="fa fa-pencil m-r-5"></i> Edit</a>
-													<a class="dropdown-item" href="#" data-toggle="modal" data-target="#delete_employee"><i class="fa fa-trash-o m-r-5"></i> Delete</a>
-												</div>
-											</div>
-										</td>
-									</tr>
-									<tr>
-										<td>
-											<h2 class="table-avatar">
-												<a href="profile.php" class="avatar"><img alt="" src="assets/img/profiles/avatar-09.jpg"></a>
-												<a href="profile.php">Richard Miles <span>Web Developer</span></a>
-											</h2>
-										</td>
-										<td>FT-0002</td>
-										<td>richardmiles@example.com</td>
-										<td>9876543210</td>
-										<td>18 Mar 2014</td>
-										<td>
-											<div class="dropdown">
-												<a href="" class="btn btn-white btn-sm btn-rounded dropdown-toggle" data-toggle="dropdown" aria-expanded="false">Web Developer </a>
-												<div class="dropdown-menu">
-													<a class="dropdown-item" href="#">Software Engineer</a>
-													<a class="dropdown-item" href="#">Software Tester</a>
-													<a class="dropdown-item" href="#">Frontend Developer</a>
-													<a class="dropdown-item" href="#">UI/UX Developer</a>
-												</div>
-											</div>
-										</td>
-										<td class="text-right">
-											<div class="dropdown dropdown-action">
-												<a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="material-icons">more_vert</i></a>
-												<div class="dropdown-menu dropdown-menu-right">
-													<a class="dropdown-item" href="#" data-toggle="modal" data-target="#edit_employee"><i class="fa fa-pencil m-r-5"></i> Edit</a>
-													<a class="dropdown-item" href="#" data-toggle="modal" data-target="#delete_employee"><i class="fa fa-trash-o m-r-5"></i> Delete</a>
-												</div>
-											</div>
-										</td>
-									</tr>
-									<tr>
-										<td>
-											<h2 class="table-avatar">
-												<a href="profile.php" class="avatar"><img alt="" src="assets/img/profiles/avatar-10.jpg"></a>
-												<a href="profile.php">John Smith <span>Android Developer</span></a>
-											</h2>
-										</td>
-										<td>FT-0003</td>
-										<td>johnsmith@example.com</td>
-										<td>9876543210</td>
-										<td>1 Apr 2014</td>
-										<td>
-											<div class="dropdown">
-												<a href="" class="btn btn-white btn-sm btn-rounded dropdown-toggle" data-toggle="dropdown" aria-expanded="false">Web Developer </a>
-												<div class="dropdown-menu">
-													<a class="dropdown-item" href="#">Software Engineer</a>
-													<a class="dropdown-item" href="#">Software Tester</a>
-													<a class="dropdown-item" href="#">Frontend Developer</a>
-													<a class="dropdown-item" href="#">UI/UX Developer</a>
-												</div>
-											</div>
-										</td>
-										<td class="text-right">
-											<div class="dropdown dropdown-action">
-												<a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="material-icons">more_vert</i></a>
-												<div class="dropdown-menu dropdown-menu-right">
-													<a class="dropdown-item" href="#" data-toggle="modal" data-target="#edit_employee"><i class="fa fa-pencil m-r-5"></i> Edit</a>
-													<a class="dropdown-item" href="#" data-toggle="modal" data-target="#delete_employee"><i class="fa fa-trash-o m-r-5"></i> Delete</a>
-												</div>
-											</div>
-										</td>
-									</tr>
-									<tr>
-										<td>
-											<h2 class="table-avatar">
-												<a href="profile.php" class="avatar"><img alt="" src="assets/img/profiles/avatar-05.jpg"></a>
-												<a href="profile.php">Mike Litorus <span>IOS Developer</span></a>
-											</h2>
-										</td>
-										<td>FT-0004</td>
-										<td>mikelitorus@example.com</td>
-										<td>9876543210</td>
-										<td>1 Apr 2014</td>
-										<td>
-											<div class="dropdown">
-												<a href="" class="btn btn-white btn-sm btn-rounded dropdown-toggle" data-toggle="dropdown" aria-expanded="false">Web Developer </a>
-												<div class="dropdown-menu">
-													<a class="dropdown-item" href="#">Software Engineer</a>
-													<a class="dropdown-item" href="#">Software Tester</a>
-													<a class="dropdown-item" href="#">Frontend Developer</a>
-													<a class="dropdown-item" href="#">UI/UX Developer</a>
-												</div>
-											</div>
-										</td>
-										<td class="text-right">
-											<div class="dropdown dropdown-action">
-												<a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="material-icons">more_vert</i></a>
-												<div class="dropdown-menu dropdown-menu-right">
-													<a class="dropdown-item" href="#" data-toggle="modal" data-target="#edit_employee"><i class="fa fa-pencil m-r-5"></i> Edit</a>
-													<a class="dropdown-item" href="#" data-toggle="modal" data-target="#delete_employee"><i class="fa fa-trash-o m-r-5"></i> Delete</a>
-												</div>
-											</div>
-										</td>
-									</tr>
-									<tr>
-										<td>
-											<h2 class="table-avatar">
-												<a href="profile.php" class="avatar"><img alt="" src="assets/img/profiles/avatar-11.jpg"></a>
-												<a href="profile.php">Wilmer Deluna <span>Team Leader</span></a>
-											</h2>
-										</td>
-										<td>FT-0005</td>
-										<td>wilmerdeluna@example.com</td>
-										<td>9876543210</td>
-										<td>22 May 2014</td>
-										<td>
-											<div class="dropdown">
-												<a href="" class="btn btn-white btn-sm btn-rounded dropdown-toggle" data-toggle="dropdown" aria-expanded="false">Web Developer </a>
-												<div class="dropdown-menu">
-													<a class="dropdown-item" href="#">Software Engineer</a>
-													<a class="dropdown-item" href="#">Software Tester</a>
-													<a class="dropdown-item" href="#">Frontend Developer</a>
-													<a class="dropdown-item" href="#">UI/UX Developer</a>
-												</div>
-											</div>
-										</td>
-										<td class="text-right">
-											<div class="dropdown dropdown-action">
-												<a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="material-icons">more_vert</i></a>
-												<div class="dropdown-menu dropdown-menu-right">
-													<a class="dropdown-item" href="#" data-toggle="modal" data-target="#edit_employee"><i class="fa fa-pencil m-r-5"></i> Edit</a>
-													<a class="dropdown-item" href="#" data-toggle="modal" data-target="#delete_employee"><i class="fa fa-trash-o m-r-5"></i> Delete</a>
-												</div>
-											</div>
-										</td>
-									</tr>
-									<tr>
-										<td>
-											<h2 class="table-avatar">
-												<a href="profile.php" class="avatar"><img alt="" src="assets/img/profiles/avatar-12.jpg"></a>
-												<a href="profile.php">Jeffrey Warden <span>Web Developer</span></a>
-											</h2>
-										</td>
-										<td>FT-0006</td>
-										<td>jeffreywarden@example.com</td>
-										<td>9876543210</td>
-										<td>16 Jun 2013</td>
-										<td>
-											<div class="dropdown">
-												<a href="" class="btn btn-white btn-sm btn-rounded dropdown-toggle" data-toggle="dropdown" aria-expanded="false">Web Developer </a>
-												<div class="dropdown-menu">
-													<a class="dropdown-item" href="#">Software Engineer</a>
-													<a class="dropdown-item" href="#">Software Tester</a>
-													<a class="dropdown-item" href="#">Frontend Developer</a>
-													<a class="dropdown-item" href="#">UI/UX Developer</a>
-												</div>
-											</div>
-										</td>
-										<td class="text-right">
-											<div class="dropdown dropdown-action">
-												<a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="material-icons">more_vert</i></a>
-												<div class="dropdown-menu dropdown-menu-right">
-													<a class="dropdown-item" href="#" data-toggle="modal" data-target="#edit_employee"><i class="fa fa-pencil m-r-5"></i> Edit</a>
-													<a class="dropdown-item" href="#" data-toggle="modal" data-target="#delete_employee"><i class="fa fa-trash-o m-r-5"></i> Delete</a>
-												</div>
-											</div>
-										</td>
-									</tr>
-									<tr>
-										<td>
-											<h2 class="table-avatar">
-												<a href="profile.php" class="avatar"><img alt="" src="assets/img/profiles/avatar-13.jpg"></a>
-												<a href="profile.php">Bernardo Galaviz <span>Web Developer</span></a>
-											</h2>
-										</td>
-										<td>FT-0007</td>
-										<td>bernardogalaviz@example.com</td>
-										<td>9876543210</td>
-										<td>1 Jan 2013</td>
-										<td>
-											<div class="dropdown">
-												<a href="" class="btn btn-white btn-sm btn-rounded dropdown-toggle" data-toggle="dropdown" aria-expanded="false">Web Developer </a>
-												<div class="dropdown-menu">
-													<a class="dropdown-item" href="#">Software Engineer</a>
-													<a class="dropdown-item" href="#">Software Tester</a>
-													<a class="dropdown-item" href="#">Frontend Developer</a>
-													<a class="dropdown-item" href="#">UI/UX Developer</a>
-												</div>
-											</div>
-										</td>
-										<td class="text-right">
-											<div class="dropdown dropdown-action">
-												<a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="material-icons">more_vert</i></a>
-												<div class="dropdown-menu dropdown-menu-right">
-													<a class="dropdown-item" href="#" data-toggle="modal" data-target="#edit_employee"><i class="fa fa-pencil m-r-5"></i> Edit</a>
-													<a class="dropdown-item" href="#" data-toggle="modal" data-target="#delete_employee"><i class="fa fa-trash-o m-r-5"></i> Delete</a>
-												</div>
-											</div>
-										</td>
-									</tr>
-								</tbody>
+								<?php
+								$sql = "SELECT * FROM employees";
+								$query = $dbh->prepare($sql);
+								$query->execute();
+								$results = $query->fetchAll(PDO::FETCH_OBJ);
+								$cnt = 1;
+								if ($query->rowCount() > 0) {
+									foreach ($results as $row) {
+								?>
+										<tbody>
+											<tr>
+												<td>
+													<h2 class="table-avatar">
+														<a href="profile.php" class="avatar"><img alt="picture" src="uploads/employees/<?php echo htmlentities($row->Picture); ?>"></a>
+														<a href="profile.php"><?php echo htmlentities($row->FirstName) . " " . htmlentities($row->LastName); ?><span><?php echo htmlentities($row->Designation); ?></span></a>
+													</h2>
+												</td>
+												<td><?php echo htmlentities($row->Employee_Id); ?></td>
+												<td><?php echo htmlentities($row->Email); ?></td>
+												<td><?php echo htmlentities($row->Phone); ?></td>
+												<td><?php echo htmlentities($row->Joining_Date); ?></td>
+												<td><?php echo htmlentities($row->Designation); ?></td>
+												<td class="text-right">
+													<div class="dropdown dropdown-action">
+														<a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="material-icons">more_vert</i></a>
+														<div class="dropdown-menu dropdown-menu-right">
+															<a class="dropdown-item" href="#" data-toggle="modal" data-target="#edit_employee"><i class="fa fa-pencil m-r-5"></i> Edit</a>
+															<a class="dropdown-item" href="#" data-toggle="modal" data-target="#delete_employee"><i class="fa fa-trash-o m-r-5"></i> Delete</a>
+														</div>
+													</div>
+												</td>
+											</tr>
+										</tbody>
+								<?php $cnt += 1;
+									}
+								} ?>
 							</table>
 						</div>
 					</div>
 				</div>
 			</div>
 			<!-- /Page Content -->
+
 			<!-- Add Employee Modal -->
+			<?php
+			//adding employees code starts from here
+			if (isset($_POST['add_employee'])) {
+				$firstname = htmlspecialchars($_POST['firstname']);
+				$lastname = htmlspecialchars($_POST['lastname']);
+				$username = htmlspecialchars($_POST['username']);
+				$email = htmlspecialchars($_POST['email']);
+				$password = htmlspecialchars($_POST['password']);
+				$confirm_password = htmlspecialchars($_POST['confirm_pass']);
+				$employee_id = htmlspecialchars($_POST['employee_id']);
+				$phone = htmlspecialchars($_POST['phone']);
+				$department = htmlspecialchars($_POST['department']);
+				$designation = htmlspecialchars($_POST['designation']);
+				//grabbing the picture
+				$file = $_FILES['picture']['name'];
+				$file_loc = $_FILES['picture']['tmp_name'];
+				$folder = "employees/";
+				$new_file_name = strtolower($file);
+				$final_file = str_replace(' ', '-', $new_file_name);
+
+				if (move_uploaded_file($file_loc, $folder . $final_file) && ($password == $confirm_password)) {
+					$image = $final_file;
+					$password = password_hash($password, PASSWORD_DEFAULT);
+				}
+				$sql = "INSERT INTO `employees` (`id`, `FirstName`, `LastName`, `UserName`, `Email`, `Password`, `Employee_Id`, `Phone`, `Department`, `Designation`, `Picture`, `DateTime`)
+				VALUES (NULL, :firstname, :lastname, :username, :email,:password, :id, :phone, :department, :designation, :pic, current_timestamp())";
+				$query = $dbh->prepare($sql);
+				$query->bindParam(':firstname', $firstname, PDO::PARAM_STR);
+				$query->bindParam(':lastname', $lastname, PDO::PARAM_STR);
+				$query->bindParam(':username', $username, PDO::PARAM_STR);
+				$query->bindParam(':email', $email, PDO::PARAM_STR);
+				$query->bindParam(':password', $password, PDO::PARAM_STR);
+				$query->bindParam(':id', $employee_id, PDO::PARAM_STR);
+				$query->bindParam(':phone', $phone, PDO::PARAM_STR);
+				$query->bindParam(':department', $department, PDO::PARAM_STR);
+				$query->bindParam(':designation', $designation, PDO::PARAM_STR);
+				$query->bindParam(':pic', $image, PDO::PARAM_STR);
+				$query->execute();
+				$lastInsert = $dbh->lastInsertId();
+				if ($lastInsert > 0) {
+					echo "<script>
+				alert('Employee Has Been Added.');
+				</script>";
+					echo "<script>
+				window.location.href = 'employees-list.php';
+				</script>";
+				} else {
+					echo "<script>
+				alert('Something Went Wrong');
+				</script>";
+				}
+			}
+			//ading employees code eds here
+
+
+			$set = '1234567890';
+			$id = substr(str_shuffle($set), 0, 6); ?>
 			<div id="add_employee" class="modal custom-modal fade" role="dialog">
-				<div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+				<div class="modal-dialog modal-dialog-centered modal-lg">
 					<div class="modal-content">
 						<div class="modal-header">
 							<h5 class="modal-title">Add Employee</h5>
@@ -365,281 +245,104 @@ if (!$is_login) {
 							</button>
 						</div>
 						<div class="modal-body">
-							<form>
+							<form method="POST" enctype="multipart/form-data">
 								<div class="row">
 									<div class="col-sm-6">
 										<div class="form-group">
 											<label class="col-form-label">First Name <span class="text-danger">*</span></label>
-											<input class="form-control" type="text">
+											<input name="firstname" required class="form-control" type="text">
 										</div>
 									</div>
 									<div class="col-sm-6">
 										<div class="form-group">
 											<label class="col-form-label">Last Name</label>
-											<input class="form-control" type="text">
+											<input name="lastname" required class="form-control" type="text">
 										</div>
 									</div>
 									<div class="col-sm-6">
 										<div class="form-group">
 											<label class="col-form-label">Username <span class="text-danger">*</span></label>
-											<input class="form-control" type="text">
+											<input name="username" required class="form-control" type="text">
 										</div>
 									</div>
 									<div class="col-sm-6">
 										<div class="form-group">
 											<label class="col-form-label">Email <span class="text-danger">*</span></label>
-											<input class="form-control" type="email">
+											<input name="email" required class="form-control" type="email">
 										</div>
 									</div>
 									<div class="col-sm-6">
 										<div class="form-group">
 											<label class="col-form-label">Password</label>
-											<input class="form-control" type="password">
+											<input class="form-control" required name="password" type="password">
 										</div>
 									</div>
 									<div class="col-sm-6">
 										<div class="form-group">
 											<label class="col-form-label">Confirm Password</label>
-											<input class="form-control" type="password">
+											<input class="form-control" required name="confirm_pass" type="password">
 										</div>
 									</div>
 									<div class="col-sm-6">
 										<div class="form-group">
 											<label class="col-form-label">Employee ID <span class="text-danger">*</span></label>
-											<input type="text" class="form-control">
+											<input name="employee_id" readonly type="text" value="<?php echo 'EMP-' . $id; ?>" class="form-control">
 										</div>
 									</div>
-									<div class="col-sm-6">
-										<div class="form-group">
-											<label class="col-form-label">Joining Date <span class="text-danger">*</span></label>
-											<div class="cal-icon"><input class="form-control datetimepicker" type="text"></div>
-										</div>
-									</div>
+
 									<div class="col-sm-6">
 										<div class="form-group">
 											<label class="col-form-label">Phone </label>
-											<input class="form-control" type="text">
+											<input name="phone" required class="form-control" type="text">
 										</div>
 									</div>
-									<div class="col-sm-6">
-										<div class="form-group">
-											<label class="col-form-label">Company</label>
-											<select class="select">
-												<option value="">Global Technologies</option>
-												<option value="1">Delta Infotech</option>
-											</select>
-										</div>
-									</div>
+
 									<div class="col-md-6">
 										<div class="form-group">
 											<label>Department <span class="text-danger">*</span></label>
-											<select class="select">
+											<select required name="department" class="select">
 												<option>Select Department</option>
-												<option>Web Development</option>
-												<option>IT Management</option>
-												<option>Marketing</option>
+												<?php
+												$sql2 = "SELECT * from departments";
+												$query2 = $dbh->prepare($sql2);
+												$query2->execute();
+												$result2 = $query2->fetchAll(PDO::FETCH_OBJ);
+												foreach ($result2 as $row) {
+												?>
+													<option value="<?php echo htmlentities($row->Department); ?>">
+														<?php echo htmlentities($row->Department); ?></option>
+												<?php } ?>
 											</select>
 										</div>
 									</div>
 									<div class="col-md-6">
 										<div class="form-group">
 											<label>Designation <span class="text-danger">*</span></label>
-											<select class="select">
+											<select required name="designation" class="select">
 												<option>Select Designation</option>
-												<option>Web Designer</option>
-												<option>Web Developer</option>
-												<option>Android Developer</option>
+												<?php
+												$sql2 = "SELECT * from designations";
+												$query2 = $dbh->prepare($sql2);
+												$query2->execute();
+												$result2 = $query2->fetchAll(PDO::FETCH_OBJ);
+												foreach ($result2 as $row) {
+												?>
+													<option value="<?php echo htmlentities($row->Designation); ?>">
+														<?php echo htmlentities($row->Designation); ?></option>
+												<?php } ?>
 											</select>
 										</div>
 									</div>
+									<div class="col-md-12">
+										<div class="form-group">
+											<label class="col-form-label">Employee Picture</label>
+											<input class="form-control" required name="picture" type="file">
+										</div>
+									</div>
 								</div>
-								<div class="table-responsive m-t-15">
-									<table class="table table-striped custom-table">
-										<thead>
-											<tr>
-												<th>Module Permission</th>
-												<th class="text-center">Read</th>
-												<th class="text-center">Write</th>
-												<th class="text-center">Create</th>
-												<th class="text-center">Delete</th>
-												<th class="text-center">Import</th>
-												<th class="text-center">Export</th>
-											</tr>
-										</thead>
-										<tbody>
-											<tr>
-												<td>Holidays</td>
-												<td class="text-center">
-													<input checked="" type="checkbox">
-												</td>
-												<td class="text-center">
-													<input type="checkbox">
-												</td>
-												<td class="text-center">
-													<input type="checkbox">
-												</td>
-												<td class="text-center">
-													<input type="checkbox">
-												</td>
-												<td class="text-center">
-													<input type="checkbox">
-												</td>
-												<td class="text-center">
-													<input type="checkbox">
-												</td>
-											</tr>
-											<tr>
-												<td>Leaves</td>
-												<td class="text-center">
-													<input checked="" type="checkbox">
-												</td>
-												<td class="text-center">
-													<input checked="" type="checkbox">
-												</td>
-												<td class="text-center">
-													<input checked="" type="checkbox">
-												</td>
-												<td class="text-center">
-													<input type="checkbox">
-												</td>
-												<td class="text-center">
-													<input type="checkbox">
-												</td>
-												<td class="text-center">
-													<input type="checkbox">
-												</td>
-											</tr>
-											<tr>
-												<td>Clients</td>
-												<td class="text-center">
-													<input checked="" type="checkbox">
-												</td>
-												<td class="text-center">
-													<input checked="" type="checkbox">
-												</td>
-												<td class="text-center">
-													<input checked="" type="checkbox">
-												</td>
-												<td class="text-center">
-													<input type="checkbox">
-												</td>
-												<td class="text-center">
-													<input type="checkbox">
-												</td>
-												<td class="text-center">
-													<input type="checkbox">
-												</td>
-											</tr>
-											<tr>
-												<td>Projects</td>
-												<td class="text-center">
-													<input checked="" type="checkbox">
-												</td>
-												<td class="text-center">
-													<input type="checkbox">
-												</td>
-												<td class="text-center">
-													<input type="checkbox">
-												</td>
-												<td class="text-center">
-													<input type="checkbox">
-												</td>
-												<td class="text-center">
-													<input type="checkbox">
-												</td>
-												<td class="text-center">
-													<input type="checkbox">
-												</td>
-											</tr>
-											<tr>
-												<td>Tasks</td>
-												<td class="text-center">
-													<input checked="" type="checkbox">
-												</td>
-												<td class="text-center">
-													<input checked="" type="checkbox">
-												</td>
-												<td class="text-center">
-													<input checked="" type="checkbox">
-												</td>
-												<td class="text-center">
-													<input checked="" type="checkbox">
-												</td>
-												<td class="text-center">
-													<input type="checkbox">
-												</td>
-												<td class="text-center">
-													<input type="checkbox">
-												</td>
-											</tr>
-											<tr>
-												<td>Chats</td>
-												<td class="text-center">
-													<input checked="" type="checkbox">
-												</td>
-												<td class="text-center">
-													<input checked="" type="checkbox">
-												</td>
-												<td class="text-center">
-													<input checked="" type="checkbox">
-												</td>
-												<td class="text-center">
-													<input checked="" type="checkbox">
-												</td>
-												<td class="text-center">
-													<input type="checkbox">
-												</td>
-												<td class="text-center">
-													<input type="checkbox">
-												</td>
-											</tr>
-											<tr>
-												<td>Assets</td>
-												<td class="text-center">
-													<input checked="" type="checkbox">
-												</td>
-												<td class="text-center">
-													<input checked="" type="checkbox">
-												</td>
-												<td class="text-center">
-													<input checked="" type="checkbox">
-												</td>
-												<td class="text-center">
-													<input checked="" type="checkbox">
-												</td>
-												<td class="text-center">
-													<input type="checkbox">
-												</td>
-												<td class="text-center">
-													<input type="checkbox">
-												</td>
-											</tr>
-											<tr>
-												<td>Timing Sheets</td>
-												<td class="text-center">
-													<input checked="" type="checkbox">
-												</td>
-												<td class="text-center">
-													<input checked="" type="checkbox">
-												</td>
-												<td class="text-center">
-													<input checked="" type="checkbox">
-												</td>
-												<td class="text-center">
-													<input checked="" type="checkbox">
-												</td>
-												<td class="text-center">
-													<input type="checkbox">
-												</td>
-												<td class="text-center">
-													<input type="checkbox">
-												</td>
-											</tr>
-										</tbody>
-									</table>
-								</div>
+
 								<div class="submit-section">
-									<button class="btn btn-primary submit-btn">Submit</button>
+									<button type="submit" name="add_employee" class="btn btn-primary submit-btn">Submit</button>
 								</div>
 							</form>
 						</div>
@@ -747,191 +450,6 @@ if (!$is_login) {
 										</div>
 									</div>
 								</div>
-								<div class="table-responsive m-t-15">
-									<table class="table table-striped custom-table">
-										<thead>
-											<tr>
-												<th>Module Permission</th>
-												<th class="text-center">Read</th>
-												<th class="text-center">Write</th>
-												<th class="text-center">Create</th>
-												<th class="text-center">Delete</th>
-												<th class="text-center">Import</th>
-												<th class="text-center">Export</th>
-											</tr>
-										</thead>
-										<tbody>
-											<tr>
-												<td>Holidays</td>
-												<td class="text-center">
-													<input checked="" type="checkbox">
-												</td>
-												<td class="text-center">
-													<input type="checkbox">
-												</td>
-												<td class="text-center">
-													<input type="checkbox">
-												</td>
-												<td class="text-center">
-													<input type="checkbox">
-												</td>
-												<td class="text-center">
-													<input type="checkbox">
-												</td>
-												<td class="text-center">
-													<input type="checkbox">
-												</td>
-											</tr>
-											<tr>
-												<td>Leaves</td>
-												<td class="text-center">
-													<input checked="" type="checkbox">
-												</td>
-												<td class="text-center">
-													<input checked="" type="checkbox">
-												</td>
-												<td class="text-center">
-													<input checked="" type="checkbox">
-												</td>
-												<td class="text-center">
-													<input type="checkbox">
-												</td>
-												<td class="text-center">
-													<input type="checkbox">
-												</td>
-												<td class="text-center">
-													<input type="checkbox">
-												</td>
-											</tr>
-											<tr>
-												<td>Clients</td>
-												<td class="text-center">
-													<input checked="" type="checkbox">
-												</td>
-												<td class="text-center">
-													<input checked="" type="checkbox">
-												</td>
-												<td class="text-center">
-													<input checked="" type="checkbox">
-												</td>
-												<td class="text-center">
-													<input type="checkbox">
-												</td>
-												<td class="text-center">
-													<input type="checkbox">
-												</td>
-												<td class="text-center">
-													<input type="checkbox">
-												</td>
-											</tr>
-											<tr>
-												<td>Projects</td>
-												<td class="text-center">
-													<input checked="" type="checkbox">
-												</td>
-												<td class="text-center">
-													<input type="checkbox">
-												</td>
-												<td class="text-center">
-													<input type="checkbox">
-												</td>
-												<td class="text-center">
-													<input type="checkbox">
-												</td>
-												<td class="text-center">
-													<input type="checkbox">
-												</td>
-												<td class="text-center">
-													<input type="checkbox">
-												</td>
-											</tr>
-											<tr>
-												<td>Tasks</td>
-												<td class="text-center">
-													<input checked="" type="checkbox">
-												</td>
-												<td class="text-center">
-													<input checked="" type="checkbox">
-												</td>
-												<td class="text-center">
-													<input checked="" type="checkbox">
-												</td>
-												<td class="text-center">
-													<input checked="" type="checkbox">
-												</td>
-												<td class="text-center">
-													<input type="checkbox">
-												</td>
-												<td class="text-center">
-													<input type="checkbox">
-												</td>
-											</tr>
-											<tr>
-												<td>Chats</td>
-												<td class="text-center">
-													<input checked="" type="checkbox">
-												</td>
-												<td class="text-center">
-													<input checked="" type="checkbox">
-												</td>
-												<td class="text-center">
-													<input checked="" type="checkbox">
-												</td>
-												<td class="text-center">
-													<input checked="" type="checkbox">
-												</td>
-												<td class="text-center">
-													<input type="checkbox">
-												</td>
-												<td class="text-center">
-													<input type="checkbox">
-												</td>
-											</tr>
-											<tr>
-												<td>Assets</td>
-												<td class="text-center">
-													<input checked="" type="checkbox">
-												</td>
-												<td class="text-center">
-													<input checked="" type="checkbox">
-												</td>
-												<td class="text-center">
-													<input checked="" type="checkbox">
-												</td>
-												<td class="text-center">
-													<input checked="" type="checkbox">
-												</td>
-												<td class="text-center">
-													<input type="checkbox">
-												</td>
-												<td class="text-center">
-													<input type="checkbox">
-												</td>
-											</tr>
-											<tr>
-												<td>Timing Sheets</td>
-												<td class="text-center">
-													<input checked="" type="checkbox">
-												</td>
-												<td class="text-center">
-													<input checked="" type="checkbox">
-												</td>
-												<td class="text-center">
-													<input checked="" type="checkbox">
-												</td>
-												<td class="text-center">
-													<input checked="" type="checkbox">
-												</td>
-												<td class="text-center">
-													<input type="checkbox">
-												</td>
-												<td class="text-center">
-													<input type="checkbox">
-												</td>
-											</tr>
-										</tbody>
-									</table>
-								</div>
 								<div class="submit-section">
 									<button class="btn btn-primary submit-btn">Save</button>
 								</div>
@@ -941,7 +459,6 @@ if (!$is_login) {
 				</div>
 			</div>
 			<!-- /Edit Employee Modal -->
-			<!-- Delete Employee Modal -->
 			<div class="modal custom-modal fade" id="delete_employee" role="dialog">
 				<div class="modal-dialog modal-dialog-centered">
 					<div class="modal-content">
@@ -953,7 +470,7 @@ if (!$is_login) {
 							<div class="modal-btn delete-action">
 								<div class="row">
 									<div class="col-6">
-										<a href="javascript:void(0);" class="btn btn-primary continue-btn">Delete</a>
+										<a href="employees-list.php?delid=<?php echo $row->id; ?>" class="btn btn-primary continue-btn">Delete</a>
 									</div>
 									<div class="col-6">
 										<a href="javascript:void(0);" data-dismiss="modal" class="btn btn-primary cancel-btn">Cancel</a>
@@ -964,7 +481,6 @@ if (!$is_login) {
 					</div>
 				</div>
 			</div>
-			<!-- /Delete Employee Modal -->
 		</div>
 		<!-- /Page Wrapper -->
 	</div>
