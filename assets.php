@@ -6,14 +6,6 @@ $is_login = $app->is_user();
 $dbh = Database();
 if (!$is_login) {
 	header('location:login.php');
-} elseif (isset($_GET['delid'])) {
-	$rid = intval($_GET['delid']);
-	$sql = "DELETE from assets where id=:rid";
-	$query = $dbh->prepare($sql);
-	$query->bindParam(':rid', $rid, PDO::PARAM_STR);
-	$query->execute();
-	echo "<script>alert('Asset Has Been Deleted');</script>";
-	echo "<script>window.location.href ='assets.php'</script>";
 }
 ?>
 <!DOCTYPE html>
@@ -151,7 +143,7 @@ if (!$is_login) {
 								// $results = $query->fetchAll(PDO::FETCH_OBJ);
 								$results2 = $dbh->query($sql);
 								$cnt = 1;
-								if ($query->rowCount() > 0) {
+								if ($results2->rowCount() > 0) {
 									foreach ($results2 as $row) {
 										$newdate = date("l d-m-Y", strtotime($row['PurchaseDate'])); //Convert to d/m/Y
 								?>
@@ -360,129 +352,208 @@ if (!$is_login) {
 			</div>
 			<!-- /Add Asset Modal -->
 			<!-- Edit Asset Modal -->
-			<div id="edit_asset" class="modal custom-modal fade" role="dialog">
-				<div class="modal-dialog modal-md" role="document">
-					<div class="modal-content">
-						<div class="modal-header">
-							<h5 class="modal-title">Edit Asset</h5>
-							<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-								<span aria-hidden="true">&times;</span>
-							</button>
-						</div>
-						<div class="modal-body">
-							<form>
-								<div class="row">
-									<div class="col-md-6">
-										<div class="form-group">
-											<label>Asset Name</label>
-											<input class="form-control" type="text" value="Dell Laptop">
-										</div>
-									</div>
-									<div class="col-md-6">
-										<div class="form-group">
-											<label>Asset Id</label>
-											<input class="form-control" type="text" value="#AST-0001" readonly="">
-										</div>
-									</div>
+
+			<?php
+			// adding assets begins here
+			if (isset($_GET['edit_asset'])) {
+				$id = $_GET['editid'];
+				if (isset($_POST['edit_asset'])) {
+					if (empty($_POST['edit_asset'])) {
+						echo "<script>alert('Asset hasnt been selected');</script>";
+						exit;
+					}
+					$asset = htmlspecialchars($_POST['asset_name']);
+					$asset_id = htmlspecialchars($_POST['asset_id']);
+					$purchase_date = htmlspecialchars($_POST['purchase_date']);
+					$purchase_from = htmlspecialchars($_POST['purchase_from']);
+					$manufacturer = htmlspecialchars($_POST['manufacturer']);
+					$model = htmlspecialchars($_POST['model']);
+					$status = htmlspecialchars($_POST['status']);
+					$supplier = htmlspecialchars($_POST['supplier']);
+					$condition = htmlspecialchars($_POST['condition']);
+					$warrant = htmlspecialchars($_POST['warranty']);
+					$price = htmlspecialchars($_POST['value']);
+					$asset_user = htmlspecialchars($_POST['asset_user']);
+					$description = htmlspecialchars($_POST['description']);
+					$sql = "UPDATE `assets` SET `assetName`=:name, `assetId`=:id, `PurchaseDate`=:purchaseDate, `PurchaseFrom`=:purchasefrom, `Manufacturer`=:manufacturer, `Model`=:model, `Status`=:stats, `Supplier`=:supplier, `AssetCondition`:condition, `Warranty`:warranty, `Price`:price, `AssetUser`:user, `Description`=:describe WHERE id=$id";
+					$query = $dbh->prepare($sql);
+					$query->bindParam(':name', $asset, PDO::PARAM_STR);
+					$query->bindParam(':id', $asset_id, PDO::PARAM_STR);
+					$query->bindParam(':purchaseDate', $purchase_date, PDO::PARAM_STR);
+					$query->bindParam(':purchasefrom', $purchase_from, PDO::PARAM_STR);
+					$query->bindParam(':manufacturer', $manufacturer, PDO::PARAM_STR);
+					$query->bindParam(':model', $model, PDO::PARAM_STR);
+					$query->bindParam(':stats', $status, PDO::PARAM_INT);
+					$query->bindParam(':supplier', $supplier, PDO::PARAM_STR);
+					$query->bindParam(':condition', $condition, PDO::PARAM_STR);
+					$query->bindParam(':warranty', $warrant, PDO::PARAM_STR);
+					$query->bindParam(':price', $price, PDO::PARAM_INT);
+					$query->bindParam(':user', $asset_user, PDO::PARAM_STR);
+					$query->bindParam(':describe', $description, PDO::PARAM_STR);
+					$coba = $query->execute();
+					$lastinserted = $dbh->lastInsertId();
+					$cari = "SELECT * FROM assets WHERE id = '$id'"; //selection for $nim only
+					if ($lastinserted > 0) {
+						echo "<script>alert('Asset Has Been Added');</script>";
+						echo "<script>window.location.href='assets.php';</script>";
+					} else {
+						echo "<script>alert('Something Went Wrong Please Again.');</script>";
+					}
+					if ($id == 0) {
+						$update = $dbh->query($cari);
+						if ($update->rowCount() == 0) {
+							echo "<script>alert('$id is unregistered');</script>";
+							exit;
+						} else {
+							if ($coba) {
+								echo
+									"<script>alert('Data successfully updated');</script>";
+							}
+						}
+					} else {
+						echo "invalid data";
+						exit;
+					}
+				}
+				$querya = $dbh->query("SELECT * FROM assets WHERE id = '$id'");
+				foreach ($querya as $data) {
+			?>
+					<div id="edit_asset" class="modal custom-modal fade" role="dialog">
+						<div class="modal-dialog modal-md" role="document">
+							<div class="modal-content">
+								<div class="modal-header">
+									<h5 class="modal-title">Edit Asset</h5>
+									<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+										<span aria-hidden="true">&times;</span>
+									</button>
 								</div>
-								<div class="row">
-									<div class="col-md-6">
-										<div class="form-group">
-											<label>Purchase Date</label>
-											<input class="form-control datetimepicker" type="text">
+								<div class="modal-body">
+									<form method="POST" action="">
+										<div class="row">
+											<div class="col-md-6">
+												<div class="form-group">
+													<label>Asset Name</label>
+													<input name="asset_name" class="form-control" type="text">
+												</div>
+											</div>
+											<div class="col-md-6">
+												<div class="form-group">
+													<label>Asset Id</label>
+													<input readonly name="asset_id" value="<?php echo '#AST-' . $id; ?>" class="form-control" type="text">
+												</div>
+											</div>
 										</div>
-									</div>
-									<div class="col-md-6">
-										<div class="form-group">
-											<label>Purchase From</label>
-											<input class="form-control" type="text">
+										<div class="row">
+											<div class="col-md-6">
+												<div class="form-group">
+													<label>Purchase Date</label>
+													<input name="purchase_date" value="<?php echo date('dd/mm/yy'); ?>" class="form-control" type="date">
+												</div>
+											</div>
+											<div class="col-md-6">
+												<div class="form-group">
+													<label>Purchase From</label>
+													<input name="purchase_from" class="form-control" type="text">
+												</div>
+											</div>
 										</div>
-									</div>
+										<div class="row">
+											<div class="col-md-6">
+												<div class="form-group">
+													<label>Manufacturer</label>
+													<input name="manufacturer" class="form-control" type="text">
+												</div>
+											</div>
+											<div class="col-md-6">
+												<div class="form-group">
+													<label>Model</label>
+													<input name="model" class="form-control" type="text">
+												</div>
+											</div>
+										</div>
+										<div class="row">
+											<div class="col-md-6">
+												<div class="form-group">
+													<label>Status</label>
+													<select name="status" class="select">
+														<option value="0">Pending</option>
+														<option value="1">Approved</option>
+														<option value="2">Deployed</option>
+														<option value="3">Damaged</option>
+													</select>
+												</div>
+											</div>
+											<div class="col-md-6">
+												<div class="form-group">
+													<label>Supplier</label>
+													<input name="supplier" class="form-control" type="text">
+												</div>
+											</div>
+											<div class="col-md-6">
+												<div class="form-group">
+													<label>Condition</label>
+													<input name="condition" class="form-control" type="text">
+												</div>
+											</div>
+											<div class="col-md-6">
+												<div class="form-group">
+													<label>Warranty</label>
+													<input name="warranty" class="form-control" type="text" placeholder="In Months">
+												</div>
+											</div>
+										</div>
+										<div class="row">
+											<div class="col-md-6">
+												<div class="form-group">
+													<label>Value/Price</label>
+													<input placeholder="1800" name="value" class="form-control" type="text">
+												</div>
+											</div>
+											<div class="col-md-6">
+												<div class="form-group">
+													<label>Asset User</label>
+													<select name="asset_user" class="select">
+														<option>John Doe</option>
+														<option>Richard Miles</option>
+													</select>
+												</div>
+											</div>
+											<div class="col-md-12">
+												<div class="form-group">
+													<label>Description</label>
+													<textarea name="description" class="form-control"></textarea>
+												</div>
+											</div>
+
+										</div>
+										<div class="submit-section">
+											<button type="submit" name="edit_asset" class="btn btn-primary submit-btn">Submit</button>
+										</div>
+									</form>
 								</div>
-								<div class="row">
-									<div class="col-md-6">
-										<div class="form-group">
-											<label>Manufacturer</label>
-											<input class="form-control" type="text">
-										</div>
-									</div>
-									<div class="col-md-6">
-										<div class="form-group">
-											<label>Model</label>
-											<input class="form-control" type="text">
-										</div>
-									</div>
-								</div>
-								<div class="row">
-									<div class="col-md-6">
-										<div class="form-group">
-											<label>Serial Number</label>
-											<input class="form-control" type="text">
-										</div>
-									</div>
-									<div class="col-md-6">
-										<div class="form-group">
-											<label>Supplier</label>
-											<input class="form-control" type="text">
-										</div>
-									</div>
-									<div class="col-md-6">
-										<div class="form-group">
-											<label>Condition</label>
-											<input class="form-control" type="text">
-										</div>
-									</div>
-									<div class="col-md-6">
-										<div class="form-group">
-											<label>Warranty</label>
-											<input class="form-control" type="text" placeholder="In Months">
-										</div>
-									</div>
-								</div>
-								<div class="row">
-									<div class="col-md-6">
-										<div class="form-group">
-											<label>Value</label>
-											<input placeholder="$1800" class="form-control" type="text">
-										</div>
-									</div>
-									<div class="col-md-6">
-										<div class="form-group">
-											<label>Asset User</label>
-											<select class="select">
-												<option>John Doe</option>
-												<option>Richard Miles</option>
-											</select>
-										</div>
-									</div>
-									<div class="col-md-12">
-										<div class="form-group">
-											<label>Description</label>
-											<textarea class="form-control"></textarea>
-										</div>
-									</div>
-									<div class="col-md-6">
-										<div class="form-group">
-											<label>Status</label>
-											<select class="select">
-												<option>Pending</option>
-												<option>Approved</option>
-												<option>Deployed</option>
-												<option>Damaged</option>
-											</select>
-										</div>
-									</div>
-								</div>
-								<div class="submit-section">
-									<button class="btn btn-primary submit-btn">Save</button>
-								</div>
-							</form>
+							</div>
 						</div>
 					</div>
-				</div>
-			</div>
+			<?php
+				}
+			}
+			?>
 			<!-- Edit Asset Modal -->
 			<!-- Delete Asset Modal -->
+			<?php
+			if (isset($_GET['delid'])) {
+				$rid = intval($_GET['delid']);
+				$sql = "DELETE from assets where id=:rid";
+				$query = $dbh->prepare($sql);
+				$query->bindParam(':rid', $rid, PDO::PARAM_STR);
+				$query->execute();
+				echo "<script>
+				alert('Asset Has Been Deleted');
+			</script>";
+				echo "<script>
+				window.location.href = 'assets.php'
+			</script>";
+			} ?>
 			<div class="modal custom-modal fade" id="delete_asset" role="dialog">
 				<div class="modal-dialog modal-dialog-centered">
 					<div class="modal-content">

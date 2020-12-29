@@ -1,10 +1,10 @@
-#Smarthr
+# Smarthr
 
-#Member of Group
+# Member of Group
 
-1.  Donny Rizal Adhi Pratama (L200183161) --Backend and Front End
-2.  M. Faqih Eza Ammar (L200183178) --Frontend
-3.  M. Rifqy Fauzy (L200184090) --Documentation
+1.  Donny Rizal Adhi Pratama (L200183161)
+2.  M. Faqih Eza Ammar (L200183178)
+3.  M. Rifqy Fauzy (L200184090)
 
 # Keep it mind tho, this isn't finished yet. so let's just hope for the best.
 
