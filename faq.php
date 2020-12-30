@@ -67,13 +67,13 @@ if (!$is_login) {
 					<div class="card">
 						<div class="card-header">
 							<h4 class="card-title">
-								<a class="collapsed" data-toggle="collapse" href="#collapseOne">Anim pariatur cliche reprehenderit?</a>
+								<a class="collapsed" data-toggle="collapse" href="#collapseOne">Hello There, First time in here?</a>
 							</h4>
 						</div>
 						<div id="collapseOne" class="card-collapse collapse">
 							<div class="card-body">
-								<p>Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.</p>
-								<p>Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.</p>
+								<p>And thus the journey began, you just arrive in the first pag that you should have read first. then you can move on to other. but if you are familiar with it just be patience that you are not alone. you can contact us in <a href="author.php">here</a> please give an introduction for better greeting </p>
+								<p>If we don't give a damn about this for more than 3 hours which means we are offline. so sorry 😊 </p>
 							</div>
 						</div>
 					</div>

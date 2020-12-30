@@ -1,0 +1,6 @@
+RewriteEngine On
+
+Options All -Indexes
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^ http://localhost/references/MLNK/smarthr/error.php [L]

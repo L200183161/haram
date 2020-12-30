@@ -44,11 +44,25 @@
 										} ?>" href="designations.php">Designations</a></li>
 					</ul>
 				</li>
+				<?php if ($_SESSION['role'] == 'employee') { ?>
+					<li>
+						<a class="<?php if (basename($_SERVER['SCRIPT_NAME']) == 'salary-view.php') {
+										echo 'active';
+									} else {
+										echo '';
+									} ?>" href="salary-view.php"><i class="la la-money"></i> <span>Gajian</span></a>
+					</li>
 
+				<?php } ?>
+				<li>
+					<a class="<?php if (basename($_SERVER['SCRIPT_NAME']) == 'author.php') {
+									echo 'active';
+								} else {
+									echo '';
+								} ?>" href="author.php"><i class="la la-question"></i> <span>About us</span></a>
+				</li>
 				<!-- Permission admin only -->
 				<?php if ($_SESSION['role'] == "admin") { ?>
-
-
 					<li class="menu-title">
 						<span>HR</span>
 					</li>
@@ -65,11 +79,6 @@
 											} else {
 												echo '';
 											} ?>" href="salary-view.php"> Payslip </a></li>
-							<li><a class="<?php if (basename($_SERVER['SCRIPT_NAME']) == 'payroll-items.php') {
-												echo 'active';
-											} else {
-												echo '';
-											} ?>" href="payroll-items.php"> Payroll Items </a></li>
 						</ul>
 					</li>
 					<li class="menu-title">
@@ -90,20 +99,19 @@
 											} else {
 												echo '';
 											} ?>" href="jobs.php"> Manage Jobs </a></li>
+							<li><a class="<?php if (basename($_SERVER['SCRIPT_NAME']) == 'job-list.php') {
+												echo 'active';
+											} else {
+												echo '';
+											} ?>" href="job-list.php"> Jobs list</a></li>
 							<li><a class="<?php if (basename($_SERVER['SCRIPT_NAME']) == 'job-applicants.php') {
 												echo 'active';
 											} else {
 												echo '';
-											} ?>" href="job-applicants.php"> Applied Candidates </a></li>
+											} ?>" href="job-applicants.php"> Jobs Applied Candidates </a></li>
 						</ul>
 					</li>
-					<li>
-						<a class="<?php if (basename($_SERVER['SCRIPT_NAME']) == 'author.php') {
-										echo 'active';
-									} else {
-										echo '';
-									} ?>" href="author.php"><i class="la la-question"></i> <span>Author</span></a>
-					</li>
+
 					<li>
 						<a class="<?php if (basename($_SERVER['SCRIPT_NAME']) == 'users.php') {
 										echo 'active';
@@ -123,11 +131,6 @@
 											} else {
 												echo '';
 											} ?>" href="profile.php"> Employee Profile </a></li>
-							<li><a class="<?php if (basename($_SERVER['SCRIPT_NAME']) == 'client-profile.php') {
-												echo 'active';
-											} else {
-												echo '';
-											} ?>" href="client-profile.php"> Client Profile </a></li>
 						</ul>
 					</li>
 					<li class="submenu">
@@ -166,6 +169,7 @@
 							<li><a href="error.php"> Blank Page </a></li>
 						</ul>
 					</li>
+
 				<?php } ?>
 			</ul>
 		</div>
