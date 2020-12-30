@@ -13,7 +13,7 @@
 - [x] ~~Login with hash~~
 - [x] ~~Admin and Employee Session~~
 - [ ] Dashboard kalau mau ditambahin monggo 🙏🙏🙏
-- [ ] Author sudah di subscription.php tinggal **rename**
+- [x] ~~Author sudah di subscription.php tinggal **rename**~~
 - [ ] Edit Others
 - [ ] Payroll / Payslip belum 🙃
 - [ ] Search **BELUM**
