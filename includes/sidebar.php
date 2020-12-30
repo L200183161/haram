@@ -470,7 +470,7 @@
 											} else {
 												echo '';
 											} ?>" href="privacy-policy.php"> Privacy Policy </a></li>
-							<li><a href="blank-page.php"> Blank Page </a></li>
+							<li><a href="error.php"> Blank Page </a></li>
 						</ul>
 					</li>
 				<?php } ?>

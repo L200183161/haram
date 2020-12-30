@@ -17,7 +17,7 @@ if (!$is_login) {
 	<meta name="keywords" content="admin, estimates, bootstrap, business, corporate, creative, management, minimal, modern, accounts, invoice, html5, responsive, CRM, Projects">
 	<meta name="author" content="Dreamguys - Bootstrap Admin Template">
 	<meta name="robots" content="noindex, nofollow">
-	<title>Subscriptions - HaRaM</title>
+	<title>Profile - HaRaM</title>
 	<!-- Favicon -->
 	<link rel="shortcut icon" type="image/x-icon" href="assets/img/favicon.png">
 	<!-- Bootstrap CSS -->
@@ -57,14 +57,14 @@ if (!$is_login) {
 				<div class="page-header">
 					<div class="row">
 						<div class="col">
-							<h3 class="page-title">Subscriptions</h3>
+							<h3 class="page-title">Profile</h3>
 							<ul class="breadcrumb">
 								<li class="breadcrumb-item"><a href="index.php">Dashboard</a></li>
-								<li class="breadcrumb-item active">Subscriptions</li>
+								<li class="breadcrumb-item active">Profile</li>
 							</ul>
 						</div>
 						<div class="col-auto float-right ml-auto">
-							<a href="#" class="btn add-btn" data-toggle="modal" data-target="#add_plan"><i class="fa fa-plus"></i> Add Subscription</a>
+							<!-- <a href="#" class="btn add-btn" data-toggle="modal" data-target="#add_plan"><i class="fa fa-plus"></i> Add Subscription</a> -->
 						</div>
 					</div>
 				</div>
@@ -75,8 +75,7 @@ if (!$is_login) {
 						<div class="row justify-content-center mb-4">
 							<div class="col-auto">
 								<nav class="nav btn-group">
-									<a href="#monthly" class="btn btn-outline-secondary active show" data-toggle="tab">Monthly Plan</a>
-									<a href="#annual" class="btn btn-outline-secondary" data-toggle="tab">Annual Plan</a>
+									<!-- <button href="#monthly" class="btn btn-outline-secondary active show" data-toggle="tab">Monthly Plan</button> -->
 								</nav>
 							</div>
 						</div>
@@ -86,12 +85,33 @@ if (!$is_login) {
 							<!-- Monthly Tab -->
 							<div class="tab-pane fade active show" id="monthly">
 								<div class="row mb-30 equal-height-cards">
+
 									<div class="col-md-4">
 										<div class="card pricing-box">
 											<div class="card-body d-flex flex-column">
 												<div class="mb-4">
-													<h3>Free</h3>
-													<span class="display-4">$0</span>
+													<h3>Donny Rizal</h3>
+													<h5>Adhi Pratama</h5>
+													<img src="https://scontent.fcgk8-2.fna.fbcdn.net/v/t1.0-9/69846702_3119501794756454_4605255348578680832_o.jpg?_nc_cat=107&ccb=2&_nc_sid=09cbfe&_nc_eui2=AeEVFfozSSCcqNpVXlEn0_pGj0q07mAnazGPSrTuYCdrMZ_wYZwqq3IIsMc-p2HLGFr5GgPvAkfaxZFMElCWBoeH&_nc_ohc=QGzKn7acxqsAX_92eAz&_nc_ht=scontent.fcgk8-2.fna&oh=e59aec8d7bb5ce79d39a60a56c323eb3&oe=60107543" class="img-thumbnail display-4" aria-placeholder="gambar"></img>
+												</div>
+												<ul>
+													<li><i class="fa fa-circle"></i> <b>L200183161</b></li>
+													<li><i class="fa fa-circle"></i>Backend</li>
+													<li><i class="fa fa-circle"></i>Frontend</li>
+													<li><i class="fa fa-circle"></i>Documentation</li>
+												</ul>
+												<!-- <a href="#" class="btn btn-lg btn-secondary mt-auto" data-toggle="modal" data-target="#edit_plan">Edit</a> -->
+											</div>
+										</div>
+									</div>
+
+									<div class="col-md-4">
+										<div class="card pricing-box">
+											<div class="card-body d-flex flex-column">
+												<div class="mb-4">
+													<h3>M. Faqih</h3>
+													<h5>Eza Ammar</h5>
+													<img src="https://scontent.fcgk9-2.fna.fbcdn.net/v/t1.0-9/67471992_2431989803560535_4023364550727303168_o.jpg?_nc_cat=101&ccb=2&_nc_sid=8bfeb9&_nc_eui2=AeEMlx1n5cBSdUhHOlu5GhRNMrBcO99FANgysFw730UA2LI2z912-gKTeB-YuWekDbhwuZmgWRnBn1KM1lTLIBnF&_nc_ohc=iw9BA7FjZ4AAX9jztQL&_nc_ht=scontent.fcgk9-2.fna&oh=8fe911280a5c40ea24096ca112f3399b&oe=600FCFB3" class="img-thumbnail display-4" aria-placeholder="gambar"></img>
 												</div>
 												<ul>
 													<li><i class="fa fa-check"></i> <b>1 User</b></li>
@@ -99,383 +119,38 @@ if (!$is_login) {
 													<li><i class="fa fa-check"></i> 5 GB Storage</li>
 													<li><i class="fa fa-check"></i> Unlimited Message</li>
 												</ul>
-												<a href="#" class="btn btn-lg btn-secondary mt-auto" data-toggle="modal" data-target="#edit_plan">Edit</a>
+												<!-- <a href="#" class="btn btn-lg btn-secondary mt-auto" data-toggle="modal" data-target="#edit_plan">Edit</a> -->
 											</div>
 										</div>
 									</div>
+
 									<div class="col-md-4">
 										<div class="card pricing-box">
 											<div class="card-body d-flex flex-column">
 												<div class="mb-4">
-													<h3>Professional</h3>
-													<span class="display-4">$21</span>
-													<span>/mo</span>
+													<h3>M. Rifqy</h3>
+													<h5>Fauzy</h5>
+													<img src="https://scontent.fcgk8-1.fna.fbcdn.net/v/t1.0-9/128905106_197069311952501_2945952198504829428_n.jpg?_nc_cat=111&ccb=2&_nc_sid=174925&_nc_eui2=AeGjsMne5swHBVkVAhWu86eSBF7NxD1rl04EXs3EPWuXTuBWJnoIypbrPSjSZunjmY5HVMCPs-clndlqKU9DOzxd&_nc_ohc=XKHNZn8FEH0AX_VnDTr&_nc_ht=scontent.fcgk8-1.fna&oh=0ea6062982157be8bf7c27a847e9a501&oe=6012A321" class="img-thumbnail display-4" aria-placeholder="gambar"></img>
 												</div>
 												<ul>
-													<li><i class="fa fa-check"></i> <b>30 Users</b></li>
-													<li><i class="fa fa-check"></i> 50 Projects</li>
-													<li><i class="fa fa-check"></i> 100 GB Storage</li>
+													<li><i class="fa fa-check"></i> <b>1 User</b></li>
+													<li><i class="fa fa-check"></i> 5 Projects </li>
+													<li><i class="fa fa-check"></i> 5 GB Storage</li>
 													<li><i class="fa fa-check"></i> Unlimited Message</li>
-													<li><i class="fa fa-check"></i> 24/7 Customer Support</li>
 												</ul>
-												<a href="#" class="btn btn-lg btn-secondary mt-auto" data-toggle="modal" data-target="#edit_plan">Edit</a>
+												<!-- <a href="#" class="btn btn-lg btn-secondary mt-auto" data-toggle="modal" data-target="#edit_plan">Edit</a> -->
 											</div>
 										</div>
 									</div>
-									<div class="col-md-4">
-										<div class="card pricing-box">
-											<div class="card-body d-flex flex-column">
-												<div class="mb-4">
-													<h3>Enterprise</h3>
-													<span class="display-4">$38</span>
-													<span>/mo</span>
-												</div>
-												<ul>
-													<li><i class="fa fa-check"></i> <b>Unlimited Users </b></li>
-													<li><i class="fa fa-check"></i> Unlimited Projects</li>
-													<li><i class="fa fa-check"></i> 500 GB Storage</li>
-													<li><i class="fa fa-check"></i> Unlimited Message</li>
-													<li><i class="fa fa-check"></i> Voice and Video Call</li>
-													<li><i class="fa fa-check"></i> 24/7 Customer Support</li>
-												</ul>
-												<a href="#" class="btn btn-lg btn-secondary mt-auto" data-toggle="modal" data-target="#edit_plan">Edit</a>
-											</div>
-										</div>
-									</div>
+
+
+
+
 								</div>
-								<!-- Monthly Plan Details -->
-								<div class="row">
-									<div class="col-md-12">
-										<div class="card card-table mb-0">
-											<div class="card-header">
-												<h4 class="card-title mb-0">Plan Details</h4>
-											</div>
-											<div class="card-body">
-												<div class="table-responsive">
-													<table class="table table-hover table-center mb-0">
-														<thead>
-															<tr>
-																<th>Plan</th>
-																<th>Plan Type</th>
-																<th>Create Date</th>
-																<th>Modified Date</th>
-																<th>Amount</th>
-																<th>Subscribed Users</th>
-															</tr>
-														</thead>
-														<tbody>
-															<tr>
-																<td>Free Trial</td>
-																<td>Monthly</td>
-																<td>9 Nov 2019</td>
-																<td>8 Dec 2019</td>
-																<td>Free</td>
-																<td><a class="btn btn-info btn-sm" href="subscribed-companies.php">30 Users</a></td>
-															</tr>
-															<tr>
-																<td>Professional</td>
-																<td>Monthly</td>
-																<td>9 Nov 2019</td>
-																<td>8 Dec 2019</td>
-																<td>$21</td>
-																<td><a class="btn btn-info btn-sm" href="subscribed-companies.php">97 Users</a></td>
-															</tr>
-															<tr>
-																<td>Enterprise</td>
-																<td>Monthly</td>
-																<td>9 Nov 2019</td>
-																<td>8 Dec 2019</td>
-																<td>$38</td>
-																<td><a class="btn btn-info btn-sm" href="subscribed-companies.php">125 Users</a></td>
-															</tr>
-														</tbody>
-													</table>
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>
-								<!-- /Monthly Plan Details -->
 							</div>
 							<!-- /Monthly Tab -->
-							<!-- Annual Plan Tab -->
-							<div class="tab-pane fade" id="annual">
-								<div class="row mb-30 equal-height-cards">
-									<div class="col-md-4">
-										<div class="card pricing-box">
-											<div class="card-body d-flex flex-column">
-												<div class="mb-4">
-													<h3>Free</h3>
-													<span class="display-4">$0</span>
-												</div>
-												<ul>
-													<li><i class="fa fa-check"></i> <b>1 User</b></li>
-													<li><i class="fa fa-check"></i> 5 Projects </li>
-													<li><i class="fa fa-check"></i> 5 GB Storage</li>
-												</ul>
-												<a href="#" class="btn btn-lg btn-secondary mt-auto" data-toggle="modal" data-target="#edit_plan">Edit</a>
-											</div>
-										</div>
-									</div>
-									<div class="col-md-4">
-										<div class="card pricing-box">
-											<div class="card-body d-flex flex-column">
-												<div class="mb-4">
-													<h3>Professional</h3>
-													<span class="display-4">$199</span>
-													<span>/mo</span>
-												</div>
-												<ul>
-													<li><i class="fa fa-check"></i> <b>30 Users</b></li>
-													<li><i class="fa fa-check"></i> 50 Projects</li>
-													<li><i class="fa fa-check"></i> 100 GB Storage</li>
-													<li><i class="fa fa-check"></i> Unlimited Message</li>
-													<li><i class="fa fa-check"></i> 24/7 Customer Support</li>
-												</ul>
-												<a href="#" class="btn btn-lg btn-secondary mt-auto" data-toggle="modal" data-target="#edit_plan">Edit</a>
-											</div>
-										</div>
-									</div>
-									<div class="col-md-4">
-										<div class="card pricing-box">
-											<div class="card-body d-flex flex-column">
-												<div class="mb-4">
-													<h3>Enterprise</h3>
-													<span class="display-4">$399</span>
-													<span>/mo</span>
-												</div>
-												<ul>
-													<li><i class="fa fa-check"></i> <b>Unlimited Users </b></li>
-													<li><i class="fa fa-check"></i> Unlimited Projects</li>
-													<li><i class="fa fa-check"></i> 500 GB Storage</li>
-													<li><i class="fa fa-check"></i> Unlimited Message</li>
-													<li><i class="fa fa-check"></i> Voice and Video Call</li>
-													<li><i class="fa fa-check"></i> 24/7 Customer Support</li>
-												</ul>
-												<a href="#" class="btn btn-lg btn-secondary mt-auto" data-toggle="modal" data-target="#edit_plan">Edit</a>
-											</div>
-										</div>
-									</div>
-								</div>
-								<!-- Yearly Plan Details -->
-								<div class="row">
-									<div class="col-md-12">
-										<div class="card card-table mb-0">
-											<div class="card-header">
-												<h4 class="card-title mb-0">Plan Details</h4>
-											</div>
-											<div class="card-body">
-												<div class="table-responsive">
-													<table class="table table-hover table-center mb-0">
-														<thead>
-															<tr>
-																<th>Plan</th>
-																<th>Plan Type</th>
-																<th>Create Date</th>
-																<th>Modified Date</th>
-																<th>Amount</th>
-																<th>Subscribed Users</th>
-															</tr>
-														</thead>
-														<tbody>
-															<tr>
-																<td>Free Trial</td>
-																<td>Yearly</td>
-																<td>9 Nov 2019</td>
-																<td>8 Dec 2019</td>
-																<td>Free</td>
-																<td><a class="btn btn-info btn-sm" href="subscribed-companies.php">62 Users</a></td>
-															</tr>
-															<tr>
-																<td>Professional</td>
-																<td>Yearly</td>
-																<td>9 Nov 2019</td>
-																<td>8 Dec 2019</td>
-																<td>$199</td>
-																<td><a class="btn btn-info btn-sm" href="subscribed-companies.php">157 Users</a></td>
-															</tr>
-															<tr>
-																<td>Enterprise</td>
-																<td>Yearly</td>
-																<td>9 Nov 2019</td>
-																<td>8 Dec 2019</td>
-																<td>$399</td>
-																<td><a class="btn btn-info btn-sm" href="subscribed-companies.php">241 Users</a></td>
-															</tr>
-														</tbody>
-													</table>
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>
-								<!-- /Yearly Plan Details -->
-							</div>
-							<!-- /Annual Plan Tab -->
 						</div>
 						<!-- /Plan Tab Content -->
-						<!-- Add Plan Modal -->
-						<div class="modal custom-modal fade" id="add_plan" tabindex="-1" role="dialog" aria-hidden="true">
-							<div class="modal-dialog modal-md modal-dialog-centered">
-								<div class="modal-content">
-									<button type="button" class="close" data-dismiss="modal"><i class="fa fa-close"></i></button>
-									<div class="modal-body">
-										<h5 class="modal-title text-center mb-3">Add Plan</h5>
-										<form>
-											<div class="row">
-												<div class="col-md-6">
-													<div class="form-group">
-														<label>Plan Name</label>
-														<input type="text" placeholder="Free Trial" class="form-control">
-													</div>
-												</div>
-												<div class="col-md-6">
-													<div class="form-group">
-														<label>Plan Amount</label>
-														<input type="text" class="form-control">
-													</div>
-												</div>
-												<div class="col-md-6">
-													<div class="form-group">
-														<label>Plan Type</label>
-														<select class="select">
-															<option> Monthly </option>
-															<option> Yearly </option>
-														</select>
-													</div>
-												</div>
-												<div class="col-md-6">
-													<div class="form-group">
-														<label>No of Users</label>
-														<select class="select">
-															<option> 5 Users </option>
-															<option> 50 Users </option>
-															<option> Unlimited </option>
-														</select>
-													</div>
-												</div>
-												<div class="col-md-6">
-													<div class="form-group">
-														<label>No of Projects</label>
-														<select class="select">
-															<option> 5 Projects </option>
-															<option> 50 Projects </option>
-															<option> Unlimited </option>
-														</select>
-													</div>
-												</div>
-												<div class="col-md-6">
-													<div class="form-group">
-														<label>No of Storage Space</label>
-														<select class="select">
-															<option> 5 GB </option>
-															<option> 100 GB </option>
-															<option> 500 GB </option>
-														</select>
-													</div>
-												</div>
-											</div>
-											<div class="form-group">
-												<label>Plan Description</label>
-												<textarea class="form-control" rows="4" cols="30"></textarea>
-											</div>
-											<div class="form-group">
-												<label class="d-block">Status</label>
-												<div class="status-toggle">
-													<input type="checkbox" id="add_plan_status" class="check">
-													<label for="add_plan_status" class="checktoggle">checkbox</label>
-												</div>
-											</div>
-											<div class="m-t-20 text-center">
-												<button class="btn btn-primary submit-btn">Submit</button>
-											</div>
-										</form>
-									</div>
-								</div>
-							</div>
-						</div>
-						<!-- /Add Plan Modal -->
-						<!-- Edit Plan Modal -->
-						<div class="modal custom-modal fade" id="edit_plan" role="dialog">
-							<div class="modal-dialog modal-md modal-dialog-centered">
-								<div class="modal-content">
-									<button type="button" class="close" data-dismiss="modal"><i class="fa fa-close"></i></button>
-									<div class="modal-body">
-										<h5 class="modal-title text-center mb-3">Edit Plan</h5>
-										<form>
-											<div class="row">
-												<div class="col-md-6">
-													<div class="form-group">
-														<label>Plan Name</label>
-														<input type="text" placeholder="Free Trial" class="form-control" value="Free Trial">
-													</div>
-												</div>
-												<div class="col-md-6">
-													<div class="form-group">
-														<label>Plan Amount</label>
-														<input type="text" class="form-control" value="$500">
-													</div>
-												</div>
-												<div class="col-md-6">
-													<div class="form-group">
-														<label>Plan Type</label>
-														<select class="select">
-															<option> Monthly </option>
-															<option> Yearly </option>
-														</select>
-													</div>
-												</div>
-												<div class="col-md-6">
-													<div class="form-group">
-														<label>No of Users</label>
-														<select class="select">
-															<option> 5 Users </option>
-															<option> 50 Users </option>
-															<option> Unlimited </option>
-														</select>
-													</div>
-												</div>
-												<div class="col-md-6">
-													<div class="form-group">
-														<label>No of Projects</label>
-														<select class="select">
-															<option> 5 Projects </option>
-															<option> 50 Projects </option>
-															<option> Unlimited </option>
-														</select>
-													</div>
-												</div>
-												<div class="col-md-6">
-													<div class="form-group">
-														<label>No of Storage Space</label>
-														<select class="select">
-															<option> 5 GB </option>
-															<option> 100 GB </option>
-															<option> 500 GB </option>
-														</select>
-													</div>
-												</div>
-											</div>
-											<div class="form-group">
-												<label>Plan Description</label>
-												<textarea class="form-control" rows="4" cols="30"></textarea>
-											</div>
-											<div class="form-group">
-												<label class="d-block">Status</label>
-												<div class="status-toggle">
-													<input type="checkbox" id="edit_plan_status" class="check">
-													<label for="edit_plan_status" class="checktoggle">checkbox</label>
-												</div>
-											</div>
-											<div class="m-t-20 text-center">
-												<button class="btn btn-primary submit-btn">Save</button>
-											</div>
-										</form>
-									</div>
-								</div>
-							</div>
-						</div>
-						<!-- /Edit Plan Modal -->
 					</div>
 				</div>
 			</div>

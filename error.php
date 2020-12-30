@@ -31,11 +31,16 @@ if (!$is_login) {
     <link rel="stylesheet" href="assets/plugins/morris/morris.css">
     <!-- Main CSS -->
     <link rel="stylesheet" href="assets/css/style.css">
+
+    <!-- glitch SCSS -->
+    <link rel="stylesheet" href="assets/css/glitch.css">
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
 			<script src="assets/js/html5shiv.min.js"></script>
 			<script src="assets/js/respond.min.js"></script>
-		<![endif]-->
+        <![endif]-->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap" rel="stylesheet">
 </head>
 
 <body>
@@ -70,33 +75,35 @@ if (!$is_login) {
                 <div class="content container-fluid">
                     <!-- 404 Error Text -->
                     <div class="text-center h-100">
-                        <div class="align-self-center error mx-auto" data-text="404">404</div>
-                        <p class="lead text-gray-800 mb-5">Page Not Found</p>
-                        <a style="color:inherit;text-decoration:none" href="index.php">&larr; Back to Dashboard</a>
+                        <div class="glitch" data-text="ERROR">ERROR</div>
+                        <p class="lead text-gray-800 mb-5">page is not found</p>
+                        <a style="color:inherit;text-decoration:none" href="index.php">&larr; back to dashboard</a>
                     </div>
 
                 </div>
+
             </div>
-            <!-- /Page Wrapper -->
-
         </div>
-        <!-- /Main Wrapper -->
+        <!-- /Page Wrapper -->
 
-        <!-- jQuery -->
-        <script src="assets/js/jquery-3.2.1.min.js"></script>
+    </div>
+    <!-- /Main Wrapper -->
 
-        <!-- Bootstrap Core JS -->
-        <script src="assets/js/popper.min.js"></script>
-        <script src="assets/js/bootstrap.min.js"></script>
+    <!-- jQuery -->
+    <script src="assets/js/jquery-3.2.1.min.js"></script>
 
-        <!-- Slimscroll JS -->
-        <script src="assets/js/jquery.slimscroll.min.js"></script>
+    <!-- Bootstrap Core JS -->
+    <script src="assets/js/popper.min.js"></script>
+    <script src="assets/js/bootstrap.min.js"></script>
 
-        <!-- Select2 JS -->
-        <script src="assets/js/select2.min.js"></script>
+    <!-- Slimscroll JS -->
+    <script src="assets/js/jquery.slimscroll.min.js"></script>
 
-        <!-- Custom JS -->
-        <script src="assets/js/app.js"></script>
+    <!-- Select2 JS -->
+    <script src="assets/js/select2.min.js"></script>
+
+    <!-- Custom JS -->
+    <script src="assets/js/app.js"></script>
 
 </body>
 
