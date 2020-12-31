@@ -12,6 +12,7 @@
 - [x] ~~Edit Employees~~
 - [x] ~~Login with hash~~
 - [x] ~~Admin and Employee Session~~
+- [ ] Registrasi.php tolong dibetulin
 - [ ] Dashboard kalau mau ditambahin monggo 🙏🙏🙏
 - [x] ~~Author sudah di subscription.php tinggal **rename**~~
 - [ ] Edit Others
