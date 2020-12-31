@@ -134,13 +134,6 @@
 						</ul>
 					</li>
 					<li class="submenu">
-						<a href="#"><i class="la la-key"></i> <span> Account </span> <span class="menu-arrow"></span></a>
-						<ul style="display: none;">
-							<li><a href="login.php"> Login </a></li>
-							<li><a href="register.php"> Register </a></li>
-						</ul>
-					</li>
-					<li class="submenu">
 						<a href="#"><i class="la la-columns"></i> <span> Information </span> <span class="menu-arrow"></span></a>
 						<ul style="display: none;">
 							<li><a class="<?php if (basename($_SERVER['SCRIPT_NAME']) == 'faq.php') {
@@ -160,7 +153,14 @@
 											} ?>" href="privacy-policy.php"> Privacy Policy </a></li>
 						</ul>
 					</li>
-
+					<li class="submenu">
+						<a href="#"><i class="la la-key"></i> <span> Account </span> <span class="menu-arrow"></span></a>
+						<ul style="display: none;">
+							<li><a href="login.php"> Login </a></li>
+							<li><a href="register.php"> Register </a></li>
+							<li><a href="logout.php"> Logout </a></li>
+						</ul>
+					</li>
 				<?php } ?>
 			</ul>
 		</div>

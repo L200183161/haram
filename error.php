@@ -51,7 +51,7 @@ if (!$is_login) {
         include_once 'includes/header.php';
         // <!-- /Header -->
         // <!-- Sidebar -->
-        include_once 'includes/sidebar.php';
+        // include_once 'includes/sidebar.php';
         // <!-- /Sidebar -->
         ?>
         <!-- Page Wrapper -->
@@ -59,7 +59,7 @@ if (!$is_login) {
             <!-- Page Content -->
             <div class="content container-fluid ">
                 <!-- Page Header -->
-                <div class="page-header">
+                <!-- <div class="page-header">
                     <div class="row text">
                         <div class="col-sm-12">
                             <h3 class="page-title">Welcome <?php $app->logged_user(); ?></h3>
@@ -68,7 +68,7 @@ if (!$is_login) {
                             </ul>
                         </div>
                     </div>
-                </div>
+                </div> -->
                 <!-- /Page Header -->
 
                 <!-- Page Content -->

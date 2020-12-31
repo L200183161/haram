@@ -42,6 +42,7 @@ function registration($data)
 	}
 	$password = password_hash($password, PASSWORD_DEFAULT);
 	mysqli_query($koneksi, "INSERT INTO `users`(`firstname`, `lastname`, `username`, `email`, `password`, `phone`, `address`, `role`,`picture`,`datetime`,) VALUES('$firstname','$lastname','$username','$email','$password','$phone', '$address', DEFAULT, DEFAULT, DEFAULT)");
+
 	return mysqli_affected_rows($koneksi);
 }
 

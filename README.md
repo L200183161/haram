@@ -30,10 +30,13 @@ U : admin #Admin
 P : admin
 
 ```
-#screenshots
+#### ***SCREENSHOTS***
 
-![ScreenShot](screenshots/login.png?raw=true "Login page")
-![Dashboard](screenshots/dashboard.png?raw=true "Dashbaord page")
-![Dashboard](screenshots/clients.png?raw=true "Clients page")
-![Dashboard](screenshots/employees.png?raw=true "employees page")
+![ScreenShot](screenshots/login.png?raw=true "Login")
+
+![Dashboard](screenshots/dashboard.png?raw=true "Admin Dashboard")
+
+![Dashboard](screenshots/clients.png?raw=true "Employee Dashboard")
+
+![Dashboard](screenshots/employees.png?raw=true "Employees List")
 
