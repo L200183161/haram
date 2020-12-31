@@ -514,6 +514,7 @@ if (!$is_login) {
 				$price = htmlspecialchars($_POST['value']);
 				$user = htmlspecialchars($_POST['user']);
 				$description = htmlspecialchars($_POST['description']);
+				// Hati2 dengan query nya za
 				$sql = "UPDATE `assets` SET `assetName`=:name, `assetId`=:assetId, 
 				`PurchaseDate`=:purchaseDate, `PurchaseFrom`=:purchasefrom, 
 				`Manufacturer`=:manufacturer, `Model`=:model, `Status`=:stats, 
@@ -540,6 +541,7 @@ if (!$is_login) {
 				// echo $query->rowCount() . " records UPDATED successfully";
 				// $query->rowCount();
 				// $result = $query->fetchAll();
+
 				return $query->rowCount();
 				$lastinserted = $dbh->lastInsertId();
 				if ($lastinserted > 0) {
