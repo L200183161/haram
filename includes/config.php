@@ -9,12 +9,10 @@ define('DATABASE', 'smarthr'); // Database Database name
 function DataBase()
 {
   try {
-      $db = new PDO('mysql:host='.HOST.';dbname='.DATABASE.'', USER, PASSWORD);
-      return $db;
+    $db = new PDO('mysql:host=' . HOST . ';dbname=' . DATABASE . '', USER, PASSWORD);
+    return $db;
   } catch (PDOException $e) {
-      return "Error!: " . $e->getMessage();
-      die();
+    return "Error!: " . $e->getMessage();
+    die();
   }
 }
-?>
-

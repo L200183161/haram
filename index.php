@@ -3,6 +3,7 @@ require_once 'includes/library.php';
 session_start();
 $app = new AppLib();
 $is_login = $app->is_user();
+$dbh = Database();
 if (!$is_login) {
 	header('location:login.php');
 } ?>

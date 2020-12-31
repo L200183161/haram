@@ -3,6 +3,7 @@ require_once 'includes/library.php';
 session_start();
 $app = new AppLib();
 $is_login = $app->is_user();
+$dbh = Database();
 if (!$is_login) {
 	header('location:login.php');
 }
@@ -44,19 +45,21 @@ if (!$is_login) {
 <body>
 	<!-- Main Wrapper -->
 	<div class="main-wrapper">
+
 		<!-- Header -->
-		<?php
-		// <!-- Header -->
-		include_once 'includes/header.php';
-		// <!-- /Header -->
-		// <!-- Sidebar -->
-		include_once 'includes/sidebar.php';
-		// <!-- /Sidebar -->
-		?>
+		<?php include_once("includes/header.php"); ?>
+		<!-- /Header -->
+
+		<!-- Sidebar -->
+		<?php include_once("includes/sidebar.php"); ?>
+		<!-- /Sidebar -->
+
 		<!-- Page Wrapper -->
 		<div class="page-wrapper">
+
 			<!-- Page Content -->
 			<div class="content container-fluid">
+
 				<!-- Page Header -->
 				<div class="page-header">
 					<div class="row align-items-center">
@@ -68,11 +71,12 @@ if (!$is_login) {
 							</ul>
 						</div>
 						<div class="col-auto float-right ml-auto">
-							<a href="#" class="btn add-btn" data-toggle="modal" data-target="#add_user"><i class="fa fa-plus"></i> Add User</a>
+							<a href="javascript:void(0)" class="btn add-btn" data-toggle="modal" data-target="#add_user"><i class="fa fa-plus"></i> Add User</a>
 						</div>
 					</div>
 				</div>
 				<!-- /Page Header -->
+
 				<!-- Search Filter -->
 				<div class="row filter-row">
 					<div class="col-sm-6 col-md-3">
@@ -108,183 +112,57 @@ if (!$is_login) {
 					</div>
 				</div>
 				<!-- /Search Filter -->
+
 				<div class="row">
 					<div class="col-md-12">
 						<div class="table-responsive">
 							<table class="table table-striped custom-table datatable">
 								<thead>
 									<tr>
-										<th>Name</th>
+										<th>Full Name</th>
 										<th>Email</th>
-										<th>Company</th>
+										<th>Phone</th>
+										<th>Address</th>
 										<th>Created Date</th>
-										<th>Role</th>
 										<th class="text-right">Action</th>
 									</tr>
 								</thead>
-								<tbody>
-									<tr>
-										<td>
-											<h2 class="table-avatar">
-												<a href="profile.php" class="avatar"><img src="assets/img/profiles/avatar-21.jpg" alt=""></a>
-												<a href="profile.php">Daniel Porter <span>Admin</span></a>
-											</h2>
-										</td>
-										<td>danielporter@example.com</td>
-										<td>HaRaM</td>
-										<td>1 Jan 2013</td>
-										<td>
-											<span class="badge bg-inverse-danger">Admin</span>
-										</td>
-										<td class="text-right">
-											<div class="dropdown dropdown-action">
-												<a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="material-icons">more_vert</i></a>
-												<div class="dropdown-menu dropdown-menu-right">
-													<a class="dropdown-item" href="#" data-toggle="modal" data-target="#edit_user"><i class="fa fa-pencil m-r-5"></i> Edit</a>
-													<a class="dropdown-item" href="#" data-toggle="modal" data-target="#delete_user"><i class="fa fa-trash-o m-r-5"></i> Delete</a>
-												</div>
-											</div>
-										</td>
-									</tr>
-									<tr>
-										<td>
-											<h2 class="table-avatar">
-												<a href="profile.php" class="avatar"><img alt="" src="assets/img/profiles/avatar-02.jpg"></a>
-												<a href="profile.php">John Doe <span>Web Designer</span></a>
-											</h2>
-										</td>
-										<td>johndoe@example.com</td>
-										<td>HaRaM</td>
-										<td>1 Jan 2013</td>
-										<td>
-											<span class="badge bg-inverse-success">Employee</span>
-										</td>
-										<td class="text-right">
-											<div class="dropdown dropdown-action">
-												<a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="material-icons">more_vert</i></a>
-												<div class="dropdown-menu dropdown-menu-right">
-													<a class="dropdown-item" href="#" data-toggle="modal" data-target="#edit_user"><i class="fa fa-pencil m-r-5"></i> Edit</a>
-													<a class="dropdown-item" href="#" data-toggle="modal" data-target="#delete_user"><i class="fa fa-trash-o m-r-5"></i> Delete</a>
-												</div>
-											</div>
-										</td>
-									</tr>
-									<tr>
-										<td>
-											<h2 class="table-avatar">
-												<a href="profile.php" class="avatar"><img alt="" src="assets/img/profiles/avatar-09.jpg"></a>
-												<a href="profile.php">Richard Miles <span>Admin</span></a>
-											</h2>
-										</td>
-										<td>richardmiles@example.com</td>
-										<td>HaRaM</td>
-										<td>1 Jan 2013</td>
-										<td>
-											<span class="badge bg-inverse-success">Employee</span>
-										</td>
-										<td class="text-right">
-											<div class="dropdown dropdown-action">
-												<a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="material-icons">more_vert</i></a>
-												<div class="dropdown-menu dropdown-menu-right">
-													<a class="dropdown-item" href="#" data-toggle="modal" data-target="#edit_user"><i class="fa fa-pencil m-r-5"></i> Edit</a>
-													<a class="dropdown-item" href="#" data-toggle="modal" data-target="#delete_user"><i class="fa fa-trash-o m-r-5"></i> Delete</a>
-												</div>
-											</div>
-										</td>
-									</tr>
-									<tr>
-										<td>
-											<h2 class="table-avatar">
-												<a href="profile.php" class="avatar"><img alt="" src="assets/img/profiles/avatar-10.jpg"></a>
-												<a href="profile.php">John Smith <span>Android Developer</span></a>
-											</h2>
-										</td>
-										<td>johnsmith@example.com</td>
-										<td>HaRaM</td>
-										<td>1 Jan 2013</td>
-										<td>
-											<span class="badge bg-inverse-success">Employee</span>
-										</td>
-										<td class="text-right">
-											<div class="dropdown dropdown-action">
-												<a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="material-icons">more_vert</i></a>
-												<div class="dropdown-menu dropdown-menu-right">
-													<a class="dropdown-item" href="#" data-toggle="modal" data-target="#edit_user"><i class="fa fa-pencil m-r-5"></i> Edit</a>
-													<a class="dropdown-item" href="#" data-toggle="modal" data-target="#delete_user"><i class="fa fa-trash-o m-r-5"></i> Delete</a>
-												</div>
-											</div>
-										</td>
-									</tr>
-									<tr>
-										<td>
-											<h2 class="table-avatar">
-												<a href="profile.php" class="avatar"><img alt="" src="assets/img/profiles/avatar-05.jpg"></a>
-												<a href="profile.php">Mike Litorus <span>IOS Developer</span></a>
-											</h2>
-										</td>
-										<td>mikelitorus@example.com</td>
-										<td>HaRaM</td>
-										<td>1 Jan 2013</td>
-										<td>
-											<span class="badge bg-inverse-success">Employee</span>
-										</td>
-										<td class="text-right">
-											<div class="dropdown dropdown-action">
-												<a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="material-icons">more_vert</i></a>
-												<div class="dropdown-menu dropdown-menu-right">
-													<a class="dropdown-item" href="#" data-toggle="modal" data-target="#edit_user"><i class="fa fa-pencil m-r-5"></i> Edit</a>
-													<a class="dropdown-item" href="#" data-toggle="modal" data-target="#delete_user"><i class="fa fa-trash-o m-r-5"></i> Delete</a>
-												</div>
-											</div>
-										</td>
-									</tr>
-									<tr>
-										<td>
-											<h2 class="table-avatar">
-												<a href="profile.php" class="avatar"><img alt="" src="assets/img/profiles/avatar-11.jpg"></a>
-												<a href="profile.php">Wilmer Deluna <span>Team Leader</span></a>
-											</h2>
-										</td>
-										<td>wilmerdeluna@example.com</td>
-										<td>HaRaM</td>
-										<td>1 Jan 2013</td>
-										<td>
-											<span class="badge bg-inverse-success">Employee</span>
-										</td>
-										<td class="text-right">
-											<div class="dropdown dropdown-action">
-												<a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="material-icons">more_vert</i></a>
-												<div class="dropdown-menu dropdown-menu-right">
-													<a class="dropdown-item" href="#" data-toggle="modal" data-target="#edit_user"><i class="fa fa-pencil m-r-5"></i> Edit</a>
-													<a class="dropdown-item" href="#" data-toggle="modal" data-target="#delete_user"><i class="fa fa-trash-o m-r-5"></i> Delete</a>
-												</div>
-											</div>
-										</td>
-									</tr>
-									<tr>
-										<td>
-											<h2 class="table-avatar">
-												<a href="profile.php" class="avatar"><img src="assets/img/profiles/avatar-19.jpg" alt=""></a>
-												<a href="profile.php">Barry Cuda <span>Global Technologies</span></a>
-											</h2>
-										</td>
-										<td>barrycuda@example.com</td>
-										<td>Global Technologies</td>
-										<td>1 Jan 2013</td>
-										<td>
-											<span class="badge bg-inverse-info">Client</span>
-										</td>
-										<td class="text-right">
-											<div class="dropdown dropdown-action">
-												<a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="material-icons">more_vert</i></a>
-												<div class="dropdown-menu dropdown-menu-right">
-													<a class="dropdown-item" href="#" data-toggle="modal" data-target="#edit_user"><i class="fa fa-pencil m-r-5"></i> Edit</a>
-													<a class="dropdown-item" href="#" data-toggle="modal" data-target="#delete_user"><i class="fa fa-trash-o m-r-5"></i> Delete</a>
-												</div>
-											</div>
-										</td>
-									</tr>
-								</tbody>
+								<?php
+								$sql = "SELECT * FROM users";
+								$query = $dbh->prepare($sql);
+								$query->execute();
+								$results = $query->fetchAll(PDO::FETCH_OBJ);
+								$cnt = 1;
+								if ($query->rowCount() > 0) {
+									foreach ($results as $result) {
+								?>
+										<tbody>
+											<tr>
+												<td>
+													<h2 class="table-avatar">
+														<a href="profile.php" class="avatar"><img src="uploads/profiles/<?php echo htmlentities($result->picture); ?>" alt="Profile Pic"></a>
+														<a href="profile.php"><?php echo htmlentities($result->firstname) . " ", htmlentities($result->lastname); ?>
+															<span><?php echo htmlentities($result->username); ?></span></a>
+													</h2>
+												</td>
+												<td><?php echo htmlentities($result->email); ?></td>
+												<td><?php echo htmlentities($result->phone); ?></td>
+												<td><?php echo htmlentities($result->address); ?></td>
+												<td><?php echo htmlentities($result->dateTime); ?></td>
+												<td class="text-right">
+													<div class="dropdown dropdown-action">
+														<a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="material-icons">more_vert</i></a>
+														<div class="dropdown-menu dropdown-menu-right">
+															<a class="dropdown-item" href="#" data-toggle="modal" data-target="#edit_user"><i class="fa fa-pencil m-r-5"></i> Edit</a>
+															<a class="dropdown-item" href="#" data-toggle="modal" data-target="#delete_user"><i class="fa fa-trash-o m-r-5"></i> Delete</a>
+														</div>
+													</div>
+												</td>
+											</tr>
+										</tbody>
+								<?php $cnt = $cnt + 1;
+									}
+								} ?>
 							</table>
 						</div>
 					</div>

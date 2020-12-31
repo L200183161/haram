@@ -1,13 +1,60 @@
 ﻿<?php
-require_once 'includes/library.php';
-session_start();
-$app = new AppLib();
-$is_login = $app->is_user();
-if (!$is_login) {
-	header('location:login.php');
+// require_once 'includes/library.php';
+// require 'includes/config.php';
+// session_start();
+ini_set('display_errors', '1');
+ini_set('display_startup_errors', '1');
+error_reporting(E_ALL);
+// $app = new AppLib();
+// $is_login = $app->is_user();
+// if ($is_login) {
+// 	session_destroy();
+// }
+$koneksi = new mysqli("localhost", "root", "", "smarthr");
+if ($koneksi->connect_errno) {
+	echo die("Failed to connect to MySQL: " . $koneksi->connect_error);
 }
-?>
-<!DOCTYPE html>
+
+function registration($data)
+{
+	$koneksi = new mysqli("localhost", "root", "", "smarthr");
+	$username = strtolower(stripslashes($data["username"]));
+	$firstname = mysqli_real_escape_string($koneksi, $data["firstname"]);
+	$lastname = mysqli_real_escape_string($koneksi, $data["lastname"]);
+	$email = mysqli_real_escape_string($koneksi, $data["email"]);
+	$phone = mysqli_real_escape_string($koneksi, $data["phone"]);
+	$address = mysqli_real_escape_string($koneksi, $data["address"]);
+	$password = mysqli_real_escape_string($koneksi, $data["password"]);
+	$password2 = mysqli_real_escape_string($koneksi, $data["password2"]);
+	$result = mysqli_query($koneksi, "SELECT username FROM users WHERE username = '$username'");
+
+	if (mysqli_fetch_assoc($result)) {
+		echo "<script>
+				alert('this $username is already registered')
+		      </script>";
+		return false;
+	}
+	if ($password !== $password2) {
+		echo "<script>
+				alert('Confirmation password is not same as $password');
+		      </script>";
+		return false;
+	}
+	$password = password_hash($password, PASSWORD_DEFAULT);
+	mysqli_query($koneksi, "INSERT INTO `users`(`firstname`, `lastname`, `username`, `email`, `password`, `phone`, `address`, `role`,`picture`,`datetime`,) VALUES('$firstname','$lastname','$username','$email','$password','$phone', '$address', DEFAULT, DEFAULT, DEFAULT)");
+	return mysqli_affected_rows($koneksi);
+}
+
+if (isset($_POST["registration"])) {
+	if (registration($_POST) > 0) {
+		echo "<script>
+				alert('User SUCCESSFULLY added!');window.location='login.php';
+			  </script>";
+	} else {
+		echo mysqli_error($koneksi);
+	}
+} ?>
+<!-- <!DOCTYPE html> -->
 <html lang="en">
 
 <head>
@@ -49,27 +96,47 @@ if (!$is_login) {
 						<h3 class="account-title">Register</h3>
 						<p class="account-subtitle">Access to our dashboard</p>
 						<!-- Account Form -->
-						<form action="index.php">
+						<form method="POST" action="" enctype="multipart/form-data">
+							<div class="form-group">
+								<label>First Name</label>
+								<input class="form-control" type="text" name="firstname" required>
+							</div>
+							<div class="form-group">
+								<label>Last Name</label>
+								<input class="form-control" type="text" name="lastname" required>
+							</div>
+							<div class="form-group">
+								<label>Username</label>
+								<input class="form-control" type="text" name="username" required>
+							</div>
 							<div class="form-group">
 								<label>Email</label>
-								<input class="form-control" type="text">
+								<input class="form-control" type="email" name="email" required autofocus>
+							</div>
+							<div class="form-group">
+								<label>Phone</label>
+								<input class="form-control" type="text" name="phone" required>
+							</div>
+							<div class="form-group">
+								<label>Address</label>
+								<input class="form-control" type="text" name="address" required>
 							</div>
 							<div class="form-group">
 								<label>Password</label>
-								<input class="form-control" type="password">
+								<input class="form-control" type="password" name="password" required>
 							</div>
 							<div class="form-group">
 								<label>Repeat Password</label>
-								<input class="form-control" type="password">
+								<input class="form-control" type="password" name="password2" required>
 							</div>
 							<div class="form-group text-center">
-								<button class="btn btn-primary account-btn" type="submit">Register</button>
-							</div>
-							<div class="account-footer">
-								<p>Already have an account? <a href="login.php">Login</a></p>
+								<button class="btn btn-primary account-btn" type="submit" name="registration">Register</button>
 							</div>
 						</form>
 						<!-- /Account Form -->
+						<div class="account-footer">
+							<p>Already have an account? <a href="login.php">Login</a></p>
+						</div>
 					</div>
 				</div>
 			</div>

@@ -35,7 +35,7 @@ if (!$is_login) {
 	<link rel="stylesheet" href="assets/css/font-awesome.min.css">
 	<!-- Lineawesome CSS -->
 	<link rel="stylesheet" href="assets/css/line-awesome.min.css">
-	<!-- Datatable CSS -->
+	<!-- dataTable CSS -->
 	<link rel="stylesheet" href="assets/css/dataTables.bootstrap4.min.css">
 	<!-- Select2 CSS -->
 	<link rel="stylesheet" href="assets/css/select2.min.css">
@@ -77,404 +77,405 @@ if (!$is_login) {
 							</ul>
 						</div>
 						<div class="col-auto float-right ml-auto">
-							<a href="#" class="btn add-btn" data-toggle="modal" data-target="#add_employee"><i class="fa fa-plus"></i> Add Employee</a>
-							<div class="view-icons">
-								<a href="employees.php" title="Grid View" class="grid-view btn btn-link active"><i class="fa fa-th"></i></a>
-								<a href="employees-list.php" title="Tabular View" class="list-view btn btn-link"><i class="fa fa-bars"></i></a>
-							</div>
-						</div>
-					</div>
-				</div>
-				<!-- /Page Header -->
-
-				<!-- Search Filter -->
-				<div class="row filter-row">
-					<div class="col-sm-6 col-md-3">
-						<div class="form-group form-focus">
-							<input type="text" class="form-control floating">
-							<label class="focus-label">Employee ID</label>
-						</div>
-					</div>
-					<div class="col-sm-6 col-md-3">
-						<div class="form-group form-focus">
-							<input type="text" class="form-control floating">
-							<label class="focus-label">Employee Name</label>
-						</div>
-					</div>
-					<div class="col-sm-6 col-md-3">
-						<div class="form-group form-focus select-focus">
-							<select class="select floating">
-								<option>Select Designation</option>
-								<option>Web Developer</option>
-								<option>Web Designer</option>
-								<option>Android Developer</option>
-								<option>Ios Developer</option>
-							</select>
-							<label class="focus-label">Designation</label>
-						</div>
-					</div>
-					<div class="col-sm-6 col-md-3">
-						<a href="#" class="btn btn-success btn-block"> Search </a>
-					</div>
-				</div>
-				<!-- /Search Filter -->
-
-				<div class="row">
-					<div class="col-md-12">
-						<div class="table-responsive">
-							<table class="table table-striped custom-table datatable">
-								<thead>
-									<tr>
-										<th>Name</th>
-										<th>Employee ID</th>
-										<th>Email</th>
-										<th>Mobile</th>
-										<th class="text-nowrap">Join Date</th>
-										<th>Role</th>
-										<th class="text-right no-sort">Action</th>
-									</tr>
-								</thead>
-								<?php
-								$sql = "SELECT * FROM employees";
-								$query = $dbh->prepare($sql);
-								$query->execute();
-								$results = $query->fetchAll(PDO::FETCH_OBJ);
-								$cnt = 1;
-								if ($query->rowCount() > 0) {
-									foreach ($results as $row) {
-								?>
-										<tbody>
-											<tr>
-												<td>
-													<h2 class="table-avatar">
-														<a href="profile.php" class="avatar"><img alt="picture" src="uploads/employees/<?php echo htmlentities($row->Picture); ?>"></a>
-														<a href="profile.php"><?php echo htmlentities($row->FirstName) . " " . htmlentities($row->LastName); ?><span><?php echo htmlentities($row->Designation); ?></span></a>
-													</h2>
-												</td>
-												<td><?php echo htmlentities($row->Employee_Id); ?></td>
-												<td><?php echo htmlentities($row->Email); ?></td>
-												<td><?php echo htmlentities($row->Phone); ?></td>
-												<td><?php echo htmlentities($row->Joining_Date); ?></td>
-												<td><?php echo htmlentities($row->Designation); ?></td>
-												<td class="text-right">
-													<div class="dropdown dropdown-action">
-														<a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="material-icons">more_vert</i></a>
-														<div class="dropdown-menu dropdown-menu-right">
-															<a class="dropdown-item" href="#" data-toggle="modal" data-target="#edit_employee"><i class="fa fa-pencil m-r-5"></i> Edit</a>
-															<a class="dropdown-item" href="#" data-toggle="modal" data-target="#delete_employee"><i class="fa fa-trash-o m-r-5"></i> Delete</a>
-														</div>
-													</div>
-												</td>
-											</tr>
-										</tbody>
-								<?php $cnt += 1;
-									}
-								} ?>
-							</table>
+							<!-- Permission admin only -->
+							<?php if ($_SESSION['role'] == "admin") { ?>
+								<a href="#" class="btn add-btn" data-toggle="modal" data-target="#add_employee"><i class="fa fa-plus"></i> Add Employee</a>
+							<?php } ?>
+							<a href="employees.php" title="Grid View" class="grid-view btn btn-link active"><i class="fa fa-th"></i></a>
+							<a href="employees-list.php" title="Tabular View" class="list-view btn btn-link"><i class="fa fa-bars"></i></a>
 						</div>
 					</div>
 				</div>
 			</div>
-			<!-- /Page Content -->
+			<!-- /Page Header -->
 
-			<!-- Add Employee Modal -->
-			<?php
-			//adding employees code starts from here
-			if (isset($_POST['add_employee'])) {
-				$firstname = htmlspecialchars($_POST['firstname']);
-				$lastname = htmlspecialchars($_POST['lastname']);
-				$username = htmlspecialchars($_POST['username']);
-				$email = htmlspecialchars($_POST['email']);
-				$password = htmlspecialchars($_POST['password']);
-				$confirm_password = htmlspecialchars($_POST['confirm_pass']);
-				$employee_id = htmlspecialchars($_POST['employee_id']);
-				$phone = htmlspecialchars($_POST['phone']);
-				$department = htmlspecialchars($_POST['department']);
-				$designation = htmlspecialchars($_POST['designation']);
-				//grabbing the picture
-				$file = $_FILES['picture']['name'];
-				$file_loc = $_FILES['picture']['tmp_name'];
-				$folder = "employees/";
-				$new_file_name = strtolower($file);
-				$final_file = str_replace(' ', '-', $new_file_name);
+			<!-- Search Filter -->
+			<div class="row filter-row">
+				<div class="col-sm-6 col-md-3">
+					<div class="form-group form-focus">
+						<input type="text" class="form-control floating">
+						<label class="focus-label">Employee ID</label>
+					</div>
+				</div>
+				<div class="col-sm-6 col-md-3">
+					<div class="form-group form-focus">
+						<input type="text" class="form-control floating">
+						<label class="focus-label">Employee Name</label>
+					</div>
+				</div>
+				<div class="col-sm-6 col-md-3">
+					<div class="form-group form-focus select-focus">
+						<select class="select floating">
+							<option>Select Designation</option>
+							<option>Web Developer</option>
+							<option>Web Designer</option>
+							<option>Android Developer</option>
+							<option>Ios Developer</option>
+						</select>
+						<label class="focus-label">Designation</label>
+					</div>
+				</div>
+				<div class="col-sm-6 col-md-3">
+					<a href="#" class="btn btn-success btn-block"> Search </a>
+				</div>
+			</div>
+			<!-- /Search Filter -->
 
-				if (move_uploaded_file($file_loc, $folder . $final_file) && ($password == $confirm_password)) {
-					$image = $final_file;
-					$password = password_hash($password, PASSWORD_DEFAULT);
-				}
-				$sql = "INSERT INTO `employees` (`id`, `FirstName`, `LastName`, `UserName`, `Email`, `Password`, `Employee_Id`, `Phone`, `Department`, `Designation`, `Picture`, `DateTime`)
+			<div class="row">
+				<div class="col-md-12">
+					<div class="table-responsive">
+						<table class="table table-striped custom-table dataTable js-exportable">
+							<thead>
+								<tr>
+									<th>Name</th>
+									<th>Employee ID</th>
+									<th>Email</th>
+									<th>Mobile</th>
+									<th class="text-nowrap">Join Date</th>
+									<th>Role</th>
+									<th class="text-right no-sort">Action</th>
+								</tr>
+							</thead>
+							<?php
+							$sql = "SELECT * FROM employees";
+							$query = $dbh->prepare($sql);
+							$query->execute();
+							$results = $query->fetchAll(PDO::FETCH_OBJ);
+							$cnt = 1;
+							if ($query->rowCount() > 0) {
+								foreach ($results as $row) {
+							?>
+									<tbody>
+										<tr>
+											<td>
+												<h2 class="table-avatar">
+													<a href="profile.php" class="avatar"><img alt="picture" src="uploads/employees/<?php echo htmlentities($row->Picture); ?>"></a>
+													<a href="profile.php"><?php echo htmlentities($row->FirstName) . " " . htmlentities($row->LastName); ?><span><?php echo htmlentities($row->Designation); ?></span></a>
+												</h2>
+											</td>
+											<td><?php echo htmlentities($row->Employee_Id); ?></td>
+											<td><?php echo htmlentities($row->Email); ?></td>
+											<td><?php echo htmlentities($row->Phone); ?></td>
+											<td><?php echo htmlentities($row->Joining_Date); ?></td>
+											<td><?php echo htmlentities($row->Designation); ?></td>
+											<td class="text-right">
+												<div class="dropdown dropdown-action">
+													<a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="material-icons">more_vert</i></a>
+													<div class="dropdown-menu dropdown-menu-right">
+														<a class="dropdown-item" href="#" data-toggle="modal" data-target="#edit_employee"><i class="fa fa-pencil m-r-5"></i> Edit</a>
+														<a class="dropdown-item" href="#" data-toggle="modal" data-target="#delete_employee"><i class="fa fa-trash-o m-r-5"></i> Delete</a>
+													</div>
+												</div>
+											</td>
+										</tr>
+									</tbody>
+							<?php $cnt += 1;
+								}
+							} ?>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- /Page Content -->
+
+		<!-- Add Employee Modal -->
+		<?php
+		//adding employees code starts from here
+		if (isset($_POST['add_employee'])) {
+			$firstname = htmlspecialchars($_POST['firstname']);
+			$lastname = htmlspecialchars($_POST['lastname']);
+			$username = htmlspecialchars($_POST['username']);
+			$email = htmlspecialchars($_POST['email']);
+			$password = htmlspecialchars($_POST['password']);
+			$confirm_password = htmlspecialchars($_POST['confirm_pass']);
+			$employee_id = htmlspecialchars($_POST['employee_id']);
+			$phone = htmlspecialchars($_POST['phone']);
+			$department = htmlspecialchars($_POST['department']);
+			$designation = htmlspecialchars($_POST['designation']);
+			//grabbing the picture
+			$file = $_FILES['picture']['name'];
+			$file_loc = $_FILES['picture']['tmp_name'];
+			$folder = "employees/";
+			$new_file_name = strtolower($file);
+			$final_file = str_replace(' ', '-', $new_file_name);
+
+			if (move_uploaded_file($file_loc, $folder . $final_file) && ($password == $confirm_password)) {
+				$image = $final_file;
+				$password = password_hash($password, PASSWORD_DEFAULT);
+			}
+			$sql = "INSERT INTO `employees` (`id`, `FirstName`, `LastName`, `UserName`, `Email`, `Password`, `Employee_Id`, `Phone`, `Department`, `Designation`, `Picture`, `DateTime`)
 				VALUES (NULL, :firstname, :lastname, :username, :email,:password, :id, :phone, :department, :designation, :pic, current_timestamp())";
-				$query = $dbh->prepare($sql);
-				$query->bindParam(':firstname', $firstname, PDO::PARAM_STR);
-				$query->bindParam(':lastname', $lastname, PDO::PARAM_STR);
-				$query->bindParam(':username', $username, PDO::PARAM_STR);
-				$query->bindParam(':email', $email, PDO::PARAM_STR);
-				$query->bindParam(':password', $password, PDO::PARAM_STR);
-				$query->bindParam(':id', $employee_id, PDO::PARAM_STR);
-				$query->bindParam(':phone', $phone, PDO::PARAM_STR);
-				$query->bindParam(':department', $department, PDO::PARAM_STR);
-				$query->bindParam(':designation', $designation, PDO::PARAM_STR);
-				$query->bindParam(':pic', $image, PDO::PARAM_STR);
-				$query->execute();
-				$lastInsert = $dbh->lastInsertId();
-				if ($lastInsert > 0) {
-					echo "<script>
+			$query = $dbh->prepare($sql);
+			$query->bindParam(':firstname', $firstname, PDO::PARAM_STR);
+			$query->bindParam(':lastname', $lastname, PDO::PARAM_STR);
+			$query->bindParam(':username', $username, PDO::PARAM_STR);
+			$query->bindParam(':email', $email, PDO::PARAM_STR);
+			$query->bindParam(':password', $password, PDO::PARAM_STR);
+			$query->bindParam(':id', $employee_id, PDO::PARAM_STR);
+			$query->bindParam(':phone', $phone, PDO::PARAM_STR);
+			$query->bindParam(':department', $department, PDO::PARAM_STR);
+			$query->bindParam(':designation', $designation, PDO::PARAM_STR);
+			$query->bindParam(':pic', $image, PDO::PARAM_STR);
+			$query->execute();
+			$lastInsert = $dbh->lastInsertId();
+			if ($lastInsert > 0) {
+				echo "<script>
 				alert('Employee Has Been Added.');
 				</script>";
-					echo "<script>
+				echo "<script>
 				window.location.href = 'employees-list.php';
 				</script>";
-				} else {
-					echo "<script>
+			} else {
+				echo "<script>
 				alert('Something Went Wrong');
 				</script>";
-				}
 			}
-			//ading employees code eds here
+		}
+		//ading employees code eds here
 
 
-			$set = '1234567890';
-			$id = substr(str_shuffle($set), 0, 6); ?>
-			<div id="add_employee" class="modal custom-modal fade" role="dialog">
-				<div class="modal-dialog modal-dialog-centered modal-lg">
-					<div class="modal-content">
-						<div class="modal-header">
-							<h5 class="modal-title">Add Employee</h5>
-							<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-								<span aria-hidden="true">&times;</span>
-							</button>
-						</div>
-						<div class="modal-body">
-							<form method="POST" enctype="multipart/form-data">
-								<div class="row">
-									<div class="col-sm-6">
-										<div class="form-group">
-											<label class="col-form-label">First Name <span class="text-danger">*</span></label>
-											<input name="firstname" required class="form-control" type="text">
-										</div>
-									</div>
-									<div class="col-sm-6">
-										<div class="form-group">
-											<label class="col-form-label">Last Name</label>
-											<input name="lastname" required class="form-control" type="text">
-										</div>
-									</div>
-									<div class="col-sm-6">
-										<div class="form-group">
-											<label class="col-form-label">Username <span class="text-danger">*</span></label>
-											<input name="username" required class="form-control" type="text">
-										</div>
-									</div>
-									<div class="col-sm-6">
-										<div class="form-group">
-											<label class="col-form-label">Email <span class="text-danger">*</span></label>
-											<input name="email" required class="form-control" type="email">
-										</div>
-									</div>
-									<div class="col-sm-6">
-										<div class="form-group">
-											<label class="col-form-label">Password</label>
-											<input class="form-control" required name="password" type="password">
-										</div>
-									</div>
-									<div class="col-sm-6">
-										<div class="form-group">
-											<label class="col-form-label">Confirm Password</label>
-											<input class="form-control" required name="confirm_pass" type="password">
-										</div>
-									</div>
-									<div class="col-sm-6">
-										<div class="form-group">
-											<label class="col-form-label">Employee ID <span class="text-danger">*</span></label>
-											<input name="employee_id" readonly type="text" value="<?php echo 'EMP-' . $id; ?>" class="form-control">
-										</div>
-									</div>
-
-									<div class="col-sm-6">
-										<div class="form-group">
-											<label class="col-form-label">Phone </label>
-											<input name="phone" required class="form-control" type="text">
-										</div>
-									</div>
-
-									<div class="col-md-6">
-										<div class="form-group">
-											<label>Department <span class="text-danger">*</span></label>
-											<select required name="department" class="select">
-												<option>Select Department</option>
-												<?php
-												$sql2 = "SELECT * from departments";
-												$query2 = $dbh->prepare($sql2);
-												$query2->execute();
-												$result2 = $query2->fetchAll(PDO::FETCH_OBJ);
-												foreach ($result2 as $row) {
-												?>
-													<option value="<?php echo htmlentities($row->Department); ?>">
-														<?php echo htmlentities($row->Department); ?></option>
-												<?php } ?>
-											</select>
-										</div>
-									</div>
-									<div class="col-md-6">
-										<div class="form-group">
-											<label>Designation <span class="text-danger">*</span></label>
-											<select required name="designation" class="select">
-												<option>Select Designation</option>
-												<?php
-												$sql2 = "SELECT * from designations";
-												$query2 = $dbh->prepare($sql2);
-												$query2->execute();
-												$result2 = $query2->fetchAll(PDO::FETCH_OBJ);
-												foreach ($result2 as $row) {
-												?>
-													<option value="<?php echo htmlentities($row->Designation); ?>">
-														<?php echo htmlentities($row->Designation); ?></option>
-												<?php } ?>
-											</select>
-										</div>
-									</div>
-									<div class="col-md-12">
-										<div class="form-group">
-											<label class="col-form-label">Employee Picture</label>
-											<input class="form-control" required name="picture" type="file">
-										</div>
-									</div>
-								</div>
-
-								<div class="submit-section">
-									<button type="submit" name="add_employee" class="btn btn-primary submit-btn">Submit</button>
-								</div>
-							</form>
-						</div>
+		$set = '1234567890';
+		$id = substr(str_shuffle($set), 0, 6); ?>
+		<div id="add_employee" class="modal custom-modal fade" role="dialog">
+			<div class="modal-dialog modal-dialog-centered modal-lg">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title">Add Employee</h5>
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
 					</div>
-				</div>
-			</div>
-			<!-- /Add Employee Modal -->
-			<!-- Edit Employee Modal -->
-			<div id="edit_employee" class="modal custom-modal fade" role="dialog">
-				<div class="modal-dialog modal-dialog-centered modal-lg" role="document">
-					<div class="modal-content">
-						<div class="modal-header">
-							<h5 class="modal-title">Edit Employee</h5>
-							<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-								<span aria-hidden="true">&times;</span>
-							</button>
-						</div>
-						<div class="modal-body">
-							<form>
-								<div class="row">
-									<div class="col-sm-6">
-										<div class="form-group">
-											<label class="col-form-label">First Name <span class="text-danger">*</span></label>
-											<input class="form-control" value="John" type="text">
-										</div>
-									</div>
-									<div class="col-sm-6">
-										<div class="form-group">
-											<label class="col-form-label">Last Name</label>
-											<input class="form-control" value="Doe" type="text">
-										</div>
-									</div>
-									<div class="col-sm-6">
-										<div class="form-group">
-											<label class="col-form-label">Username <span class="text-danger">*</span></label>
-											<input class="form-control" value="johndoe" type="text">
-										</div>
-									</div>
-									<div class="col-sm-6">
-										<div class="form-group">
-											<label class="col-form-label">Email <span class="text-danger">*</span></label>
-											<input class="form-control" value="johndoe@example.com" type="email">
-										</div>
-									</div>
-									<div class="col-sm-6">
-										<div class="form-group">
-											<label class="col-form-label">Password</label>
-											<input class="form-control" value="johndoe" type="password">
-										</div>
-									</div>
-									<div class="col-sm-6">
-										<div class="form-group">
-											<label class="col-form-label">Confirm Password</label>
-											<input class="form-control" value="johndoe" type="password">
-										</div>
-									</div>
-									<div class="col-sm-6">
-										<div class="form-group">
-											<label class="col-form-label">Employee ID <span class="text-danger">*</span></label>
-											<input type="text" value="FT-0001" readonly="" class="form-control floating">
-										</div>
-									</div>
-									<div class="col-sm-6">
-										<div class="form-group">
-											<label class="col-form-label">Joining Date <span class="text-danger">*</span></label>
-											<div class="cal-icon"><input class="form-control datetimepicker" type="text"></div>
-										</div>
-									</div>
-									<div class="col-sm-6">
-										<div class="form-group">
-											<label class="col-form-label">Phone </label>
-											<input class="form-control" value="9876543210" type="text">
-										</div>
-									</div>
-									<div class="col-sm-6">
-										<div class="form-group">
-											<label class="col-form-label">Company</label>
-											<select class="select">
-												<option>Global Technologies</option>
-												<option>Delta Infotech</option>
-												<option selected="">International Software Inc</option>
-											</select>
-										</div>
-									</div>
-									<div class="col-md-6">
-										<div class="form-group">
-											<label>Department <span class="text-danger">*</span></label>
-											<select class="select">
-												<option>Select Department</option>
-												<option>Web Development</option>
-												<option>IT Management</option>
-												<option>Marketing</option>
-											</select>
-										</div>
-									</div>
-									<div class="col-md-6">
-										<div class="form-group">
-											<label>Designation <span class="text-danger">*</span></label>
-											<select class="select">
-												<option>Select Designation</option>
-												<option>Web Designer</option>
-												<option>Web Developer</option>
-												<option>Android Developer</option>
-											</select>
-										</div>
+					<div class="modal-body">
+						<form method="POST" enctype="multipart/form-data">
+							<div class="row">
+								<div class="col-sm-6">
+									<div class="form-group">
+										<label class="col-form-label">First Name <span class="text-danger">*</span></label>
+										<input name="firstname" required class="form-control" type="text">
 									</div>
 								</div>
-								<div class="submit-section">
-									<button class="btn btn-primary submit-btn">Save</button>
+								<div class="col-sm-6">
+									<div class="form-group">
+										<label class="col-form-label">Last Name</label>
+										<input name="lastname" required class="form-control" type="text">
+									</div>
 								</div>
-							</form>
-						</div>
-					</div>
-				</div>
-			</div>
-			<!-- /Edit Employee Modal -->
-			<div class="modal custom-modal fade" id="delete_employee" role="dialog">
-				<div class="modal-dialog modal-dialog-centered">
-					<div class="modal-content">
-						<div class="modal-body">
-							<div class="form-header">
-								<h3>Delete Employee</h3>
-								<p>Are you sure want to delete?</p>
+								<div class="col-sm-6">
+									<div class="form-group">
+										<label class="col-form-label">Username <span class="text-danger">*</span></label>
+										<input name="username" required class="form-control" type="text">
+									</div>
+								</div>
+								<div class="col-sm-6">
+									<div class="form-group">
+										<label class="col-form-label">Email <span class="text-danger">*</span></label>
+										<input name="email" required class="form-control" type="email">
+									</div>
+								</div>
+								<div class="col-sm-6">
+									<div class="form-group">
+										<label class="col-form-label">Password</label>
+										<input class="form-control" required name="password" type="password">
+									</div>
+								</div>
+								<div class="col-sm-6">
+									<div class="form-group">
+										<label class="col-form-label">Confirm Password</label>
+										<input class="form-control" required name="confirm_pass" type="password">
+									</div>
+								</div>
+								<div class="col-sm-6">
+									<div class="form-group">
+										<label class="col-form-label">Employee ID <span class="text-danger">*</span></label>
+										<input name="employee_id" readonly type="text" value="<?php echo 'EMP-' . $id; ?>" class="form-control">
+									</div>
+								</div>
+
+								<div class="col-sm-6">
+									<div class="form-group">
+										<label class="col-form-label">Phone </label>
+										<input name="phone" required class="form-control" type="text">
+									</div>
+								</div>
+
+								<div class="col-md-6">
+									<div class="form-group">
+										<label>Department <span class="text-danger">*</span></label>
+										<select required name="department" class="select">
+											<option>Select Department</option>
+											<?php
+											$sql2 = "SELECT * from departments";
+											$query2 = $dbh->prepare($sql2);
+											$query2->execute();
+											$result2 = $query2->fetchAll(PDO::FETCH_OBJ);
+											foreach ($result2 as $row) {
+											?>
+												<option value="<?php echo htmlentities($row->Department); ?>">
+													<?php echo htmlentities($row->Department); ?></option>
+											<?php } ?>
+										</select>
+									</div>
+								</div>
+								<div class="col-md-6">
+									<div class="form-group">
+										<label>Designation <span class="text-danger">*</span></label>
+										<select required name="designation" class="select">
+											<option>Select Designation</option>
+											<?php
+											$sql2 = "SELECT * from designations";
+											$query2 = $dbh->prepare($sql2);
+											$query2->execute();
+											$result2 = $query2->fetchAll(PDO::FETCH_OBJ);
+											foreach ($result2 as $row) {
+											?>
+												<option value="<?php echo htmlentities($row->Designation); ?>">
+													<?php echo htmlentities($row->Designation); ?></option>
+											<?php } ?>
+										</select>
+									</div>
+								</div>
+								<div class="col-md-12">
+									<div class="form-group">
+										<label class="col-form-label">Employee Picture</label>
+										<input class="form-control" required name="picture" type="file">
+									</div>
+								</div>
 							</div>
-							<div class="modal-btn delete-action">
-								<div class="row">
-									<div class="col-6">
-										<a href="employees-list.php?delid=<?php echo $row->id; ?>" class="btn btn-primary continue-btn">Delete</a>
+
+							<div class="submit-section">
+								<button type="submit" name="add_employee" class="btn btn-primary submit-btn">Submit</button>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- /Add Employee Modal -->
+		<!-- Edit Employee Modal -->
+		<div id="edit_employee" class="modal custom-modal fade" role="dialog">
+			<div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title">Edit Employee</h5>
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div class="modal-body">
+						<form>
+							<div class="row">
+								<div class="col-sm-6">
+									<div class="form-group">
+										<label class="col-form-label">First Name <span class="text-danger">*</span></label>
+										<input class="form-control" value="John" type="text">
 									</div>
-									<div class="col-6">
-										<a href="javascript:void(0);" data-dismiss="modal" class="btn btn-primary cancel-btn">Cancel</a>
+								</div>
+								<div class="col-sm-6">
+									<div class="form-group">
+										<label class="col-form-label">Last Name</label>
+										<input class="form-control" value="Doe" type="text">
 									</div>
+								</div>
+								<div class="col-sm-6">
+									<div class="form-group">
+										<label class="col-form-label">Username <span class="text-danger">*</span></label>
+										<input class="form-control" value="johndoe" type="text">
+									</div>
+								</div>
+								<div class="col-sm-6">
+									<div class="form-group">
+										<label class="col-form-label">Email <span class="text-danger">*</span></label>
+										<input class="form-control" value="johndoe@example.com" type="email">
+									</div>
+								</div>
+								<div class="col-sm-6">
+									<div class="form-group">
+										<label class="col-form-label">Password</label>
+										<input class="form-control" value="johndoe" type="password">
+									</div>
+								</div>
+								<div class="col-sm-6">
+									<div class="form-group">
+										<label class="col-form-label">Confirm Password</label>
+										<input class="form-control" value="johndoe" type="password">
+									</div>
+								</div>
+								<div class="col-sm-6">
+									<div class="form-group">
+										<label class="col-form-label">Employee ID <span class="text-danger">*</span></label>
+										<input type="text" value="FT-0001" readonly="" class="form-control floating">
+									</div>
+								</div>
+								<div class="col-sm-6">
+									<div class="form-group">
+										<label class="col-form-label">Joining Date <span class="text-danger">*</span></label>
+										<div class="cal-icon"><input class="form-control datetimepicker" type="text"></div>
+									</div>
+								</div>
+								<div class="col-sm-6">
+									<div class="form-group">
+										<label class="col-form-label">Phone </label>
+										<input class="form-control" value="9876543210" type="text">
+									</div>
+								</div>
+								<div class="col-sm-6">
+									<div class="form-group">
+										<label class="col-form-label">Company</label>
+										<select class="select">
+											<option>Global Technologies</option>
+											<option>Delta Infotech</option>
+											<option selected="">International Software Inc</option>
+										</select>
+									</div>
+								</div>
+								<div class="col-md-6">
+									<div class="form-group">
+										<label>Department <span class="text-danger">*</span></label>
+										<select class="select">
+											<option>Select Department</option>
+											<option>Web Development</option>
+											<option>IT Management</option>
+											<option>Marketing</option>
+										</select>
+									</div>
+								</div>
+								<div class="col-md-6">
+									<div class="form-group">
+										<label>Designation <span class="text-danger">*</span></label>
+										<select class="select">
+											<option>Select Designation</option>
+											<option>Web Designer</option>
+											<option>Web Developer</option>
+											<option>Android Developer</option>
+										</select>
+									</div>
+								</div>
+							</div>
+							<div class="submit-section">
+								<button class="btn btn-primary submit-btn">Save</button>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- /Edit Employee Modal -->
+		<div class="modal custom-modal fade" id="delete_employee" role="dialog">
+			<div class="modal-dialog modal-dialog-centered">
+				<div class="modal-content">
+					<div class="modal-body">
+						<div class="form-header">
+							<h3>Delete Employee</h3>
+							<p>Are you sure want to delete?</p>
+						</div>
+						<div class="modal-btn delete-action">
+							<div class="row">
+								<div class="col-6">
+									<a href="employees-list.php?delid=<?php echo $row->id; ?>" class="btn btn-primary continue-btn">Delete</a>
+								</div>
+								<div class="col-6">
+									<a href="javascript:void(0);" data-dismiss="modal" class="btn btn-primary cancel-btn">Cancel</a>
 								</div>
 							</div>
 						</div>
@@ -482,7 +483,8 @@ if (!$is_login) {
 				</div>
 			</div>
 		</div>
-		<!-- /Page Wrapper -->
+	</div>
+	<!-- /Page Wrapper -->
 	</div>
 	<!-- /Main Wrapper -->
 	<!-- jQuery -->
@@ -497,11 +499,14 @@ if (!$is_login) {
 	<!-- Datetimepicker JS -->
 	<script src="assets/js/moment.min.js"></script>
 	<script src="assets/js/bootstrap-datetimepicker.min.js"></script>
-	<!-- Datatable JS -->
+	<!-- dataTable JS -->
 	<script src="assets/js/jquery.dataTables.min.js"></script>
 	<script src="assets/js/dataTables.bootstrap4.min.js"></script>
 	<!-- Custom JS -->
 	<script src="assets/js/app.js"></script>
+
+	<!-- katanya sih JS biar export but who knows mfaka -->
+	<script src="assets/js/tables/jquery-datatable.js"></script>
 </body>
 
 </html>
