@@ -40,6 +40,18 @@ if (!$is_login) {
 			<script src="assets/js/html5shiv.min.js"></script>
 			<script src="assets/js/respond.min.js"></script>
 		<![endif]-->
+	<script>
+		function printDiv(divName) {
+			var printContents = document.getElementById(divName).innerHTML;
+			var originalContents = document.body.innerHTML;
+
+			document.body.innerHTML = printContents;
+
+			window.print();
+
+			document.body.innerHTML = originalContents;
+		}
+	</script>
 </head>
 
 <body>
@@ -69,6 +81,7 @@ if (!$is_login) {
 						</div>
 						<div class="col-auto float-right ml-auto">
 							<a href="#" class="btn add-btn" data-toggle="modal" data-target="#add_asset"><i class="fa fa-plus"></i> Add Asset</a>
+
 						</div>
 					</div>
 				</div>
@@ -117,8 +130,9 @@ if (!$is_login) {
 					</div>
 				</div>
 				<!-- /Search Filter -->
+				<a href="#" class="btn btn-file" onclick="printDiv('print')"><i class="fa fa-print"></i> Print</a>
 
-				<div class="row">
+				<div class="row" id="print">
 					<div class="col-md-12">
 						<div class="table-responsive">
 							<table class="table table-striped custom-table mb-0 dataTable js-exportable">

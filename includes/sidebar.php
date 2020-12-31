@@ -13,11 +13,11 @@
 										} else {
 											echo '';
 										} ?>" href="index.php">Admin Dashboard</a></li>
-						<li><a class="<?php if (basename($_SERVER['SCRIPT_NAME']) == 'employee-dashboard.php') {
+						<li><a class="<?php if (basename($_SERVER['SCRIPT_NAME']) == 'dashboard.php') {
 											echo 'active';
 										} else {
 											echo '';
-										} ?>" href="employee-dashboard.php">Employee Dashboard</a></li>
+										} ?>" href="dashboard.php">Employee Dashboard</a></li>
 					</ul>
 				</li>
 
@@ -138,19 +138,11 @@
 						<ul style="display: none;">
 							<li><a href="login.php"> Login </a></li>
 							<li><a href="register.php"> Register </a></li>
-							<li><a href="forgot-password.php"> Forgot Password </a></li>
-							<li><a href="otp.php"> OTP </a></li>
-							<li><a href="lock-screen.php"> Lock Screen </a></li>
 						</ul>
 					</li>
 					<li class="submenu">
-						<a href="#"><i class="la la-columns"></i> <span> Pages </span> <span class="menu-arrow"></span></a>
+						<a href="#"><i class="la la-columns"></i> <span> Information </span> <span class="menu-arrow"></span></a>
 						<ul style="display: none;">
-							<li><a class="<?php if (basename($_SERVER['SCRIPT_NAME']) == 'search.php') {
-												echo 'active';
-											} else {
-												echo '';
-											} ?>" href="search.php"> Search </a></li>
 							<li><a class="<?php if (basename($_SERVER['SCRIPT_NAME']) == 'faq.php') {
 												echo 'active';
 											} else {
@@ -166,7 +158,6 @@
 											} else {
 												echo '';
 											} ?>" href="privacy-policy.php"> Privacy Policy </a></li>
-							<li><a href="error.php"> Blank Page </a></li>
 						</ul>
 					</li>
 

@@ -26,7 +26,7 @@ if (isset($_POST['login'])) {
 				} else if ($row['role'] == 'employee') {
 					$_SESSION['userlogin'] = $_POST['username'];
 					$_SESSION['role'] = "employee";
-					header("location:employee-dashboard.php");
+					header("location:dashboard.php");
 				}
 			} else {
 				$wrongpassword = '
