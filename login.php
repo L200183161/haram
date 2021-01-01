@@ -116,7 +116,7 @@ if (isset($_POST['login'])) {
 							<div class="form-group">
 								<div class="form-check">
 									<input id="remember_me" class="form-check-input" type="checkbox">
-									<label class="form-check-label" for="remember_me">Remember Me
+									<label class="form-check-label" name="remember_me" for="remember_me">Remember Me
 									</label>
 								</div>
 							</div>

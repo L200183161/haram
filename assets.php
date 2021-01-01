@@ -81,7 +81,7 @@ if (!$is_login) {
 							</ul>
 						</div>
 						<div class="col-auto float-right ml-auto">
-							<a href="#" class="btn add-btn" data-toggle="modal" data-target="#add_asset"><i class="fa fa-plus"></i> Add Asset</a>
+							<a href="javascript:void(0)" class="btn add-btn" data-toggle="modal" data-target="#add_asset"><i class="fa fa-plus"></i> Add Asset</a>
 
 						</div>
 					</div>
@@ -127,11 +127,11 @@ if (!$is_login) {
 						</div>
 					</div>
 					<div class="col-sm-6 col-md-2">
-						<a href="#" class="btn btn-success btn-block"> Search </a>
+						<a href="javascript:void(0)" class="btn btn-success btn-block"> Search </a>
 					</div>
 				</div>
 				<!-- /Search Filter -->
-				<a href="#" class="btn btn-file" onclick="printDiv('print')"><i class="fa fa-print"></i> Print</a>
+				<a href="javascript:void(0)" class="btn btn-file" onclick="printDiv('print')"><i class="fa fa-print"></i> Print</a>
 
 				<div class="row" id="print">
 					<div class="col-md-12">
@@ -140,8 +140,8 @@ if (!$is_login) {
 								<thead>
 									<tr>
 										<th class="text-left">Asset User</th>
-										<th class="text-left">Asset Name</th>
-										<th class="text-left">Asset Id</th>
+										<th class="text-left">Product Name</th>
+										<th class="text-left">Product ID</th>
 										<th class="text-left">Purchase Date</th>
 										<th class="text-left">Warrenty</th>
 										<th class="text-left">Amount</th>
@@ -262,13 +262,13 @@ if (!$is_login) {
 								<div class="row">
 									<div class="col-md-6">
 										<div class="form-group">
-											<label>Asset Name</label>
+											<label>Product Name</label>
 											<input name="asset_name" class="form-control" type="text">
 										</div>
 									</div>
 									<div class="col-md-6">
 										<div class="form-group">
-											<label>Asset Id</label>
+											<label>Product ID</label>
 											<input readonly name="asset_id" value="<?php echo '#AST-' . $id; ?>" class="form-control" type="text">
 										</div>
 									</div>
@@ -344,8 +344,19 @@ if (!$is_login) {
 											<label>Asset User</label>
 											<!-- Nanti dikasih selection ya don pake employees select  cek yg praktikum gudang dulu buat query-> -->
 											<select name="asset_user" class="select">
-												<option>John Doe</option>
-												<option>Richard Miles</option>
+												<?php
+												$sql = "SELECT * FROM employees";
+												$selection = $dbh->query($sql); //penting asuuu plisss
+												// $query = $dbh->prepare($sql);
+												// $query->execute();
+												$selection->rowCount();
+												foreach ($selection as $urut) : ?>
+													<option>
+														<?= $urut['FirstName'] . " " . $urut['LastName'] ?></option>";
+												<?php endforeach ?>
+												<!-- <option>John Doe</option>
+												<option>Richard Miles</option> -->
+												<!-- Yeyyy berhasilll noicee -->
 											</select>
 										</div>
 									</div>
@@ -387,13 +398,13 @@ if (!$is_login) {
 											<input name="id" id="id" class="form-control" type="text">
 										</div>
 										<div class="form-group">
-											<label for="asset_name">Asset Name</label>
+											<label for="asset_name">Product Name</label>
 											<input name="asset_name" id="asset_name" class="form-control" type="text">
 										</div>
 									</div>
 									<div class="col-md-6">
 										<div class="form-group">
-											<label for="asset_id">Asset Id</label>
+											<label for="asset_id">Product ID</label>
 											<input readonly name="asset_id" id="asset_id" value="<?php echo '#AST-' . $id; ?>" class="form-control" type="text">
 										</div>
 									</div>
@@ -464,12 +475,21 @@ if (!$is_login) {
 											<input placeholder="Rp. 180.000" name="value" id="value" class="form-control" type="text">
 										</div>
 									</div>
+									<!-- Nanti dikasih selection ya don pake employees select  cek yg praktikum gudang dulu buat query-> -->
 									<div class="col-md-6">
 										<div class="form-group">
 											<label for="user">Asset User</label>
 											<select name="user" id="user" class="select">
-												<option>John Doe</option>
-												<option>Richard Miles</option>
+												<?php
+												$sql = "SELECT * FROM employees";
+												$selection = $dbh->query($sql); //penting asuuu plisss
+												// $query = $dbh->prepare($sql);
+												// $query->execute();
+												$selection->rowCount();
+												foreach ($selection as $urut) : ?>
+													<option>
+														<?= $urut['FirstName'] . " " . $urut['LastName'] ?></option>";
+												<?php endforeach ?>
 											</select>
 										</div>
 									</div>
@@ -489,6 +509,7 @@ if (!$is_login) {
 					</div>
 				</div>
 			</div>
+
 			<?php
 			// if (isset($_POST['edit_asset'])) {
 			// 	if (EditingAsset($_POST) > 0) {
@@ -514,7 +535,7 @@ if (!$is_login) {
 				$price = htmlspecialchars($_POST['value']);
 				$user = htmlspecialchars($_POST['user']);
 				$description = htmlspecialchars($_POST['description']);
-				// Hati2 dengan query nya za
+				// Hati2 dengan query nya 
 				$sql = "UPDATE `assets` SET `assetName`=:name, `assetId`=:assetId, 
 				`PurchaseDate`=:purchaseDate, `PurchaseFrom`=:purchasefrom, 
 				`Manufacturer`=:manufacturer, `Model`=:model, `Status`=:stats, 
@@ -545,9 +566,10 @@ if (!$is_login) {
 				return $query->rowCount();
 				$lastinserted = $dbh->lastInsertId();
 				if ($lastinserted > 0) {
-					echo "<script>alert('Edit berhasil'); window.location.href('assets.php')</script>";
+					echo "<script>alert('Successfully Edited');window.location='assets.php';</script>";
+					// header('location:index.php');
 				} else {
-					// echo "<script>alert('Ada Yang Salah');</script>";
+					// echo "<script>alert('Oh crap, something is wrong'); window.location='assets.php';</script>";
 					echo 'Error :';
 					echo '<pre>';
 					print_r($query->errorInfo());
@@ -625,6 +647,7 @@ if (!$is_login) {
 			// 	foreach ($querya as $data) {
 			// 	}
 			// }
+
 			?>
 			<!-- Edit Asset Modal -->
 			<!-- Delete Asset Modal -->
@@ -671,8 +694,8 @@ if (!$is_login) {
 	</div>
 	<!-- /Main Wrapper -->
 	<!-- jQuery -->
-	<!-- <script src="assets/js/jquery-3.2.1.min.js"></script> -->
-	<script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+	<script src="assets/js/jquery-3.2.1.min.js"></script>
+	<!-- <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script> -->
 	<!-- Bootstrap Core JS -->
 	<script src="assets/js/popper.min.js"></script>
 	<script src="assets/js/bootstrap.min.js"></script>
