@@ -80,6 +80,7 @@ if (!$is_login) {
 								<li class="breadcrumb-item active">Assets</li>
 							</ul>
 						</div>
+
 						<div class="col-auto float-right ml-auto">
 							<a href="javascript:void(0)" class="btn add-btn" data-toggle="modal" data-target="#add_asset"><i class="fa fa-plus"></i> Add Asset</a>
 
@@ -88,57 +89,14 @@ if (!$is_login) {
 				</div>
 				<!-- /Page Header -->
 				<!-- Search Filter -->
-				<div class="row filter-row">
-					<div class="col-sm-6 col-md-3">
-						<div class="form-group form-focus">
-							<input type="text" class="form-control floating">
-							<label class="focus-label">Employee Name</label>
-						</div>
-					</div>
-					<div class="col-sm-6 col-md-3">
-						<div class="form-group form-focus select-focus">
-							<select class="select floating">
-								<option value=""> -- Select -- </option>
-								<option value="0"> Pending </option>
-								<option value="1"> Approved </option>
-								<option value="2"> Returned </option>
-							</select>
-							<label class="focus-label">Status</label>
-						</div>
-					</div>
-					<div class="col-sm-12 col-md-4">
-						<div class="row">
-							<div class="col-md-6 col-sm-6">
-								<div class="form-group form-focus">
-									<div class="cal-icon">
-										<input class="form-control floating datetimepicker" type="text">
-									</div>
-									<label class="focus-label">From</label>
-								</div>
-							</div>
-							<div class="col-md-6 col-sm-6">
-								<div class="form-group form-focus">
-									<div class="cal-icon">
-										<input class="form-control floating datetimepicker" type="text">
-									</div>
-									<label class="focus-label">To</label>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="col-sm-6 col-md-2">
-						<a href="javascript:void(0)" class="btn btn-success btn-block"> Search </a>
-					</div>
-				</div>
-				<!-- /Search Filter -->
 				<a href="javascript:void(0)" class="btn btn-file" onclick="printDiv('print')"><i class="fa fa-print"></i> Print</a>
-
 				<div class="row" id="print">
 					<div class="col-md-12">
 						<div class="table-responsive">
 							<table class="table table-striped custom-table mb-0 dataTable js-exportable">
 								<thead>
 									<tr>
+										<th class="text-left">Number</th>
 										<th class="text-left">Asset User</th>
 										<th class="text-left">Product Name</th>
 										<th class="text-left">Product ID</th>
@@ -149,21 +107,24 @@ if (!$is_login) {
 										<th class="text-danger text-right">Setting</th>
 									</tr>
 								</thead>
-								<!-- code to show the table -->
+								<tbody>
+									<!--Sempak kw cuman butuh body di luar-->
+									<!-- code to show the table -->
 
-								<?php
-								$sql = "SELECT * FROM assets";
-								// $query = $dbh->prepare($sql);
-								// $query->execute();
-								// $results = $query->fetchAll(PDO::FETCH_OBJ);
-								$results2 = $dbh->query($sql);
-								$cnt = 1;
-								if ($results2->rowCount() > 0) {
-									foreach ($results2 as $row) {
-										$newdate = date("l d-m-Y", strtotime($row['PurchaseDate'])); //Convert to d/m/Y
-								?>
-										<tbody>
+									<?php
+									$sql = "SELECT * FROM assets";
+									// $query = $dbh->prepare($sql);
+									// $query->execute();
+									// $results = $query->fetchAll(PDO::FETCH_OBJ);
+									$results2 = $dbh->query($sql);
+									$cnt = 1;
+									if ($results2->rowCount() > 0) {
+										foreach ($results2 as $row) {
+											$newdate = date("l d-m-Y", strtotime($row['PurchaseDate'])); //Convert to d/m/Y
+									?>
+
 											<tr>
+												<td><?php echo htmlentities($cnt++); ?></td>
 												<td><?php echo htmlentities($row['AssetUser']); ?></td>
 												<td>
 													<strong><?php echo htmlentities($row['assetName']); ?></strong>
@@ -194,10 +155,11 @@ if (!$is_login) {
 													</div>
 												</td>
 											</tr>
-										</tbody>
-								<?php $cnt += 1;
-									}
-								} ?>
+
+									<?php
+										}
+									} ?>
+								</tbody>
 							</table>
 						</div>
 					</div>
@@ -278,7 +240,7 @@ if (!$is_login) {
 									<div class="col-md-6">
 										<div class="form-group">
 											<label>Purchase Date</label>
-											<input name="purchase_date" value="<?php echo date('dd/mm/yy'); ?>" class="form-control" type="date">
+											<input name="purchase_date" id="purchase_date" class="form-control" type="date">
 										</div>
 									</div>
 									<div class="col-md-6">
@@ -394,8 +356,8 @@ if (!$is_login) {
 								<div class="row">
 									<div class="col-md-6">
 										<div class="form-group">
-											<label for="id">ID</label>
-											<input name="id" id="id" class="form-control" type="text">
+											<label hidden for="id">ID</label>
+											<input hidden name="id" id="id" class="form-control" type="text">
 										</div>
 										<div class="form-group">
 											<label for="asset_name">Product Name</label>
@@ -591,10 +553,11 @@ if (!$is_login) {
 				$query->bindParam(':rid', $rid, PDO::PARAM_STR);
 				$query->execute();
 				echo "<script>
-					alert('$rid has deleted);
+					alert('Data as deleted);
+					window.location.href = 'assets.php';
 					</script>";
 				echo "<script>
-					alert('$rid can't be deleted');
+					alert('Data can't be deleted');
 					window.location.href = 'assets.php'
 					</script>";
 			} ?>
@@ -626,8 +589,8 @@ if (!$is_login) {
 	</div>
 	<!-- /Main Wrapper -->
 	<!-- jQuery -->
-	<script src="assets/js/jquery-3.2.1.min.js"></script>
-	<!-- <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script> -->
+	<!-- <script src="assets/js/jquery-3.2.1.min.js"></script> -->
+	<script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
 	<!-- Bootstrap Core JS -->
 	<script src="assets/js/popper.min.js"></script>
 	<script src="assets/js/bootstrap.min.js"></script>
@@ -644,7 +607,7 @@ if (!$is_login) {
 	<!-- Custom JS -->
 	<script src="assets/js/app.js"></script>
 	<!-- katanya sih JS biar export but who knows mfaka -->
-	<script src="assets/js/tables/jquery-datatable.js"></script>
+	<!-- <script src="assets/js/tables/jquery-datatable.js"></script> -->
 
 	<!-- Custom for edit_asset -->
 	<!-- Custom buat buka tombol edit biar bisa muncul modal overlay bootstrap -->
@@ -681,6 +644,22 @@ if (!$is_login) {
 			$(".modal-body #value").val(Price);
 			$(".modal-body #asset_user").val(AssetUser);
 			$(".modal-body #description").val(Description);
+		});
+
+		$(document).ready(function() {
+
+			$('.dataTable').DataTable({
+				"pagingType": "full_numbers",
+				"lengthMenu": [
+					[5, 10, 25, 50, -1],
+					[5, 10, 25, 50, "All"]
+				],
+				responsive: true,
+				language: {
+					search: "_INPUT_",
+					searchPlaceholder: "Search in Here",
+				}
+			});
 		});
 	</script>
 </body>

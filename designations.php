@@ -73,7 +73,7 @@ if (!$is_login) {
 				<div class="row">
 					<div class="col-md-12">
 						<div class="table-responsive">
-							<table class="table table-striped custom-table mb-0 datatable">
+							<table class="table table-striped custom-table mb-0 dataTable">
 								<thead>
 									<tr>
 										<th style="width: 30px;">#</th>
@@ -410,6 +410,23 @@ if (!$is_login) {
 	<script src="assets/js/dataTables.bootstrap4.min.js"></script>
 	<!-- Custom JS -->
 	<script src="assets/js/app.js"></script>
+	<script>
+		$(document).ready(function() {
+
+			$('.dataTable').DataTable({
+				"pagingType": "full_numbers",
+				"lengthMenu": [
+					[5, 10, 25, 50, -1],
+					[5, 10, 25, 50, "All"]
+				],
+				responsive: true,
+				language: {
+					search: "_INPUT_",
+					searchPlaceholder: "Search in Here",
+				}
+			});
+		});
+	</script>
 </body>
 
 </html>

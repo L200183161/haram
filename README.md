@@ -9,10 +9,11 @@
 ## Keep it mind tho, this isn't finished yet. so let's just hope for the best.
 
 ### *ToDo biar ndang selesai*
+- [ ] Cookie belum kudu push besok
 - [x] ~~Edit Employees~~
 - [x] ~~Login with hash~~
 - [x] ~~Admin and Employee Session~~
-- [x] ~~Asssets sudah~~
+- [x] ~~Asssets sudah complete and PRINT tinggal PDF~~
 - [ ] Registrasi.php tolong dibetulin
 - [ ] Dashboard kalau mau ditambahin monggo 🙏🙏🙏
 - [x] ~~Author sudah di subscription.php tinggal **rename**~~
