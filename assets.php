@@ -241,6 +241,7 @@ if (!$is_login) {
 				$lastinserted = $dbh->lastInsertId();
 				if ($lastinserted > 0) {
 					echo "<script>alert('Asset Succesfully added');</script>";
+					echo "<script>window.location.href='assets.php';</script>";
 				} else {
 					echo "<script>alert('Something Went Wrong Please Again.');</script>";
 				}
@@ -378,7 +379,6 @@ if (!$is_login) {
 			</div>
 			<!-- /Add Asset Modal -->
 			<!-- Edit Asset Modal -->
-
 
 			<div id="edit_asset" class="modal custom-modal fade" role="dialog">
 				<div class="modal-dialog modal-md" role="document">
@@ -519,6 +519,8 @@ if (!$is_login) {
 			// 	}
 			// }
 
+			// Ini pakai PDO nanti tinggal ikutin wae si POST itu name yang ada di form atas bagian <!-- Edit Asset Modal -->
+			// ikutin wae iki tinggal ganti nama oke. sesuai database dan nama si form form
 			if (isset($_POST['edit_asset'])) {
 				global $dbh;
 				$id = htmlspecialchars($_POST['id']);
@@ -543,6 +545,7 @@ if (!$is_login) {
 				`Warranty`=:warranty, `Price`=:price, `AssetUser`=:user, 
 				`Description`=:describe WHERE `id`=:id";
 				$query = $dbh->prepare(($sql));
+				// hati hati dengan PARAM_STR dan PARAM_INT tolong buka database buat nyocokin. semisal itu pake INT harus pakai PARAM_INT begitu juga dengan STR sesuain. okaeyyyy seemangat 💪
 				$query->bindParam(':id', $id, PDO::PARAM_INT);
 				$query->bindParam(':name', $asset, PDO::PARAM_STR);
 				$query->bindParam(':assetId', $asset_id, PDO::PARAM_STR);
@@ -566,89 +569,18 @@ if (!$is_login) {
 				return $query->rowCount();
 				$lastinserted = $dbh->lastInsertId();
 				if ($lastinserted > 0) {
-					echo "<script>alert('Successfully Edited');window.location='assets.php';</script>";
+					echo "<script>alert('Successfully Edited');</script>";
+					echo "<script>window.location.href='assets.php';</script>";
 					// header('location:index.php');
 				} else {
-					// echo "<script>alert('Oh crap, something is wrong'); window.location='assets.php';</script>";
-					echo 'Error :';
-					echo '<pre>';
-					print_r($query->errorInfo());
-					print_r($query->debugDumpParams());
-					echo '</pre>';
+					echo "<script>alert('Oh crap, something is wrong'); window.location='assets.php';</script>";
+					// echo 'Error :';
+					// echo '<pre>';
+					// print_r($query->errorInfo());
+					// print_r($query->debugDumpParams());
+					// echo '</pre>';
 				}
-			}
-
-
-			// $result = $query->fetchAll();
-			// return $query->rowCount();
-
-			// Editing assets begins here
-			// if (isset($_GET['editid'])) {
-			// 	$id = $_GET['editid'];
-			// 	if (isset($_POST['editid'])) {
-			// 		if (empty($_POST['editid'])) {
-			// 			echo "<script>alert('Asset hasn't select');</script>";
-			// 			exit;
-			// 		}
-			// 		$asset = htmlspecialchars($_POST['asset_name']);
-			// 		$asset_id = htmlspecialchars($_POST['asset_id']);
-			// 		$purchase_date = htmlspecialchars($_POST['purchase_date']);
-			// 		$purchase_from = htmlspecialchars($_POST['purchase_from']);
-			// 		$manufacturer = htmlspecialchars($_POST['manufacturer']);
-			// 		$model = htmlspecialchars($_POST['model']);
-			// 		$status = htmlspecialchars($_POST['status']);
-			// 		$supplier = htmlspecialchars($_POST['supplier']);
-			// 		$condition = htmlspecialchars($_POST['condition']);
-			// 		$warrant = htmlspecialchars($_POST['warranty']);
-			// 		$price = htmlspecialchars($_POST['value']);
-			// 		$asset_user = htmlspecialchars($_POST['asset_user']);
-			// 		$description = htmlspecialchars($_POST['description']);
-			// 		$sql = "UPDATE `assets` SET `assetName`=:name, `assetId`=:id, `PurchaseDate`=:purchaseDate, `PurchaseFrom`=:purchasefrom, `Manufacturer`=:manufacturer, `Model`=:model, `Status`=:stats, `Supplier`=:supplier, `AssetCondition`:condition, `Warranty`:warranty, `Price`:price, `AssetUser`:user, `Description`=:describe WHERE id=$id";
-			// 		$query = $dbh->prepare($sql);
-			// 		$query->bindParam(':name', $asset, PDO::PARAM_STR);
-			// 		$query->bindParam(':id', $asset_id, PDO::PARAM_STR);
-			// 		$query->bindParam(':purchaseDate', $purchase_date, PDO::PARAM_STR);
-			// 		$query->bindParam(':purchasefrom', $purchase_from, PDO::PARAM_STR);
-			// 		$query->bindParam(':manufacturer', $manufacturer, PDO::PARAM_STR);
-			// 		$query->bindParam(':model', $model, PDO::PARAM_STR);
-			// 		$query->bindParam(':stats', $status, PDO::PARAM_INT);
-			// 		$query->bindParam(':supplier', $supplier, PDO::PARAM_STR);
-			// 		$query->bindParam(':condition', $condition, PDO::PARAM_STR);
-			// 		$query->bindParam(':warranty', $warrant, PDO::PARAM_STR);
-			// 		$query->bindParam(':price', $price, PDO::PARAM_INT);
-			// 		$query->bindParam(':user', $asset_user, PDO::PARAM_STR);
-			// 		$query->bindParam(':describe', $description, PDO::PARAM_STR);
-			// 		$coba = $query->execute();
-			// 		$lastinserted = $dbh->lastInsertId();
-			// 		$cari = "SELECT * FROM assets WHERE id = '$id'"; //selection for $nim only
-			// 		if ($lastinserted > 0) {
-			// 			echo "<script>alert('Asset Has Been Added');</script>";
-			// 			echo "<script>window.location.href='assets.php';</script>";
-			// 		} else {
-			// 			echo "<script>alert('Something Went Wrong Please Again.');</script>";
-			// 		}
-			// 		if ($id == 0) {
-			// 			$update = $dbh->query($cari);
-			// 			if ($update->rowCount() == 0) {
-			// 				echo "<script>alert('$id is unregistered');</script>";
-			// 				exit;
-			// 			} else {
-			// 				if ($coba) {
-			// 					echo
-			// 						"<script>alert('Data successfully updated');</script>";
-			// 				}
-			// 			}
-			// 		} else {
-			// 			echo "invalid data";
-			// 			exit;
-			// 		}
-			// 	}
-			// 	$querya = $dbh->query("SELECT * FROM assets WHERE id = '$id'");
-			// 	foreach ($querya as $data) {
-			// 	}
-			// }
-
-			?>
+			} ?>
 			<!-- Edit Asset Modal -->
 			<!-- Delete Asset Modal -->
 			<?php
@@ -715,6 +647,8 @@ if (!$is_login) {
 	<script src="assets/js/tables/jquery-datatable.js"></script>
 
 	<!-- Custom for edit_asset -->
+	<!-- Custom buat buka tombol edit biar bisa muncul modal overlay bootstrap -->
+	<!-- Ikutin di mari za https://www.youtube.com/watch?v=6U2uELbQMq8 -->
 	<script>
 		$(document).on("click", "#edit_assetButton", function() {
 			let id = $(this).data('id');
@@ -732,6 +666,7 @@ if (!$is_login) {
 			let AssetUser = $(this).data('assetuser');
 			let Description = $(this).data('description');
 
+			// modal body ni di form edit_asset ada yang atas namanya modal-body setelah <form>
 			$(".modal-body #id").val(id);
 			$(".modal-body #asset_name").val(name);
 			$(".modal-body #asset_id").val(assetid);

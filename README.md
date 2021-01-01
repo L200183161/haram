@@ -12,13 +12,14 @@
 - [x] ~~Edit Employees~~
 - [x] ~~Login with hash~~
 - [x] ~~Admin and Employee Session~~
+- [x] ~~Asssets sudah~~
 - [ ] Registrasi.php tolong dibetulin
 - [ ] Dashboard kalau mau ditambahin monggo 🙏🙏🙏
 - [x] ~~Author sudah di subscription.php tinggal **rename**~~
 - [ ] Edit Others
 - [ ] Payroll / Payslip belum 🙃
 - [ ] Search **BELUM**
-- [ ] Kategori nggak usah gpp penting ajax tolong di push si kategori
+- [ ] Kategori nggak usah gpp penting ajax (Search) tolong di push si kategori
 
 #### Smarthr
 

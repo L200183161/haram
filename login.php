@@ -12,7 +12,7 @@ if (isset($_POST['login'])) {
 	// $query->bindParam(':username',$username,PDO::PARAM_STR);
 	// $query-> execute();
 	// $results = $query->fetchAll(PDO::FETCH_OBJ);
-	$results = $dbh->query($sql); //penting asuuu plisss
+	$results = $dbh->query($sql); //Really Important part to make query just like fetcharray
 	if ($results->rowCount() > 0) {
 		foreach ($results as $row) {
 			$_SESSION['role'] = $row['role'];
