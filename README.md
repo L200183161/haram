@@ -17,7 +17,7 @@
 - [ ] Registrasi.php tolong dibetulin
 - [ ] Dashboard kalau mau ditambahin monggo 🙏🙏🙏
 - [x] ~~Author sudah di subscription.php tinggal **rename**~~
-- [ ] Edit Others
+- [ ] CRUD Database table yang lain
 - [ ] Payroll / Payslip belum 🙃
 - [ ] Search **BELUM**
 - [ ] Kategori nggak usah gpp penting ajax (Search) tolong di push si kategori

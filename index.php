@@ -74,8 +74,8 @@ if (!$is_login) {
 							<div class="card-body">
 								<span class="dash-widget-icon"><i class="fa fa-cubes"></i></span>
 								<div class="dash-widget-info">
-									<h3><?php $app->get_count_from('projects'); ?></h3>
-									<span>Projects</span>
+									<h3><?php $app->get_count_from('assets'); ?></h3>
+									<span>Assets</span>
 								</div>
 							</div>
 						</div>
