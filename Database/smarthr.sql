@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 28, 2020 at 07:17 PM
+-- Generation Time: Jan 02, 2021 at 05:26 PM
 -- Server version: 10.4.16-MariaDB
 -- PHP Version: 7.4.12
 
@@ -31,14 +31,14 @@ CREATE TABLE `assets` (
   `id` int(11) NOT NULL,
   `assetName` varchar(200) NOT NULL,
   `assetId` varchar(200) NOT NULL,
-  `PurchaseDate` date NOT NULL,
+  `PurchaseDate` date DEFAULT NULL,
   `PurchaseFrom` varchar(200) NOT NULL,
   `Manufacturer` varchar(200) NOT NULL,
   `Model` varchar(200) NOT NULL,
   `Status` int(10) NOT NULL,
   `Supplier` varchar(255) NOT NULL,
   `AssetCondition` varchar(255) NOT NULL,
-  `Warranty` varchar(255) NOT NULL,
+  `Warranty` int(3) NOT NULL,
   `Price` int(255) NOT NULL,
   `AssetUser` varchar(255) NOT NULL,
   `Description` varchar(255) NOT NULL,
@@ -50,8 +50,13 @@ CREATE TABLE `assets` (
 --
 
 INSERT INTO `assets` (`id`, `assetName`, `assetId`, `PurchaseDate`, `PurchaseFrom`, `Manufacturer`, `Model`, `Status`, `Supplier`, `AssetCondition`, `Warranty`, `Price`, `AssetUser`, `Description`, `DateTime`) VALUES
-(1, 'Macbook Book', '#AST-031256', '2020-09-23', 'Amazon', 'Apple Inc.', '2020', 1, 'Amazon', 'In good shape', '12 Months', 1900, 'Mushe abdul-Hakim', 'This is the description of the laptop', '2020-09-23 23:57:26'),
-(5, 'Dadar Gula', '#AST-786032', '0000-00-00', 'Amajon', 'Hujan', 'Model Lama', 3, 'JNE', 'Rusak', '21', 20000, 'John Doe', 'Tolong Diapprove mas', '2020-12-26 09:56:01');
+(1, 'Mackbook Pro', '#AST-031256', '2020-09-23', 'Bismillah', 'Apple Inc.', '2019', 1, 'Amazon', 'In good shape', 12, 77777777, 'Faqih Eza Ammar', 'This is the description of the laptop', '2020-09-23 23:57:26'),
+(5, 'Mataram', '#AST-786032', '2020-11-16', 'Amajon', 'Hujan', 'Model Lama', 3, 'JNE', 'Rusak', 69, 20000, 'John Doe', 'Tolong Diapprove mas', '2020-12-26 09:56:01'),
+(11, 'Busetttttt', '#AST-198247', '2021-01-09', 'Cok', 'Kamu', 'Koyok', 2, 'Kadal', 'Buaya', 12, 101010, 'John Doe', 'hahaha', '2020-12-31 00:23:25'),
+(12, 'asuuuu', '#AST-791503', '2021-01-01', 'sempak', 'kuda', 'nil', 0, '', '', 25, 15000000, 'John Doe', 'hahahahahaahaha', '2021-01-01 01:54:46'),
+(13, 'Acer Swift 3 ADE', '#AST-679305', '2021-01-13', 'Global Usaha Masyarakat', 'ACER Inc.', 'SF314-54G', 1, 'Tokopedia', 'In good shape', 12, 8000000, 'Goerge Merchason', 'Laptop Baruu Harum Wanginya', '2021-01-01 01:55:15'),
+(15, 'Goodness', '#AST-518423', '2021-01-21', 'Ohhh god', 'hiya', 'Iya Kamu', 0, 'HAHAHAH', 'HAHAHAHAHAHAHAH', 133, 2147483647, 'Richard Miles', 'Buahhh', '2021-01-01 01:59:37'),
+(17, 'Halooo ', '#AST-953680', '2021-01-21', 'Dicoba', 'Samsung', 'SM4-3', 1, 'Reeeeeee', 'Bettulll', 999, 2147483647, 'Donny Rizal', 'Donny dicoba\r\n', '2021-01-01 20:05:02');
 
 -- --------------------------------------------------------
 
@@ -153,128 +158,11 @@ CREATE TABLE `employees` (
 --
 
 INSERT INTO `employees` (`id`, `FirstName`, `LastName`, `UserName`, `Email`, `Password`, `Employee_Id`, `Phone`, `Department`, `Designation`, `Joining_Date`, `Picture`, `DateTime`) VALUES
-(3, 'Goerge', 'Merchason', 'George', 'george@gmail.com', '$2y$10$QFstJz1mhq4iHksQyfCpjeaaUlmu7fwFcpCvJlt/C4vbE9Lqjf7IO', 'EMP-283560', '99922246633', 'Web Development', 'Web Designer', '0000-00-00', 'avatar-25.jpg', '2020-09-28 23:46:51'),
-(4, 'Mushe', 'Abdul-Hakim', 'abdul', 'musheabdulhakim@protonmail.ch', '$2y$10$E8FuYrk8eyA2s5bccuUNk.bTFXPHjzgbzhgJzIFfZHmevYT6Z41k6', 'EMP-743619', '+233209229025', 'Web Development', 'Web Developer', '2020-09-29', 'avatar-11.jpg', '2020-09-29 00:04:29'),
-(5, 'Yahuza', 'Abdul-Hakim', 'Vendetta', 'musheabdulhakim@protonmail.ch', '$2y$10$fBLIUiJ3HTgxW5RcEdfi0O3NEUN.Sn8mdfBC5GckdTJdOTsSJRNBW', 'EMP-186249', '+233209229025', 'Web Development', 'Web Developer', '2020-09-29', 'avatar-09.jpg', '2020-09-29 00:14:44');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `goals`
---
-
-CREATE TABLE `goals` (
-  `id` int(11) NOT NULL,
-  `Type` varchar(200) NOT NULL,
-  `Subject` varchar(200) NOT NULL,
-  `Target` text NOT NULL,
-  `StartDate` date NOT NULL,
-  `EndDate` date NOT NULL,
-  `Description` text NOT NULL,
-  `Status` int(11) NOT NULL,
-  `Progress` varchar(200) NOT NULL,
-  `dateTime` datetime NOT NULL DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `goals`
---
-
-INSERT INTO `goals` (`id`, `Type`, `Subject`, `Target`, `StartDate`, `EndDate`, `Description`, `Status`, `Progress`, `dateTime`) VALUES
-(1, 'Another One', 'Coding', 'Code till time infinity ', '2020-09-25', '2020-10-10', 'This is the thing i always want to do and am doing it for the rest of my life now friend.', 1, '80', '2020-09-25 00:13:34'),
-(2, 'Another One', 'this is a test', 'Code till time infinity ', '2020-09-25', '2020-10-10', 'This is a test', 1, '50', '2020-09-25 00:39:34'),
-(3, 'Invoice Goal', 'This is another test', 'Code till thy kingdom come.', '2020-09-25', '2048-09-10', 'this is another one of the wierdest thing that i have ever done. I having alot of the shit not working but i got this.', 0, '0', '2020-09-25 01:08:59');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `goal_type`
---
-
-CREATE TABLE `goal_type` (
-  `id` int(11) NOT NULL,
-  `Type` varchar(200) NOT NULL,
-  `Description` text NOT NULL,
-  `Status` int(100) NOT NULL,
-  `Date` date NOT NULL DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `goal_type`
---
-
-INSERT INTO `goal_type` (`id`, `Type`, `Description`, `Status`, `Date`) VALUES
-(1, 'Invoice Goal', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corrupti laudantium animi fuga hic nobis culpa, sapiente numquam quaerat quisquam eveniet dolorum soluta harum eligendi praesentium corporis error quo inventore suscipit?', 1, '2020-09-24'),
-(3, 'Another One', 'This is another test for the type section. Just testing it and seeing it work makes me smile with joy. Thats the power of programming for humans and especially to me .It makes me more happy to see my code run without troubles or bugs.', 1, '2020-09-24');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `holidays`
---
-
-CREATE TABLE `holidays` (
-  `id` int(11) NOT NULL,
-  `Holiday_Name` varchar(200) NOT NULL,
-  `Holiday_Date` date NOT NULL,
-  `DateTime` datetime NOT NULL DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `holidays`
---
-
-INSERT INTO `holidays` (`id`, `Holiday_Name`, `Holiday_Date`, `DateTime`) VALUES
-(1, 'Christmas', '2020-12-25', '2020-09-26 19:15:02');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `leaves`
---
-
-CREATE TABLE `leaves` (
-  `id` int(11) NOT NULL,
-  `Employee` varchar(200) NOT NULL,
-  `Starting_At` date NOT NULL,
-  `Ending_On` date NOT NULL,
-  `Days` int(200) NOT NULL,
-  `Reason` text NOT NULL,
-  `Time_Added` datetime NOT NULL DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `leaves`
---
-
-INSERT INTO `leaves` (`id`, `Employee`, `Starting_At`, `Ending_On`, `Days`, `Reason`, `Time_Added`) VALUES
-(1, 'Goerge Merchason', '2020-09-01', '2020-10-01', 10, 'This is a test to the leaving system', '2020-10-04 01:50:34'),
-(2, 'Mushe Abdul-Hakim', '2020-09-01', '2020-10-16', 10, 'this is another reason why he going home for number of days', '2020-10-04 01:53:22');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `overtime`
---
-
-CREATE TABLE `overtime` (
-  `id` int(11) NOT NULL,
-  `Employee` varchar(200) NOT NULL,
-  `OverTime_Date` date NOT NULL,
-  `Hours` varchar(20) NOT NULL,
-  `Type` varchar(200) NOT NULL,
-  `Description` text NOT NULL,
-  `dateTime` datetime NOT NULL DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `overtime`
---
-
-INSERT INTO `overtime` (`id`, `Employee`, `OverTime_Date`, `Hours`, `Type`, `Description`, `dateTime`) VALUES
-(1, 'Mushe Abdul-Hakim', '2020-09-29', '5', '	Normal ex.5', 'This extra minutes are spent on trying to improve my knowledge on programming everyday.', '2020-09-29 00:38:26'),
-(2, 'Goerge Merchason', '2020-09-29', '5', '	Normal ex.5', 'This was just to help the ceo with his presentation prep for tomorrow\'s big event.', '2020-09-29 09:20:37'),
-(3, 'Yahuza Abdul-Hakim', '2020-09-10', '3', 'Normal ex.5', 'This is another test of the overtime of employees', '2020-09-29 09:28:59');
+(2, 'Karen', 'Si KOMPUTER', 'karen', 'karen@plankton.inc', '$2y$10$NStAc.HdAWhXBrVEfTSW0ebT2AFXpm5LzGCn9hHPikkMpKLIKXL0W', 'EMP-863140', '99999969', 'IT Department', 'Web Developer', '2021-01-02', '2.jpg', '2021-01-02 19:06:08'),
+(4, 'Rifqy', 'Fauzy', 'Rifqy', 'rifqy@gmail.com', '$2y$10$E8FuYrk8eyA2s5bccuUNk.bTFXPHjzgbzhgJzIFfZHmevYT6Z41k6', 'EMP-743619', '089927924', 'Web Development', 'Web Developer', '2020-09-29', 'avatar-11.jpg', '2020-09-29 00:04:29'),
+(5, 'Faqih', 'Eza Ammar', 'Skeeney', 'faqihhhhhsholat@gmail.com', '$2y$10$fBLIUiJ3HTgxW5RcEdfi0O3NEUN.Sn8mdfBC5GckdTJdOTsSJRNBW', 'EMP-186249', '0899994949494', 'Web Development', 'Web Developer', '2020-09-29', 'avatar-09.jpg', '2020-09-29 00:14:44'),
+(6, 'Donny', 'Rizal', 'donnyrizal', 'jancok@gmail.com', '$2y$10$CudM3ey1PCEO3uoD69v76u90s/K8DSNO1n04h.RvO.WYiYTu3X9LS', 'EMP-295047', '089959595959595', 'IT Department', 'Select Designation', '2020-12-29', 'foto.jpg', '2020-12-29 22:17:21'),
+(10, 'Takahiro', 'Moriuchi', 'taka', 'taka@gmail.com', '$2y$10$GAKzay96r60nSn7a0BHZgOe9dLegqrHrCGHKhF/LGyM64aMcDrNMO', 'EMP-867403', '+526737383', 'Marketing', 'Web Designer', '2021-01-02', 'taka.jpg', '2021-01-02 22:48:25');
 
 -- --------------------------------------------------------
 
@@ -284,16 +172,16 @@ INSERT INTO `overtime` (`id`, `Employee`, `OverTime_Date`, `Hours`, `Type`, `Des
 
 CREATE TABLE `users` (
   `id` int(11) NOT NULL,
-  `firstname` varchar(200) NOT NULL,
-  `lastname` varchar(200) NOT NULL,
+  `firstname` varchar(200) DEFAULT NULL,
+  `lastname` varchar(200) DEFAULT NULL,
   `username` varchar(200) NOT NULL,
-  `email` varchar(100) NOT NULL,
+  `email` varchar(100) DEFAULT NULL,
   `password` varchar(200) NOT NULL,
-  `role` varchar(100) NOT NULL,
-  `phone` varchar(20) NOT NULL,
-  `address` varchar(200) NOT NULL,
-  `picture` varchar(255) NOT NULL,
-  `dateTime` datetime NOT NULL DEFAULT current_timestamp()
+  `role` varchar(100) DEFAULT 'employee',
+  `phone` varchar(20) DEFAULT NULL,
+  `address` varchar(200) DEFAULT NULL,
+  `picture` varchar(255) DEFAULT 'IMG-20170519-WA0000.png',
+  `dateTime` datetime DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -302,7 +190,8 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`id`, `firstname`, `lastname`, `username`, `email`, `password`, `role`, `phone`, `address`, `picture`, `dateTime`) VALUES
 (1, 'Donny', 'Rizal', 'donny', 'donnyrizaladhip@rocketmail.com', '$2y$10$HZIJ8wvC4epQ.rTcA1h8feG2z5FfqzX21yYFq8i8Y9SJCTs4QYBqa', 'employee', '08996596007', 'Rembang, Jawa Tengah', 'avatar-19.jpg', '2020-09-21 19:04:47'),
-(2, 'Administrasi', 'Super', 'admin', 'Adminstrasibro@gmail.com', '$2y$10$.V/X26KC6UHWdSzPSyGgzuZLYpyvjrcRlxdQlpbTYqXnCPr2g2F9O', 'admin', '---', 'Nowhere', 'my-passport-photo.jpg', '2020-09-21 19:05:43');
+(2, 'Administrasi', 'Super', 'admin', 'Adminstrasibro@gmail.com', '$2y$10$.V/X26KC6UHWdSzPSyGgzuZLYpyvjrcRlxdQlpbTYqXnCPr2g2F9O', 'admin', '---', 'Nowhere', 'my-passport-photo.jpg', '2020-09-21 19:05:43'),
+(8, NULL, NULL, 'saya', NULL, '$2y$10$0n8x2nCcWFVFnu86J9XRhu8JhR/9qf.bFSo0SbI/h5xetftOETMni', 'employee', NULL, NULL, 'IMG-20170519-WA0000.png', '2020-12-31 11:47:59');
 
 -- --------------------------------------------------------
 
@@ -311,7 +200,7 @@ INSERT INTO `users` (`id`, `firstname`, `lastname`, `username`, `email`, `passwo
 --
 
 CREATE TABLE `user_role` (
-  `role` varchar(100) NOT NULL,
+  `role` varchar(100) NOT NULL DEFAULT 'employee',
   `id` int(11) NOT NULL,
   `date` date NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -321,8 +210,8 @@ CREATE TABLE `user_role` (
 --
 
 INSERT INTO `user_role` (`role`, `id`, `date`) VALUES
-('admin\r\n', 1, '2020-09-21'),
-('employee', 2, '2020-09-21');
+('admin', 6, '2021-01-02'),
+('employee', 5, '2021-01-02');
 
 --
 -- Indexes for dumped tables
@@ -366,37 +255,6 @@ ALTER TABLE `employees`
   ADD UNIQUE KEY `Employee_Id` (`Employee_Id`);
 
 --
--- Indexes for table `goals`
---
-ALTER TABLE `goals`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `goal_type`
---
-ALTER TABLE `goal_type`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `Type` (`Type`);
-
---
--- Indexes for table `holidays`
---
-ALTER TABLE `holidays`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `leaves`
---
-ALTER TABLE `leaves`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `overtime`
---
-ALTER TABLE `overtime`
-  ADD PRIMARY KEY (`id`);
-
---
 -- Indexes for table `users`
 --
 ALTER TABLE `users`
@@ -419,7 +277,7 @@ ALTER TABLE `user_role`
 -- AUTO_INCREMENT for table `assets`
 --
 ALTER TABLE `assets`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
 
 --
 -- AUTO_INCREMENT for table `clients`
@@ -443,49 +301,29 @@ ALTER TABLE `designations`
 -- AUTO_INCREMENT for table `employees`
 --
 ALTER TABLE `employees`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
-
---
--- AUTO_INCREMENT for table `goals`
---
-ALTER TABLE `goals`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
-
---
--- AUTO_INCREMENT for table `goal_type`
---
-ALTER TABLE `goal_type`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
-
---
--- AUTO_INCREMENT for table `holidays`
---
-ALTER TABLE `holidays`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
---
--- AUTO_INCREMENT for table `leaves`
---
-ALTER TABLE `leaves`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
---
--- AUTO_INCREMENT for table `overtime`
---
-ALTER TABLE `overtime`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `user_role`
 --
 ALTER TABLE `user_role`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `users`
+--
+ALTER TABLE `users`
+  ADD CONSTRAINT `role_fk` FOREIGN KEY (`role`) REFERENCES `user_role` (`role`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
