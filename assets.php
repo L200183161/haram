@@ -88,7 +88,6 @@ if (!$is_login) {
 					</div>
 				</div>
 				<!-- /Page Header -->
-				<!-- Search Filter -->
 				<a href="javascript:void(0)" class="btn btn-file" onclick="printDiv('print')"><i class="fa fa-print"></i> Print</a>
 				<div class="row" id="print">
 					<div class="col-md-12">
@@ -150,7 +149,8 @@ if (!$is_login) {
 														<a href="javascript:void(0)" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="material-icons">more_vert</i></a>
 														<div class="dropdown-menu dropdown-menu-right">
 															<a class="dropdown-item" href="javascript:void(0)" id="edit_assetButton" data-id="<?php echo htmlentities($row['id']) ?>" data-assetid="<?php echo htmlentities($row['assetId']) ?>" data-name="<?php echo htmlentities($row['assetName']) ?>" data-date="<?php echo htmlentities($row['PurchaseDate']) ?>" data-from="<?php echo htmlentities($row['PurchaseFrom']) ?>" data-manufacturer="<?php echo htmlentities($row['Manufacturer']) ?>" data-mod="<?php echo htmlentities($row['Model']) ?>" data-status="<?php echo htmlentities($row['Status']) ?>" data-supplier="<?php echo htmlentities($row['Supplier']) ?>" data-assetcondition="<?php echo htmlentities($row['AssetCondition']) ?>" data-warranty="<?php echo htmlentities($row['Warranty']) ?>" data-price="<?php echo htmlentities($row['Price']) ?>" data-assetuser="<?php echo htmlentities($row['AssetUser']) ?>" data-description="<?php echo htmlentities($row['Description']) ?>" data-toggle="modal" data-target="#edit_asset"><i class="fa fa-pencil m-r-5"></i> Edit</a>
-															<a class="dropdown-item" href="assets.php?delid=<?php echo htmlentities($row['id']); ?>" data-toggle="modal" data-target="#delete_asset"><i class="fa fa-trash-o m-r-5"></i> Delete</a>
+															<!-- Jikalau memakai ->query() tolong ati2 dengan apostrhorp awal dan akhir '' -->
+															<a class="dropdown-item" href="javascript:void(0)" onclick="confirm_modal('assets.php?&delid=<?= htmlentities($row['id']); ?>');" data-id="<?php echo htmlentities($row['id']); ?>" data-toggle="modal" data-target="#delete_asset"><i class="fa fa-trash-o m-r-5"></i> Delete</a>
 														</div>
 													</div>
 												</td>
@@ -572,7 +572,7 @@ if (!$is_login) {
 							<div class="modal-btn delete-action">
 								<div class="row">
 									<div class="col-6">
-										<a href="assets.php?delid=<?php echo htmlentities($row['id']); ?>" type="submit" class="btn btn-primary continue-btn">Delete</a>
+										<a href="javascript:void(0)" class="btn btn-primary continue-btn" id="link_hapus">Delete</a>
 									</div>
 									<div class="col-6">
 										<a href="javascript:void(0);" data-dismiss="modal" class="btn btn-primary cancel-btn">Cancel</a>
@@ -661,6 +661,13 @@ if (!$is_login) {
 				}
 			});
 		});
+		// Conifrmation for deletion
+		function confirm_modal(delete_url) {
+			$('#delete_asset').modal('show', {
+				backdrop: 'static'
+			});
+			document.getElementById('link_hapus').setAttribute('href', delete_url);
+		};
 	</script>
 </body>
 

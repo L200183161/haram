@@ -9700,4 +9700,9 @@ ul.comment-list li ul.children {
 		font-size: 14px;
 		min-width: inherit;
 	}
+
+	.img-preview {
+		border: 1px solid #fff;
+		border-radius: 4px;
+	}
 }

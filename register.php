@@ -99,8 +99,8 @@ if (isset($_POST["registration"])) {
 						<!-- Account Form -->
 						<form method="POST" action="" enctype="multipart/form-data">
 							<div class="form-group">
-								<label>First Name</label>
-								<input class="form-control" type="text" name="firstname" required>
+								<label for="firstname">First Name</label>
+								<input class="form-control" type="text" name="firstname" id="firstname" required>
 							</div>
 							<div class="form-group">
 								<label>Last Name</label>
