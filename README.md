@@ -14,7 +14,7 @@
 - [x] ~~Login with hash~~
 - [x] ~~Admin and Employee Session~~
 - [x] ~~Asssets sudah complete and PRINT tinggal PDF~~
-- [ ] Registrasi.php tolong dibetulin
+- [x] ~~Registrasi.php tolong dibetulin~~
 - [ ] Dashboard kalau mau ditambahin monggo 🙏🙏🙏
 - [x] ~~Author sudah di subscription.php tinggal **rename**~~
 - [ ] CRUD Database table yang lain

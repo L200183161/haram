@@ -33,6 +33,18 @@ if (!$is_login) {
 			<script src="assets/js/html5shiv.min.js"></script>
 			<script src="assets/js/respond.min.js"></script>
 		<![endif]-->
+	<script>
+		function printDiv(divName) {
+			var printContents = document.getElementById(divName).innerHTML;
+			var originalContents = document.body.innerHTML;
+
+			document.body.innerHTML = printContents;
+
+			window.print();
+
+			document.body.innerHTML = originalContents;
+		}
+	</script>
 </head>
 
 <body>
@@ -63,15 +75,13 @@ if (!$is_login) {
 						</div>
 						<div class="col-auto float-right ml-auto">
 							<div class="btn-group btn-group-sm">
-								<button class="btn btn-white">CSV</button>
-								<button class="btn btn-white">PDF</button>
-								<button class="btn btn-white"><i class="fa fa-print fa-lg"></i> Print</button>
+								<button class="btn btn-white" onclick="printDiv('print')"><i class=" fa fa-print fa-lg"></i> Print</button>
 							</div>
 						</div>
 					</div>
 				</div>
 				<!-- /Page Header -->
-				<div class="row">
+				<div class="row" id='print'>
 					<div class="col-md-12">
 						<div class="card">
 							<div class="card-body">

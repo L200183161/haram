@@ -124,16 +124,6 @@
 						<span>Pages</span>
 					</li>
 					<li class="submenu">
-						<a href="#"><i class="la la-user"></i> <span> Profile </span> <span class="menu-arrow"></span></a>
-						<ul style="display: none;">
-							<li><a class="<?php if (basename($_SERVER['SCRIPT_NAME']) == 'profile.php') {
-												echo 'active';
-											} else {
-												echo '';
-											} ?>" href="profile.php"> Employee Profile </a></li>
-						</ul>
-					</li>
-					<li class="submenu">
 						<a href="#"><i class="la la-columns"></i> <span> Information </span> <span class="menu-arrow"></span></a>
 						<ul style="display: none;">
 							<li><a class="<?php if (basename($_SERVER['SCRIPT_NAME']) == 'faq.php') {

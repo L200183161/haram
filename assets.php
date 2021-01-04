@@ -553,7 +553,7 @@ if (!$is_login) {
 				$query->bindParam(':rid', $rid, PDO::PARAM_STR);
 				$query->execute();
 				echo "<script>
-					alert('Data as deleted);
+					alert('Data has deleted);
 					window.location.href = 'assets.php';
 					</script>";
 				echo "<script>
