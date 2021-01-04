@@ -505,7 +505,7 @@ if (!$is_login) {
 										<div class="form-group">
 											<label for="picture" class="col-form-label"></label>
 											<img class="img-preview" src="uploads/employees/<?= $foto; ?>" alt="Foto" width="100">
-											<input class="form-control" required name="picture" id="picture" type="file">
+											<input class="form-control" name="picture" id="picture" type="file">
 										</div>
 									</div>
 								</div>

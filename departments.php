@@ -123,7 +123,7 @@ if (!$is_login) {
 				$query->execute();
 				$lastinserted = $dbh->lastInsertId();
 				if ($lastinserted > 0) {
-					echo "<script>alert('Asset Succesfully added');</script>";
+					echo "<script>alert('Departments Succesfully added');</script>";
 					echo "<script>window.location.href='departments.php';</script>";
 				} else {
 					echo "<script>alert('Something Went Wrong Please Again.');</script>";
