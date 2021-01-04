@@ -128,8 +128,8 @@ if (isset($_POST['login'])) {
 									</a>
 								</div>
 							</div>
-
-							<div class="account-footer">
+							<div class="account-footer" style="color:tomato;">
+								<p class="mt-3 mb-3 text-muted text-center">Don't have account yet? <a href="register.php">Register here!</a></p>
 								<p>Having Trouble? <a href="mailto:donnyrizaladhip@rocketmail.com?subject=Hello%20sir%2C%20help%20me%20plz">Contact Us</a></p>
 							</div>
 						</form>
@@ -137,7 +137,18 @@ if (isset($_POST['login'])) {
 					</div>
 				</div>
 			</div>
+			<div class="alert alert-danger alert alert-dismissable col-md-10 offset-md-1" role="alert">
+				<button type='button' class='close' data-dismiss='alert' aria-label='Close'>
+					<span aria-hidden='true'>&times;</span>
+				</button>
+				<p id="notice" class="d-flex mr-3 mb-0 font-weight-bold" class="btn btn-flat" "><b>Important Notice</b></p>
+                    		<div class=" media-body">
+				<p>See this link for more information regarding government policy to handle the outbreak of COVID-19
+					<a class="btn-flat" href="https://www.indonesia.travel/gb/en/coronavirus">here</a>
+				</p>
+			</div>
 		</div>
+	</div>
 	</div>
 	<!-- /Main Wrapper -->
 	<!-- jQuery -->

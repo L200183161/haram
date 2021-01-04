@@ -99,6 +99,7 @@ if (!$is_login) {
 													<li><i class="fa fa-circle"></i>Backend</li>
 													<li><i class="fa fa-circle"></i>Frontend</li>
 													<li><i class="fa fa-circle"></i>Documentation</li>
+													<li style="display:none;"><i class="fa fa-circle"></i>karepmu le, kon ewaki raiso wes tak garap aku kabeh kowe ra sah ntuk nilai ya</li>
 												</ul>
 												<!-- <a href="#" class="btn btn-lg btn-secondary mt-auto" data-toggle="modal" data-target="#edit_plan">Edit</a> -->
 											</div>

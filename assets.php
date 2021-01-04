@@ -135,13 +135,13 @@ if (!$is_login) {
 												<td class="text-center">
 													<?php
 													if ($row['Status'] == 0) {
-														echo "Pending";
+														echo '<a ><i class="fa fa-dot-circle-o text-info"></i> Pending</a>';
 													} elseif ($row['Status'] == 1) {
-														echo "Approved";
+														echo '<a ><i class="fa fa-dot-circle-o text-muted "></i> Approved</a>';
 													} elseif ($row['Status'] == 2) {
-														echo "Deployed";
+														echo '<a ><i class="fa fa-dot-circle-o text-success"></i> Deployed</a>';
 													} elseif ($row['Status'] == 3) {
-														echo "Damaged";
+														echo '<a ><i class="fa fa-dot-circle-o text-danger"></i> Damaged</a>';
 													} ?>
 												</td>
 												<td class="text-right">

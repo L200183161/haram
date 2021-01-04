@@ -1,15 +1,15 @@
 ﻿<?php
-// require_once 'includes/library.php';
+require_once 'includes/library.php';
 // require 'includes/config.php';
-// session_start();
+session_start();
 ini_set('display_errors', '1');
 ini_set('display_startup_errors', '1');
 error_reporting(E_ALL);
-// $app = new AppLib();
-// $is_login = $app->is_user();
-// if ($is_login) {
-// 	session_destroy();
-// }
+$app = new AppLib();
+$is_login = $app->is_user();
+if ($is_login) {
+	session_destroy();
+}
 $koneksi = new mysqli("localhost", "root", "", "smarthr");
 if ($koneksi->connect_errno) {
 	echo die("Failed to connect to MySQL: " . $koneksi->connect_error);
@@ -41,7 +41,8 @@ function registration($data)
 		return false;
 	}
 	$password = password_hash($password, PASSWORD_DEFAULT);
-	mysqli_query($koneksi, "INSERT INTO `users`(`firstname`, `lastname`, `username`, `email`, `password`, `phone`, `address`, `role`,`picture`,`datetime`,) VALUES('$firstname','$lastname','$username','$email','$password','$phone', '$address', DEFAULT, DEFAULT, DEFAULT)");
+	mysqli_query($koneksi, "INSERT INTO `users`(`firstname`, `lastname`, `username`, `email`, `password`, `phone`, `address`, `role`,`picture`,`datetime`)
+	 VALUES('$firstname','$lastname','$username','$email','$password','$phone', '$address', DEFAULT, DEFAULT, DEFAULT)");
 
 	return mysqli_affected_rows($koneksi);
 }
@@ -85,7 +86,6 @@ if (isset($_POST["registration"])) {
 	<!-- Main Wrapper -->
 	<div class="main-wrapper">
 		<div class="account-content">
-			<a href="job-list.php" class="btn btn-primary apply-btn">Apply Job</a>
 			<div class="container">
 				<!-- Account Logo -->
 				<div class="account-logo">
@@ -98,13 +98,19 @@ if (isset($_POST["registration"])) {
 						<p class="account-subtitle">Access to our dashboard</p>
 						<!-- Account Form -->
 						<form method="POST" action="" enctype="multipart/form-data">
-							<div class="form-group">
-								<label for="firstname">First Name</label>
-								<input class="form-control" type="text" name="firstname" id="firstname" required>
-							</div>
-							<div class="form-group">
-								<label>Last Name</label>
-								<input class="form-control" type="text" name="lastname" required>
+							<div class="row">
+								<div class="col-sm-6">
+									<div class="form-group">
+										<label for="firstname">First Name</label>
+										<input class="form-control" type="text" name="firstname" id="firstname" required>
+									</div>
+								</div>
+								<div class="col-sm-6">
+									<div class="form-group">
+										<label>Last Name</label>
+										<input class="form-control" type="text" name="lastname" required>
+									</div>
+								</div>
 							</div>
 							<div class="form-group">
 								<label>Username</label>
@@ -120,15 +126,21 @@ if (isset($_POST["registration"])) {
 							</div>
 							<div class="form-group">
 								<label>Address</label>
-								<input class="form-control" type="text" name="address" required>
+								<textarea class="form-control" type="text" name="address" rows="5" cols="6" required></textarea>
 							</div>
-							<div class="form-group">
-								<label>Password</label>
-								<input class="form-control" type="password" name="password" required>
-							</div>
-							<div class="form-group">
-								<label>Repeat Password</label>
-								<input class="form-control" type="password" name="password2" required>
+							<div class="row">
+								<div class="col-sm-6">
+									<div class="form-group">
+										<label>Password</label>
+										<input class="form-control" type="password" name="password" required>
+									</div>
+								</div>
+								<div class="col-sm-6">
+									<div class="form-group">
+										<label>Repeat Password</label>
+										<input class="form-control" type="password" name="password2" required>
+									</div>
+								</div>
 							</div>
 							<div class="form-group text-center">
 								<button class="btn btn-primary account-btn" type="submit" name="registration">Register</button>
@@ -140,8 +152,19 @@ if (isset($_POST["registration"])) {
 						</div>
 					</div>
 				</div>
+				<div class="alert alert-danger alert alert-dismissable col-md-10 offset-md-1" role="alert">
+					<button type='button' class='close' data-dismiss='alert' aria-label='Close'>
+						<span aria-hidden='true'>&times;</span>
+					</button>
+					<p id="notice" class="d-flex mr-3 mb-0 font-weight-bold" class="btn btn-flat" "><b>Important Notice</b></p>
+                    		<div class=" media-body">
+					<p>See this link for more information regarding government policy to handle the outbreak of COVID-19
+						<a class="btn-flat" href="https://www.indonesia.travel/gb/en/coronavirus">here</a>
+					</p>
+				</div>
 			</div>
 		</div>
+	</div>
 	</div>
 	<!-- /Main Wrapper -->
 	<!-- jQuery -->
