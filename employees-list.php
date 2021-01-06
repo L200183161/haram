@@ -152,383 +152,382 @@ if (!$is_login) {
 					</div>
 				</div>
 			</div>
-		</div>
-		<!-- /Page Content -->
+			<!-- /Page Content -->
 
-		<!-- Add Employee Modal -->
-		<?php
-		//adding employees code starts from here
-		if (isset($_POST['add_employee'])) {
-			$firstname = htmlspecialchars($_POST['firstname']);
-			$lastname = htmlspecialchars($_POST['lastname']);
-			$username = htmlspecialchars($_POST['username']);
-			$email = htmlspecialchars($_POST['email']);
-			$password = htmlspecialchars($_POST['password']);
-			$confirm_password = htmlspecialchars($_POST['confirm_pass']);
-			$employee_id = htmlspecialchars($_POST['employee_id']);
-			$phone = htmlspecialchars($_POST['phone']);
-			$department = htmlspecialchars($_POST['department']);
-			$designation = htmlspecialchars($_POST['designation']);
-			//grabbing the picture
-			$file = $_FILES['picture']['name'];
-			$file_loc = $_FILES['picture']['tmp_name'];
-			$folder = "uploads/employees/";
-			$new_file_name = strtolower($file);
-			$final_file = str_replace(' ', '-', $new_file_name);
+			<!-- Add Employee Modal -->
+			<?php
+			//adding employees code starts from here
+			if (isset($_POST['add_employee'])) {
+				$firstname = htmlspecialchars($_POST['firstname']);
+				$lastname = htmlspecialchars($_POST['lastname']);
+				$username = htmlspecialchars($_POST['username']);
+				$email = htmlspecialchars($_POST['email']);
+				$password = htmlspecialchars($_POST['password']);
+				$confirm_password = htmlspecialchars($_POST['confirm_pass']);
+				$employee_id = htmlspecialchars($_POST['employee_id']);
+				$phone = htmlspecialchars($_POST['phone']);
+				$department = htmlspecialchars($_POST['department']);
+				$designation = htmlspecialchars($_POST['designation']);
+				//grabbing the picture
+				$file = $_FILES['picture']['name'];
+				$file_loc = $_FILES['picture']['tmp_name'];
+				$folder = "uploads/employees/";
+				$new_file_name = strtolower($file);
+				$final_file = str_replace(' ', '-', $new_file_name);
 
-			if (move_uploaded_file($file_loc, $folder . $final_file) && ($password == $confirm_password)) {
-				$image = $final_file;
-				$password = password_hash($password, PASSWORD_DEFAULT);
-			}
-			$sql = "INSERT INTO `employees` (`id`, `FirstName`, `LastName`, `UserName`, `Email`, `Password`, `Employee_Id`, `Phone`, `Department`, `Designation`, `Picture`, `DateTime`)
+				if (move_uploaded_file($file_loc, $folder . $final_file) && ($password == $confirm_password)) {
+					$image = $final_file;
+					$password = password_hash($password, PASSWORD_DEFAULT);
+				}
+				$sql = "INSERT INTO `employees` (`id`, `FirstName`, `LastName`, `UserName`, `Email`, `Password`, `Employee_Id`, `Phone`, `Department`, `Designation`, `Picture`, `DateTime`)
 				VALUES (NULL, :firstname, :lastname, :username, :email,:password, :id, :phone, :department, :designation, :pic, current_timestamp())";
-			$query = $dbh->prepare($sql);
-			$query->bindParam(':firstname', $firstname, PDO::PARAM_STR);
-			$query->bindParam(':lastname', $lastname, PDO::PARAM_STR);
-			$query->bindParam(':username', $username, PDO::PARAM_STR);
-			$query->bindParam(':email', $email, PDO::PARAM_STR);
-			$query->bindParam(':password', $password, PDO::PARAM_STR);
-			$query->bindParam(':id', $employee_id, PDO::PARAM_STR);
-			$query->bindParam(':phone', $phone, PDO::PARAM_STR);
-			$query->bindParam(':department', $department, PDO::PARAM_STR);
-			$query->bindParam(':designation', $designation, PDO::PARAM_STR);
-			$query->bindParam(':pic', $image, PDO::PARAM_STR);
-			$query->execute();
-			$lastInsert = $dbh->lastInsertId();
-			if ($lastInsert > 0) {
-				echo "<script>
+				$query = $dbh->prepare($sql);
+				$query->bindParam(':firstname', $firstname, PDO::PARAM_STR);
+				$query->bindParam(':lastname', $lastname, PDO::PARAM_STR);
+				$query->bindParam(':username', $username, PDO::PARAM_STR);
+				$query->bindParam(':email', $email, PDO::PARAM_STR);
+				$query->bindParam(':password', $password, PDO::PARAM_STR);
+				$query->bindParam(':id', $employee_id, PDO::PARAM_STR);
+				$query->bindParam(':phone', $phone, PDO::PARAM_STR);
+				$query->bindParam(':department', $department, PDO::PARAM_STR);
+				$query->bindParam(':designation', $designation, PDO::PARAM_STR);
+				$query->bindParam(':pic', $image, PDO::PARAM_STR);
+				$query->execute();
+				$lastInsert = $dbh->lastInsertId();
+				if ($lastInsert > 0) {
+					echo "<script>
 				alert('Employee Has Been Added.');
 				</script>";
-				echo "<script>window.location.href = 'employees-list.php';</script>";
-			} else {
-				echo "<script>
+					echo "<script>window.location.href = 'employees-list.php';</script>";
+				} else {
+					echo "<script>
 				alert('Something Went Wrong');
 				</script>";
+				}
 			}
-		}
-		//ading employees code eds here
+			//ading employees code eds here
 
 
-		$set = '1234567890';
-		$id = substr(str_shuffle($set), 0, 6); ?>
-		<div id="add_employee" class="modal custom-modal fade" role="dialog">
-			<div class="modal-dialog modal-dialog-centered modal-lg">
-				<div class="modal-content">
-					<div class="modal-header">
-						<h5 class="modal-title">Add Employee</h5>
-						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-							<span aria-hidden="true">&times;</span>
-						</button>
-					</div>
-					<div class="modal-body">
-						<form method="POST" enctype="multipart/form-data">
-							<div class="row">
-								<div class="col-sm-6">
-									<div class="form-group">
-										<label class="col-form-label">First Name <span class="text-danger">*</span></label>
-										<input name="firstname" required class="form-control" type="text">
+			$set = '1234567890';
+			$id = substr(str_shuffle($set), 0, 6); ?>
+			<div id="add_employee" class="modal custom-modal fade" role="dialog">
+				<div class="modal-dialog modal-dialog-centered modal-lg">
+					<div class="modal-content">
+						<div class="modal-header">
+							<h5 class="modal-title">Add Employee</h5>
+							<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+								<span aria-hidden="true">&times;</span>
+							</button>
+						</div>
+						<div class="modal-body">
+							<form method="POST" enctype="multipart/form-data">
+								<div class="row">
+									<div class="col-sm-6">
+										<div class="form-group">
+											<label class="col-form-label">First Name <span class="text-danger">*</span></label>
+											<input name="firstname" required class="form-control" type="text">
+										</div>
 									</div>
-								</div>
-								<div class="col-sm-6">
-									<div class="form-group">
-										<label class="col-form-label">Last Name</label>
-										<input name="lastname" required class="form-control" type="text">
+									<div class="col-sm-6">
+										<div class="form-group">
+											<label class="col-form-label">Last Name</label>
+											<input name="lastname" required class="form-control" type="text">
+										</div>
 									</div>
-								</div>
-								<div class="col-sm-6">
-									<div class="form-group">
-										<label class="col-form-label">Username <span class="text-danger">*</span></label>
-										<input name="username" required class="form-control" type="text">
+									<div class="col-sm-6">
+										<div class="form-group">
+											<label class="col-form-label">Username <span class="text-danger">*</span></label>
+											<input name="username" required class="form-control" type="text">
+										</div>
 									</div>
-								</div>
-								<div class="col-sm-6">
-									<div class="form-group">
-										<label class="col-form-label">Email <span class="text-danger">*</span></label>
-										<input name="email" required class="form-control" type="email">
+									<div class="col-sm-6">
+										<div class="form-group">
+											<label class="col-form-label">Email <span class="text-danger">*</span></label>
+											<input name="email" required class="form-control" type="email">
+										</div>
 									</div>
-								</div>
-								<div class="col-sm-6">
-									<div class="form-group">
-										<label class="col-form-label">Password</label>
-										<input class="form-control" required name="password" type="password">
+									<div class="col-sm-6">
+										<div class="form-group">
+											<label class="col-form-label">Password</label>
+											<input class="form-control" required name="password" type="password">
+										</div>
 									</div>
-								</div>
-								<div class="col-sm-6">
-									<div class="form-group">
-										<label class="col-form-label">Confirm Password</label>
-										<input class="form-control" required name="confirm_pass" type="password">
+									<div class="col-sm-6">
+										<div class="form-group">
+											<label class="col-form-label">Confirm Password</label>
+											<input class="form-control" required name="confirm_pass" type="password">
+										</div>
 									</div>
-								</div>
-								<div class="col-sm-6">
-									<div class="form-group">
-										<label class="col-form-label">Employee ID <span class="text-danger">*</span></label>
-										<input name="employee_id" readonly type="text" value="<?php echo 'EMP-' . $id; ?>" class="form-control">
+									<div class="col-sm-6">
+										<div class="form-group">
+											<label class="col-form-label">Employee ID <span class="text-danger">*</span></label>
+											<input name="employee_id" readonly type="text" value="<?php echo 'EMP-' . $id; ?>" class="form-control">
+										</div>
+									</div>
+
+									<div class="col-sm-6">
+										<div class="form-group">
+											<label class="col-form-label">Phone </label>
+											<input name="phone" required class="form-control" type="text">
+										</div>
+									</div>
+
+									<div class="col-md-6">
+										<div class="form-group">
+											<label>Department <span class="text-danger">*</span></label>
+											<select required name="department" class="select" aria-placeholder="Haluu">
+												<option>Select Department</option>
+												<?php
+												$sql2 = "SELECT * from departments";
+												$query2 = $dbh->prepare($sql2);
+												$query2->execute();
+												$result2 = $query2->fetchAll(PDO::FETCH_OBJ);
+												foreach ($result2 as $row) {
+												?>
+													<option value="<?php echo htmlentities($row->Department); ?>">
+														<?php echo htmlentities($row->Department); ?></option>
+												<?php } ?>
+											</select>
+										</div>
+									</div>
+									<div class="col-md-6">
+										<div class="form-group">
+											<label>Designation <span class="text-danger">*</span></label>
+											<select required name="designation" class="select">
+												<option>Select Designation</option>
+												<?php
+												$sql2 = "SELECT * from designations";
+												$query2 = $dbh->prepare($sql2);
+												$query2->execute();
+												$result2 = $query2->fetchAll(PDO::FETCH_OBJ);
+												foreach ($result2 as $row) {
+												?>
+													<option value="<?php echo htmlentities($row->Designation); ?>">
+														<?php echo htmlentities($row->Designation); ?></option>
+												<?php } ?>
+											</select>
+										</div>
+									</div>
+									<div class="col-md-12">
+										<div class="form-group">
+											<label class="col-form-label">Employee Picture</label>
+											<input class="form-control" required name="picture" type="file">
+										</div>
 									</div>
 								</div>
 
-								<div class="col-sm-6">
-									<div class="form-group">
-										<label class="col-form-label">Phone </label>
-										<input name="phone" required class="form-control" type="text">
-									</div>
+								<div class="submit-section">
+									<button type="submit" name="add_employee" class="btn btn-primary submit-btn">Submit</button>
 								</div>
-
-								<div class="col-md-6">
-									<div class="form-group">
-										<label>Department <span class="text-danger">*</span></label>
-										<select required name="department" class="select">
-											<option>Select Department</option>
-											<?php
-											$sql2 = "SELECT * from departments";
-											$query2 = $dbh->prepare($sql2);
-											$query2->execute();
-											$result2 = $query2->fetchAll(PDO::FETCH_OBJ);
-											foreach ($result2 as $row) {
-											?>
-												<option value="<?php echo htmlentities($row->Department); ?>">
-													<?php echo htmlentities($row->Department); ?></option>
-											<?php } ?>
-										</select>
-									</div>
-								</div>
-								<div class="col-md-6">
-									<div class="form-group">
-										<label>Designation <span class="text-danger">*</span></label>
-										<select required name="designation" class="select">
-											<option>Select Designation</option>
-											<?php
-											$sql2 = "SELECT * from designations";
-											$query2 = $dbh->prepare($sql2);
-											$query2->execute();
-											$result2 = $query2->fetchAll(PDO::FETCH_OBJ);
-											foreach ($result2 as $row) {
-											?>
-												<option value="<?php echo htmlentities($row->Designation); ?>">
-													<?php echo htmlentities($row->Designation); ?></option>
-											<?php } ?>
-										</select>
-									</div>
-								</div>
-								<div class="col-md-12">
-									<div class="form-group">
-										<label class="col-form-label">Employee Picture</label>
-										<input class="form-control" required name="picture" type="file">
-									</div>
-								</div>
-							</div>
-
-							<div class="submit-section">
-								<button type="submit" name="add_employee" class="btn btn-primary submit-btn">Submit</button>
-							</div>
-						</form>
+							</form>
+						</div>
 					</div>
 				</div>
 			</div>
-		</div>
-		<!-- /Add Employee Modal -->
-		<!-- Edit Employee Modal -->
-		<?php
-		if (isset($_POST['edit_employee'])) {
-			global $dbh;
-			$id = htmlspecialchars($_POST['id']);
-			$firstname = htmlspecialchars($_POST['firstname']);
-			$lastname = htmlspecialchars($_POST['lastname']);
-			$username = htmlspecialchars($_POST['username']);
-			$email = htmlspecialchars($_POST['email']);
-			$password = htmlspecialchars($_POST['password']);
-			$confirm_password = htmlspecialchars($_POST['confirm_pass']);
-			$employee_id = htmlspecialchars($_POST['employee_id']);
-			$phone = htmlspecialchars($_POST['phone']);
-			$department = htmlspecialchars($_POST['department']);
-			$designation = htmlspecialchars($_POST['designation']);
-			//grabbing the picture
-			$file = $_FILES['picture']['name'];
-			$file_loc = $_FILES['picture']['tmp_name'];
-			$folder = "uploads/employees/";
-			$new_file_name = strtolower($file);
-			$final_file = str_replace(' ', '-', $new_file_name);
+			<!-- /Add Employee Modal -->
+			<!-- Edit Employee Modal -->
+			<?php
+			if (isset($_POST['edit_employee'])) {
+				global $dbh;
+				$id = htmlspecialchars($_POST['id']);
+				$firstname = htmlspecialchars($_POST['firstname']);
+				$lastname = htmlspecialchars($_POST['lastname']);
+				$username = htmlspecialchars($_POST['username']);
+				$email = htmlspecialchars($_POST['email']);
+				$password = htmlspecialchars($_POST['password']);
+				$confirm_password = htmlspecialchars($_POST['confirm_pass']);
+				$employee_id = htmlspecialchars($_POST['employee_id']);
+				$phone = htmlspecialchars($_POST['phone']);
+				$department = htmlspecialchars($_POST['department']);
+				$designation = htmlspecialchars($_POST['designation']);
+				//grabbing the picture
+				$file = $_FILES['picture']['name'];
+				$file_loc = $_FILES['picture']['tmp_name'];
+				$folder = "uploads/employees/";
+				$new_file_name = strtolower($file);
+				$final_file = str_replace(' ', '-', $new_file_name);
 
-			if (move_uploaded_file($file_loc, $folder . $final_file) && ($password == $confirm_password)) {
-				$image = $final_file;
-				$password = password_hash($password, PASSWORD_DEFAULT);
-			}
-			$sql = "UPDATE `employees` SET `id`=:id, `FirstName`=:firstname, `LastName`=:lastname, `UserName`=:username,
+				if (move_uploaded_file($file_loc, $folder . $final_file) && ($password == $confirm_password)) {
+					$image = $final_file;
+					$password = password_hash($password, PASSWORD_DEFAULT);
+				}
+				$sql = "UPDATE `employees` SET `id`=:id, `FirstName`=:firstname, `LastName`=:lastname, `UserName`=:username,
 			 `Email`=:email, `Password`=:password, `Employee_Id`=:employee_id, `Phone`=:phone, `Department`=:department, 
 			 `Designation`=:designation, `Picture`=:pic WHERE `id`=:id";
-			$query = $dbh->prepare($sql);
-			$query->bindParam(':id', $id, PDO::PARAM_STR);
-			$query->bindParam(':firstname', $firstname, PDO::PARAM_STR);
-			$query->bindParam(':lastname', $lastname, PDO::PARAM_STR);
-			$query->bindParam(':username', $username, PDO::PARAM_STR);
-			$query->bindParam(':email', $email, PDO::PARAM_STR);
-			$query->bindParam(':password', $password, PDO::PARAM_STR);
-			$query->bindParam(':employee_id', $employee_id, PDO::PARAM_STR);
-			$query->bindParam(':phone', $phone, PDO::PARAM_STR);
-			$query->bindParam(':department', $department, PDO::PARAM_STR);
-			$query->bindParam(':designation', $designation, PDO::PARAM_STR);
-			$query->bindParam(':pic', $image, PDO::PARAM_STR);
-			$query->execute();
-			return $query->rowCount();
-			$lastInsert = $dbh->lastInsertId();
-			if ($lastInsert > 0) {
-				echo "<script>alert('Successfully Edited');</script>";
-				echo "<script>
+				$query = $dbh->prepare($sql);
+				$query->bindParam(':id', $id, PDO::PARAM_STR);
+				$query->bindParam(':firstname', $firstname, PDO::PARAM_STR);
+				$query->bindParam(':lastname', $lastname, PDO::PARAM_STR);
+				$query->bindParam(':username', $username, PDO::PARAM_STR);
+				$query->bindParam(':email', $email, PDO::PARAM_STR);
+				$query->bindParam(':password', $password, PDO::PARAM_STR);
+				$query->bindParam(':employee_id', $employee_id, PDO::PARAM_STR);
+				$query->bindParam(':phone', $phone, PDO::PARAM_STR);
+				$query->bindParam(':department', $department, PDO::PARAM_STR);
+				$query->bindParam(':designation', $designation, PDO::PARAM_STR);
+				$query->bindParam(':pic', $image, PDO::PARAM_STR);
+				$query->execute();
+				return $query->rowCount();
+				$lastInsert = $dbh->lastInsertId();
+				if ($lastInsert > 0) {
+					echo "<script>alert('Successfully Edited');</script>";
+					echo "<script>
 					window.location.href = 'employees-list.php';
 					</script>";
-			} else {
-				// echo "<script>alert('Oh crap, something is wrong'); window.location='employees-list.php';</script>";
-				echo 'Error :';
-				echo '<pre>';
-				print_r($query->errorInfo());
-				print_r($query->debugDumpParams());
-				echo '</pre>';
-			}
-		} ?>
+				} else {
+					// echo "<script>alert('Oh crap, something is wrong'); window.location='employees-list.php';</script>";
+					echo 'Error :';
+					echo '<pre>';
+					print_r($query->errorInfo());
+					print_r($query->debugDumpParams());
+					echo '</pre>';
+				}
+			} ?>
 
-		<div id="edit_employee" class="modal custom-modal fade" role="dialog">
-			<div class="modal-dialog modal-dialog-centered modal-lg" role="document">
-				<div class="modal-content">
-					<div class="modal-header">
-						<h5 class="modal-title">Edit Employee</h5>
-						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-							<span aria-hidden="true">&times;</span>
-						</button>
-					</div>
-					<div class="modal-body">
-						<form method="POST" enctype="multipart/form-data">
-							<div class="row">
-								<div class="col-sm-6">
-									<div class="form-group">
-										<label for="id">ID</label>
-										<input name="id" id="id" class="form-control" type="text">
-									</div>
-									<div class="form-group">
-										<label for="firstname" class="col-form-label">First Name <span class="text-danger">*</span></label>
-										<input name="firstname" id="firstname" required class="form-control" type="text">
-									</div>
-								</div>
-								<div class="col-sm-6">
-									<div class="form-group">
-										<label for="lastname" class="col-form-label">Last Name</label>
-										<input name="lastname" id="lastname" required class="form-control" type="text">
-									</div>
-								</div>
-								<div class="col-sm-6">
-									<div class="form-group">
-										<label for="username" class="col-form-label">Username <span class="text-danger">*</span></label>
-										<input name="username" id="username" required class="form-control" type="text">
-									</div>
-								</div>
-								<div class="col-sm-6">
-									<div class="form-group">
-										<label for="email" class="col-form-label">Email <span class="text-danger">*</span></label>
-										<input name="email" id="email" required class="form-control" type="email">
-									</div>
-								</div>
-								<div class="col-sm-6">
-									<div class="form-group">
-										<label for="password" class="col-form-label">Password</label>
-										<input class="form-control" required name="password" id="password" type="password">
-									</div>
-								</div>
-								<div class="col-sm-6">
-									<div class="form-group">
-										<label for="confirm_pass" class="col-form-label">Confirm Password</label>
-										<input class="form-control" required name="confirm_pass" id="confirm_pass" type="password">
-									</div>
-								</div>
-								<div class="col-sm-6">
-									<div class="form-group">
-										<label for="employee_id" class="col-form-label">Employee ID <span class="text-danger">*</span></label>
-										<input name="employee_id" id="employee_id" readonly type="text" class="form-control">
-									</div>
-								</div>
-
-								<div class="col-sm-6">
-									<div class="form-group">
-										<label for="phone" class="col-form-label">Phone </label>
-										<input name="phone" id="phone" required class="form-control" type="text">
-									</div>
-								</div>
-
-								<div class="col-md-6">
-									<div class="form-group">
-										<label for="department">Department <span class="text-danger">*</span></label>
-										<select required name="department" id="department" class="select">
-											<option>Select Department</option>
-											<?php
-											$sql2 = "SELECT * from departments";
-											$query2 = $dbh->prepare($sql2);
-											$query2->execute();
-											$result2 = $query2->fetchAll(PDO::FETCH_OBJ);
-											foreach ($result2 as $row) {
-											?>
-												<option value="<?php echo htmlentities($row->Department); ?>">
-													<?php echo htmlentities($row->Department); ?></option>
-											<?php } ?>
-										</select>
-									</div>
-								</div>
-								<div class="col-md-6">
-									<div class="form-group">
-										<label for="designation">Designation <span class="text-danger">*</span></label>
-										<select required name="designation" id="designation" class="select">
-											<option>Select Designation</option>
-											<?php
-											$sql2 = "SELECT * from designations WHERE";
-											$query2 = $dbh->prepare($sql2);
-											$query2->execute();
-											$result2 = $query2->fetchAll(PDO::FETCH_OBJ);
-											foreach ($result2 as $row) {
-											?>
-												<option value="<?php echo htmlentities($row->Designation); ?>">
-													<?php echo htmlentities($row->Designation); ?></option>
-											<?php } ?>
-										</select>
-									</div>
-								</div>
-								<div class="col-md-12">
-									<div class="form-group">
-										<label for="picture" class="col-form-label"></label>
-										<img class="img-preview" src="uploads/employees/<?= $foto; ?>" alt="Foto" width="100">
-										<input class="form-control" required name="picture" id="picture" type="file">
-									</div>
-								</div>
-							</div>
-
-							<div class="submit-section">
-								<button type="submit" name="edit_employee" class="btn btn-primary submit-btn">Submit</button>
-							</div>
-						</form>
-					</div>
-				</div>
-			</div>
-		</div>
-		<!-- /Edit Employee Modal -->
-		<div class="modal custom-modal fade" id="delete_employee" role="dialog">
-			<div class="modal-dialog modal-dialog-centered">
-				<div class="modal-content">
-					<div class="modal-body">
-						<div class="form-header">
-							<h3>Delete Employee</h3>
-							<p>Are you sure want to delete?</p>
+			<div id="edit_employee" class="modal custom-modal fade" role="dialog">
+				<div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+					<div class="modal-content">
+						<div class="modal-header">
+							<h5 class="modal-title">Edit Employee</h5>
+							<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+								<span aria-hidden="true">&times;</span>
+							</button>
 						</div>
-						<div class="modal-btn delete-action">
-							<div class="row">
-								<div class="col-6">
-									<a href="javascript:void(0)" class="btn btn-primary continue-btn" id="link_hapus">Delete</a>
+						<div class="modal-body">
+							<form method="POST" enctype="multipart/form-data">
+								<div class="row">
+									<div class="col-sm-6">
+										<div class="form-group">
+											<label for="id">ID</label>
+											<input name="id" id="id" class="form-control" type="text">
+										</div>
+										<div class="form-group">
+											<label for="firstname" class="col-form-label">First Name <span class="text-danger">*</span></label>
+											<input name="firstname" id="firstname" required class="form-control" type="text">
+										</div>
+									</div>
+									<div class="col-sm-6">
+										<div class="form-group">
+											<label for="lastname" class="col-form-label">Last Name</label>
+											<input name="lastname" id="lastname" required class="form-control" type="text">
+										</div>
+									</div>
+									<div class="col-sm-6">
+										<div class="form-group">
+											<label for="username" class="col-form-label">Username <span class="text-danger">*</span></label>
+											<input name="username" id="username" required class="form-control" type="text">
+										</div>
+									</div>
+									<div class="col-sm-6">
+										<div class="form-group">
+											<label for="email" class="col-form-label">Email <span class="text-danger">*</span></label>
+											<input name="email" id="email" required class="form-control" type="email">
+										</div>
+									</div>
+									<div class="col-sm-6">
+										<div class="form-group">
+											<label for="password" class="col-form-label">Password</label>
+											<input class="form-control" required name="password" id="password" type="password">
+										</div>
+									</div>
+									<div class="col-sm-6">
+										<div class="form-group">
+											<label for="confirm_pass" class="col-form-label">Confirm Password</label>
+											<input class="form-control" required name="confirm_pass" id="confirm_pass" type="password">
+										</div>
+									</div>
+									<div class="col-sm-6">
+										<div class="form-group">
+											<label for="employee_id" class="col-form-label">Employee ID <span class="text-danger">*</span></label>
+											<input name="employee_id" id="employee_id" readonly type="text" class="form-control">
+										</div>
+									</div>
+
+									<div class="col-sm-6">
+										<div class="form-group">
+											<label for="phone" class="col-form-label">Phone </label>
+											<input name="phone" id="phone" required class="form-control" type="text">
+										</div>
+									</div>
+
+									<div class="col-md-6">
+										<div class="form-group">
+											<label for="department">Department <span class="text-danger">*</span></label>
+											<select required name="department" id="department" class="select">
+												<option>Select Department</option>
+												<?php
+												$sql2 = "SELECT * from departments";
+												$query2 = $dbh->prepare($sql2);
+												$query2->execute();
+												$result2 = $query2->fetchAll(PDO::FETCH_OBJ);
+												foreach ($result2 as $row) {
+												?>
+													<option value="<?php echo htmlentities($row->Department); ?>">
+														<?php echo htmlentities($row->Department); ?></option>
+												<?php } ?>
+											</select>
+										</div>
+									</div>
+									<div class="col-md-6">
+										<div class="form-group">
+											<label for="designation">Designation <span class="text-danger">*</span></label>
+											<select required name="designation" id="designation" class="select">
+												<option>Select Designation</option>
+												<?php
+												$sql2 = "SELECT * from designations";
+												$query2 = $dbh->prepare($sql2);
+												$query2->execute();
+												$result2 = $query2->fetchAll(PDO::FETCH_OBJ);
+												foreach ($result2 as $row) {
+												?>
+													<option value="<?php echo htmlentities($row->Designation); ?>">
+														<?php echo htmlentities($row->Designation); ?></option>
+												<?php } ?>
+											</select>
+										</div>
+									</div>
+									<div class="col-md-12">
+										<div class="form-group">
+											<label for="picture" class="col-form-label"></label>
+											<img class="img-preview" src="uploads/employees/<?= $foto; ?>" alt="Foto" width="100">
+											<input class="form-control" required name="picture" id="picture" type="file">
+										</div>
+									</div>
 								</div>
-								<div class="col-6">
-									<a href="javascript:void(0);" data-dismiss="modal" class="btn btn-primary cancel-btn">Cancel</a>
+
+								<div class="submit-section">
+									<button type="submit" name="edit_employee" class="btn btn-primary submit-btn">Submit</button>
 								</div>
-							</div>
+							</form>
 						</div>
 					</div>
 				</div>
 			</div>
+			<!-- /Edit Employee Modal -->
+			<div class="modal custom-modal fade" id="delete_employee" role="dialog">
+				<div class="modal-dialog modal-dialog-centered">
+					<div class="modal-content">
+						<div class="modal-body">
+							<div class="form-header">
+								<h3>Delete Employee</h3>
+								<p>Are you sure want to delete?</p>
+							</div>
+							<div class="modal-btn delete-action">
+								<div class="row">
+									<div class="col-6">
+										<a href="javascript:void(0)" class="btn btn-primary continue-btn" id="link_hapus">Delete</a>
+									</div>
+									<div class="col-6">
+										<a href="javascript:void(0);" data-dismiss="modal" class="btn btn-primary cancel-btn">Cancel</a>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div>
-	</div>
-	<!-- /Page Wrapper -->
+		<!-- /Page Wrapper -->
 	</div>
 	<!-- /Main Wrapper -->
 	<!-- jQuery -->

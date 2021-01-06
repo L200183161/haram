@@ -74,11 +74,6 @@
 											} else {
 												echo '';
 											} ?>" href="salary.php"> Employee Salary </a></li>
-							<li><a class="<?php if (basename($_SERVER['SCRIPT_NAME']) == 'salary-view.php') {
-												echo 'active';
-											} else {
-												echo '';
-											} ?>" href="salary-view.php"> Payslip </a></li>
 						</ul>
 					</li>
 					<li class="menu-title">
@@ -91,27 +86,6 @@
 										echo '';
 									} ?>" href="assets.php"><i class="la la-object-ungroup"></i> <span>Assets</span></a>
 					</li>
-					<li class="submenu">
-						<a href="#"><i class="la la-briefcase"></i> <span> Jobs </span> <span class="menu-arrow"></span></a>
-						<ul style="display: none;">
-							<li><a class="<?php if (basename($_SERVER['SCRIPT_NAME']) == 'jobs.php') {
-												echo 'active';
-											} else {
-												echo '';
-											} ?>" href="jobs.php"> Manage Jobs </a></li>
-							<li><a class="<?php if (basename($_SERVER['SCRIPT_NAME']) == 'job-list.php') {
-												echo 'active';
-											} else {
-												echo '';
-											} ?>" href="job-list.php"> Jobs list</a></li>
-							<li><a class="<?php if (basename($_SERVER['SCRIPT_NAME']) == 'job-applicants.php') {
-												echo 'active';
-											} else {
-												echo '';
-											} ?>" href="job-applicants.php"> Jobs Applied Candidates </a></li>
-						</ul>
-					</li>
-
 					<li>
 						<a class="<?php if (basename($_SERVER['SCRIPT_NAME']) == 'users.php') {
 										echo 'active';
@@ -146,8 +120,6 @@
 					<li class="submenu">
 						<a href="#"><i class="la la-key"></i> <span> Account </span> <span class="menu-arrow"></span></a>
 						<ul style="display: none;">
-							<li><a href="login.php"> Login </a></li>
-							<li><a href="register.php"> Register </a></li>
 							<li><a href="logout.php"> Logout </a></li>
 						</ul>
 					</li>

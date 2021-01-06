@@ -9,7 +9,9 @@
 ## Keep it mind tho, this isn't finished yet. so let's just hope for the best.
 
 ### *ToDo biar ndang selesai*
-- [ ] Cookie belum kudu push besok
+
+- [ ] Last Profile 
+- [ ] ~~Cookie belum kudu push besok~~
 - [x] ~~Edit Employees~~
 - [x] ~~Login with hash~~
 - [x] ~~Admin and Employee Session~~
@@ -20,7 +22,6 @@
 - [ ] CRUD Database table yang lain
 - [ ] Payroll / Payslip belum 🙃
 - [ ] Search **BELUM**
-- [ ] Kategori nggak usah gpp penting ajax (Search) tolong di push si kategori
 
 #### Smarthr
 
@@ -42,3 +43,24 @@ P : admin
 
 ![Dashboard](screenshots/employees.png?raw=true "Employees List")
 
+```MIT License
+
+Copyright (c) 2020 Donny Rizal
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.```

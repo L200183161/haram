@@ -1,10 +1,15 @@
 ﻿<?php
 session_start();
 global $wrongpassword, $wrongusername;
-require_once 'includes/config.php';
+require_once 'includes/library.php';
+$app = new AppLib();
 $dbh = Database();
+$is_login = $app->is_user();
+if ($is_login) {
+	session_destroy();
+}
 if (isset($_POST['login'])) {
-
+	global $dbh;
 	$username = htmlspecialchars($_POST['username']);
 	$password = htmlspecialchars($_POST['password']);
 	$sql = "SELECT * from users where username = '$username'";

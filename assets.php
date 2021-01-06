@@ -449,8 +449,7 @@ if (!$is_login) {
 												// $query->execute();
 												$selection->rowCount();
 												foreach ($selection as $urut) : ?>
-													<option>
-														<?= $urut['FirstName'] . " " . $urut['LastName'] ?></option>";
+													<option><?= $urut['FirstName'] . " " . $urut['LastName'] ?></option>";
 												<?php endforeach ?>
 											</select>
 										</div>

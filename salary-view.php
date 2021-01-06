@@ -1,10 +1,50 @@
 ﻿<?php
 require_once 'includes/library.php';
 session_start();
+ERROR_REPORTING(E_ALL);
 $app = new AppLib();
+$dbh = Database();
 $is_login = $app->is_user();
 if (!$is_login) {
 	header('location:login.php');
+}
+function penyebut($nilai)
+{
+	$nilai = abs($nilai);
+	$huruf = array("", "Satu", "Dua", "Tiga", "Empat", "Lima", "Enam", "Tujuh", "Delapan", "Sembilan", "Sepuluh", "Sebelas");
+	$temp = "";
+	if ($nilai < 12) {
+		$temp = " " . $huruf[$nilai];
+	} else if ($nilai < 20) {
+		$temp = penyebut($nilai - 10) . " Belas";
+	} else if ($nilai < 100) {
+		$temp = penyebut($nilai / 10) . " Puluh" . penyebut($nilai % 10);
+	} else if ($nilai < 200) {
+		$temp = " Seratus" . penyebut($nilai - 100);
+	} else if ($nilai < 1000) {
+		$temp = penyebut($nilai / 100) . " Ratus" . penyebut($nilai % 100);
+	} else if ($nilai < 2000) {
+		$temp = " Seribu" . penyebut($nilai - 1000);
+	} else if ($nilai < 1000000) {
+		$temp = penyebut($nilai / 1000) . " Ribu" . penyebut($nilai % 1000);
+	} else if ($nilai < 1000000000) {
+		$temp = penyebut($nilai / 1000000) . " Juta" . penyebut($nilai % 1000000);
+	} else if ($nilai < 1000000000000) {
+		$temp = penyebut($nilai / 1000000000) . " Milyar" . penyebut(fmod($nilai, 1000000000));
+	} else if ($nilai < 1000000000000000) {
+		$temp = penyebut($nilai / 1000000000000) . " Trilyun" . penyebut(fmod($nilai, 1000000000000));
+	}
+	return $temp;
+}
+
+function terbilang($nilai)
+{
+	if ($nilai < 0) {
+		$hasil = "minus " . trim(penyebut($nilai));
+	} else {
+		$hasil = trim(penyebut($nilai));
+	}
+	return $hasil;
 }
 ?>
 <!DOCTYPE html>
@@ -81,98 +121,117 @@ if (!$is_login) {
 					</div>
 				</div>
 				<!-- /Page Header -->
-				<div class="row" id='print'>
-					<div class="col-md-12">
-						<div class="card">
-							<div class="card-body">
-								<h4 class="payslip-title">Payslip for the month of Feb 2019</h4>
-								<div class="row">
-									<div class="col-sm-6 m-b-20">
-										<img src="assets/img/logo2.png" class="inv-logo" alt="">
-										<ul class="list-unstyled mb-0">
-											<li>HaRaM</li>
-											<li>3864 Quiet Valley Lane,</li>
-											<li>Sherman Oaks, CA, 91403</li>
-										</ul>
-									</div>
-									<div class="col-sm-6 m-b-20">
-										<div class="invoice-details">
-											<h3 class="text-uppercase">Payslip #49029</h3>
-											<ul class="list-unstyled">
-												<li>Salary Month: <span>March, 2019</span></li>
-											</ul>
+				<?php
+				$nganu = $_GET['id'];
+				$sql = "SELECT * FROM employees INNER JOIN salary ON employees.Employee_Id = salary.Employee_Id WHERE employees.Employee_Id='$nganu'";
+				$query = $dbh->prepare($sql);
+				$query->execute();
+				$results = $query->fetchAll(PDO::FETCH_OBJ);
+				$cnt = 1;
+				$set = '1234567890';
+				$nomer = substr(str_shuffle($set), 0, 6);
+				if ($query->rowCount() > 0) {
+					foreach ($results as $row) {
+						$foto = $row->Picture;
+						$newdate = date("l d-m-Y", strtotime($row->Joining_Date));
+				?>
+						<div class="row" id='print'>
+							<div class="col-md-12">
+								<div class="card">
+									<div class="card-body">
+										<h4 class="payslip-title">Payslip for the month of <?php echo date("F Y") ?></h4>
+										<div class="row">
+											<div class="col-sm-6 m-b-20">
+												<img src="assets/img/logo2.png" class="inv-logo" alt="">
+												<ul class="list-unstyled mb-0">
+													<li>HaRaM</li>
+													<li>Zip Code 2454</li>
+													<li>Jl. Panglima Sudirman no. 1001 </li>
+													<li>Mengkubumi, Surakarta, Jawa Tengah, Indonesia</li>
+												</ul>
+											</div>
+											<div class="col-sm-6 m-b-20">
+												<div class="invoice-details">
+													<h3 class="text-uppercase">Payslip <?php echo '#SLIP-' . $nomer; ?></h3>
+													<ul class="list-unstyled">
+														<li>Salary Month: <span><?php echo date("F, Y") ?></span></li>
+													</ul>
+												</div>
+											</div>
 										</div>
-									</div>
-								</div>
-								<div class="row">
-									<div class="col-lg-12 m-b-20">
-										<ul class="list-unstyled">
-											<li>
-												<h5 class="mb-0"><strong>John Doe</strong></h5>
-											</li>
-											<li><span>Web Designer</span></li>
-											<li>Employee ID: FT-0009</li>
-											<li>Joining Date: 1 Jan 2013</li>
-										</ul>
-									</div>
-								</div>
-								<div class="row">
-									<div class="col-sm-6">
-										<div>
-											<h4 class="m-b-10"><strong>Earnings</strong></h4>
-											<table class="table table-bordered">
-												<tbody>
-													<tr>
-														<td><strong>Basic Salary</strong> <span class="float-right">$6500</span></td>
-													</tr>
-													<tr>
-														<td><strong>House Rent Allowance (H.R.A.)</strong> <span class="float-right">$55</span></td>
-													</tr>
-													<tr>
-														<td><strong>Conveyance</strong> <span class="float-right">$55</span></td>
-													</tr>
-													<tr>
-														<td><strong>Other Allowance</strong> <span class="float-right">$55</span></td>
-													</tr>
-													<tr>
-														<td><strong>Total Earnings</strong> <span class="float-right"><strong>$55</strong></span></td>
-													</tr>
-												</tbody>
-											</table>
+										<div class="row">
+											<div class="col-lg-12 m-b-20">
+												<ul class="list-unstyled">
+													<li>
+														<h5 class="mb-0"><strong><?php echo htmlentities($row->FirstName) . " " . htmlentities($row->LastName); ?></strong></h5>
+													</li>
+													<li><span><?php echo htmlentities($row->Designation); ?></span></li>
+													<li>Employee ID: <?php echo htmlentities($row->Employee_Id); ?></li>
+													<li>Joining Date: <?php echo htmlentities($row->Joining_Date); ?></li>
+												</ul>
+											</div>
 										</div>
-									</div>
-									<div class="col-sm-6">
-										<div>
-											<h4 class="m-b-10"><strong>Deductions</strong></h4>
-											<table class="table table-bordered">
-												<tbody>
-													<tr>
-														<td><strong>Tax Deducted at Source (T.D.S.)</strong> <span class="float-right">$0</span></td>
-													</tr>
-													<tr>
-														<td><strong>Provident Fund</strong> <span class="float-right">$0</span></td>
-													</tr>
-													<tr>
-														<td><strong>ESI</strong> <span class="float-right">$0</span></td>
-													</tr>
-													<tr>
-														<td><strong>Loan</strong> <span class="float-right">$300</span></td>
-													</tr>
-													<tr>
-														<td><strong>Total Deductions</strong> <span class="float-right"><strong>$59698</strong></span></td>
-													</tr>
-												</tbody>
-											</table>
+										<div class="row">
+											<div class="col-sm-6">
+												<div>
+													<h4 class="m-b-10"><strong>Earnings</strong></h4>
+													<table class="table table-bordered">
+														<tbody>
+															<tr>
+																<td><strong>Basic Salary</strong> <span class="float-right"><?php echo "Rp " . number_format((htmlentities($row->salary)), 2, ',', '.'); ?></span></td>
+															</tr>
+															<tr>
+																<td><strong>House Rent Allowance (H.R.A.)</strong> <span class="float-right">$55</span></td>
+															</tr>
+															<tr>
+																<td><strong>Conveyance</strong> <span class="float-right">$55</span></td>
+															</tr>
+															<tr>
+																<td><strong>Other Allowance</strong> <span class="float-right">$55</span></td>
+															</tr>
+															<tr>
+																<td><strong>Total Earnings</strong> <span class="float-right"><strong>$55</strong></span></td>
+															</tr>
+														</tbody>
+													</table>
+												</div>
+											</div>
+											<div class="col-sm-6">
+												<div>
+													<h4 class="m-b-10"><strong>Deductions</strong></h4>
+													<table class="table table-bordered">
+														<tbody>
+															<tr>
+																<td><strong>Tax Deducted at Source (T.D.S.)</strong> <span class="float-right">$0</span></td>
+															</tr>
+															<tr>
+																<td><strong>Provident Fund</strong> <span class="float-right">$0</span></td>
+															</tr>
+															<tr>
+																<td><strong>ESI</strong> <span class="float-right">$0</span></td>
+															</tr>
+															<tr>
+																<td><strong>Loan</strong> <span class="float-right">$300</span></td>
+															</tr>
+															<tr>
+																<td><strong>Total Deductions</strong> <span class="float-right"><strong>$59698</strong></span></td>
+															</tr>
+														</tbody>
+													</table>
+												</div>
+											</div>
+											<div class="col-sm-12">
+												<p><strong>Net Salary: <?php echo "Rp " . number_format((htmlentities($row->salary)), 2, ',', '.'); ?></strong> // <?php echo terbilang($row->salary) ?></p>
+											</div>
 										</div>
-									</div>
-									<div class="col-sm-12">
-										<p><strong>Net Salary: $59698</strong> (Fifty nine thousand six hundred and ninety eight only.)</p>
 									</div>
 								</div>
 							</div>
 						</div>
-					</div>
-				</div>
+				<?php
+					}
+				}
+				?>
 			</div>
 			<!-- /Page Content -->
 		</div>

@@ -99,36 +99,6 @@ if (!$is_login) {
 				</div>
 				<!-- /Page Header -->
 				<!-- Search Filter -->
-				<div class="row filter-row">
-					<div class="col-sm-6 col-md-3">
-						<div class="form-group form-focus">
-							<input type="text" class="form-control floating">
-							<label class="focus-label">Employee ID</label>
-						</div>
-					</div>
-					<div class="col-sm-6 col-md-3">
-						<div class="form-group form-focus">
-							<input type="text" class="form-control floating">
-							<label class="focus-label">Employee Name</label>
-						</div>
-					</div>
-					<div class="col-sm-6 col-md-3">
-						<div class="form-group form-focus select-focus">
-							<select class="select floating">
-								<option>Select Designation</option>
-								<option>Web Developer</option>
-								<option>Web Designer</option>
-								<option>Android Developer</option>
-								<option>Ios Developer</option>
-							</select>
-							<label class="focus-label">Designation</label>
-						</div>
-					</div>
-					<div class="col-sm-6 col-md-3">
-						<a href="#" class="btn btn-success btn-block"> Search </a>
-					</div>
-				</div>
-				<!-- Search Filter -->
 				<!-- user profiles list starts her -->
 
 				<div class="row staff-grid-row">
@@ -145,7 +115,7 @@ if (!$is_login) {
 							<div class="col-md-4 col-sm-6 col-12 col-lg-4 col-xl-3">
 								<div class="profile-widget">
 									<div class="profile-img">
-										<a href="profile.php" class="avatar"><img src="uploads/employees/<?php echo htmlentities($row->Picture); ?>" alt="picture"></a>
+										<a href="profile.php?&id=<?= htmlentities($row->Employee_Id); ?>" class="avatar"><img src="uploads/employees/<?php echo htmlentities($row->Picture); ?>" alt="picture"></a>
 									</div>
 									<div class="dropdown profile-action">
 										<a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="material-icons">more_vert</i></a>

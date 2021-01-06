@@ -94,10 +94,10 @@ if (!$is_login) {
 					<div class="col-md-6 col-sm-6 col-lg-6 col-xl-3">
 						<div class="card dash-widget">
 							<div class="card-body">
-								<span class="dash-widget-icon"><i class="fa fa-diamond"></i></span>
+								<span class="dash-widget-icon"><i class="fa fa-money"></i></span>
 								<div class="dash-widget-info">
-									<h3><?php $app->get_count_from('tasks'); ?></h3>
-									<span>Tasks</span>
+									<h3><?php $app->get_count_from('salary'); ?></h3>
+									<span>Salary</span>
 								</div>
 							</div>
 						</div>

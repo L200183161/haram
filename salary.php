@@ -16,44 +16,6 @@ if (!$is_login) {
 		alert('Salary has been truncated');
 		</script>";
 }
-function penyebut($nilai)
-{
-	$nilai = abs($nilai);
-	$huruf = array("", "Satu", "Dua", "Tiga", "Empat", "Lima", "Enam", "Tujuh", "Delapan", "Sembilan", "Sepuluh", "Sebelas");
-	$temp = "";
-	if ($nilai < 12) {
-		$temp = " " . $huruf[$nilai];
-	} else if ($nilai < 20) {
-		$temp = penyebut($nilai - 10) . " Belas";
-	} else if ($nilai < 100) {
-		$temp = penyebut($nilai / 10) . " Puluh" . penyebut($nilai % 10);
-	} else if ($nilai < 200) {
-		$temp = " Seratus" . penyebut($nilai - 100);
-	} else if ($nilai < 1000) {
-		$temp = penyebut($nilai / 100) . " Ratus" . penyebut($nilai % 100);
-	} else if ($nilai < 2000) {
-		$temp = " Seribu" . penyebut($nilai - 1000);
-	} else if ($nilai < 1000000) {
-		$temp = penyebut($nilai / 1000) . " Ribu" . penyebut($nilai % 1000);
-	} else if ($nilai < 1000000000) {
-		$temp = penyebut($nilai / 1000000) . " Juta" . penyebut($nilai % 1000000);
-	} else if ($nilai < 1000000000000) {
-		$temp = penyebut($nilai / 1000000000) . " Milyar" . penyebut(fmod($nilai, 1000000000));
-	} else if ($nilai < 1000000000000000) {
-		$temp = penyebut($nilai / 1000000000000) . " Trilyun" . penyebut(fmod($nilai, 1000000000000));
-	}
-	return $temp;
-}
-
-function terbilang($nilai)
-{
-	if ($nilai < 0) {
-		$hasil = "minus " . trim(penyebut($nilai));
-	} else {
-		$hasil = trim(penyebut($nilai));
-	}
-	return $hasil;
-}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -163,7 +125,7 @@ function terbilang($nilai)
 												<td><?php echo htmlentities($row->Joining_Date); ?></td>
 												<td><?php echo htmlentities($row->Designation); ?></td>
 												<td><?php echo "Rp " . number_format((htmlentities($row->salary)), 2, ',', '.'); ?></td>
-												<td><a class="btn btn-sm btn-primary" href="salary-view.php?&id=<?= htmlentities($row->id); ?>">Generate Slip</a></td>
+												<td><a target="_blank" class="btn btn-sm btn-primary" href="salary-view.php?&id=<?= htmlentities($row->Employee_Id); ?>">Generate Slip</a></td>
 												<td class="text-right">
 													<div class="dropdown dropdown-action">
 														<a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="material-icons">more_vert</i></a>
@@ -176,7 +138,6 @@ function terbilang($nilai)
 												</td>
 											</tr>
 									<?php
-											echo terbilang(1000000000);
 										}
 									}
 									?>
