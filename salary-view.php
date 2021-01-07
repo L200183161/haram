@@ -167,7 +167,7 @@ function terbilang($nilai)
 													</li>
 													<li><span><?php echo htmlentities($row->Designation); ?></span></li>
 													<li>Employee ID: <?php echo htmlentities($row->Employee_Id); ?></li>
-													<li>Joining Date: <?php echo htmlentities($row->Joining_Date); ?></li>
+													<li>Joining Date: <?php echo htmlentities($newdate); ?></li>
 												</ul>
 											</div>
 										</div>

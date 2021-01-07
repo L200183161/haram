@@ -118,6 +118,7 @@ if (!$is_login) {
 								if ($query->rowCount() > 0) {
 									foreach ($results as $row) {
 										$foto = $row->Picture;
+										$newdate = date("l d-m-Y", strtotime($row->Joining_Date));
 								?>
 
 										<tr>
@@ -130,7 +131,7 @@ if (!$is_login) {
 											<td><?php echo htmlentities($row->Employee_Id); ?></td>
 											<td><?php echo htmlentities($row->Email); ?></td>
 											<td><?php echo htmlentities($row->Phone); ?></td>
-											<td><?php echo htmlentities($row->Joining_Date); ?></td>
+											<td><?php echo htmlentities($newdate); ?></td>
 											<td><?php echo htmlentities($row->Designation); ?></td>
 											<td class="text-right">
 												<div class="dropdown dropdown-action">

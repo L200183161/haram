@@ -122,7 +122,7 @@ if (!$is_login) {
 												</td>
 												<td><?php echo htmlentities($row->Employee_Id); ?></td>
 												<td><?php echo htmlentities($row->Email); ?></td>
-												<td><?php echo htmlentities($row->Joining_Date); ?></td>
+												<td><?php echo htmlentities($newdate); ?></td>
 												<td><?php echo htmlentities($row->Designation); ?></td>
 												<td><?php echo "Rp " . number_format((htmlentities($row->salary)), 2, ',', '.'); ?></td>
 												<td><a target="_blank" class="btn btn-sm btn-primary" href="salary-view.php?&id=<?= htmlentities($row->Employee_Id); ?>">Generate Slip</a></td>

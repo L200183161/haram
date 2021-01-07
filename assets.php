@@ -240,7 +240,7 @@ if (!$is_login) {
 									<div class="col-md-6">
 										<div class="form-group">
 											<label>Purchase Date</label>
-											<input name="purchase_date" id="purchase_date" class="form-control" type="date">
+											<input name="purchase_date" id="purchase_date" class="form-control floating datetimepicker" type="text">
 										</div>
 									</div>
 									<div class="col-md-6">
@@ -375,7 +375,7 @@ if (!$is_login) {
 									<div class="col-md-6">
 										<div class="form-group">
 											<label for="purchase_date">Purchase Date</label>
-											<input name="purchase_date" id="purchase_date" value="<?php echo date('dd/mm/yy'); ?>" class="form-control" type="date">
+											<input name="purchase_date" id="purchase_date" class="form-control floating datetimepicker" type="text">
 										</div>
 									</div>
 									<div class="col-md-6">
