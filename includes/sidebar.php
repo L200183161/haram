@@ -128,6 +128,7 @@
 						<li><a href="logout.php"> Logout </a></li>
 					</ul>
 				</li>
+				<!-- Dark Mode without localstorage 😭 -->
 				<div class="submenu onoffswitch">
 					<input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="btn-toggle" checked>
 					<label class="onoffswitch-label" for="btn-toggle">
