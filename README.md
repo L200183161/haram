@@ -1,4 +1,4 @@
-# Smarthr
+# HaRaM
 
 #### Member of Group
 
@@ -23,7 +23,7 @@
 - [x] ~~Payroll / Payslip belum 🙃~~
 - [ ] Search **BELUM**
 
-#### Smarthr
+#### HaRaM
 
 ```Login
 U : donny ##Employee
