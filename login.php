@@ -75,7 +75,7 @@ if (isset($_POST['login'])) {
 	<!-- Fontawesome CSS -->
 	<link rel="stylesheet" href="assets/css/font-awesome.min.css">
 	<!-- Main CSS -->
-	<link rel="stylesheet" href="assets/css/style.css">
+	<link rel="stylesheet" href="assets/css/style.css" id="theme-link">
 	<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
 	<!--[if lt IE 9]>
 			<script src="assets/js/html5shiv.min.js"></script>

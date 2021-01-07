@@ -1151,7 +1151,7 @@ table.dataTable thead>tr>td.sorting {
 }
 
 .checktoggle {
-	background-color: #e0001a;
+	background-color: #1f1f1f;
 	border-radius: 12px;
 	cursor: pointer;
 	display: block;
@@ -1177,7 +1177,7 @@ table.dataTable thead>tr>td.sorting {
 }
 
 .check:checked+.checktoggle {
-	background-color: #55ce63;
+	background-color: #fdfffd;
 }
 
 .check:checked+.checktoggle:after {
@@ -1216,10 +1216,10 @@ table.dataTable thead>tr>td.sorting {
 .onoffswitch-inner:before,
 .onoffswitch-inner:after {
 	box-sizing: border-box;
-	color: #fff;
+	color: rgb(0, 0, 0);
 	display: block;
 	float: left;
-	font-size: 16px;
+	font-size: 15px;
 	height: 30px;
 	line-height: 32px;
 	padding: 0;
@@ -1227,22 +1227,22 @@ table.dataTable thead>tr>td.sorting {
 }
 
 .onoffswitch-inner:before {
-	background-color: #55ce63;
-	color: #fff;
-	content: "ON";
+	background-color: #b6b6b6bb;
+	color: rgb(0, 0, 0);
+	content: "OFF";
 	padding-left: 14px;
 }
 
 .onoffswitch-inner:after {
 	content: "OFF";
 	padding-right: 14px;
-	background-color: #ccc;
+	background-color: rgb(39, 39, 39);
 	color: #fff;
 	text-align: right;
 }
 
 .onoffswitch-switch {
-	background: #fff;
+	background: rgb(0, 0, 0);
 	border-radius: 20px;
 	bottom: 0;
 	display: block;

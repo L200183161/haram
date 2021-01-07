@@ -53,7 +53,7 @@
 										echo 'active';
 									} else {
 										echo '';
-									} ?>" href="salary.php"><i class="la la-money"></i> <span>Gajian</span></a>
+									} ?>" href="salary.php"><i class="la la-money"></i> <span>Salary</span></a>
 					</li>
 
 				<?php } ?>
@@ -128,8 +128,27 @@
 						<li><a href="logout.php"> Logout </a></li>
 					</ul>
 				</li>
-
+				<div class="submenu onoffswitch">
+					<input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="btn-toggle" checked>
+					<label class="onoffswitch-label" for="btn-toggle">
+						<span class="onoffswitch-inner"></span>
+						<span class="onoffswitch-switch"></span>
+					</label>
+				</div>
 			</ul>
+			<!-- I didnt use any theme preference but i use this button just to change the style only. hope i have a lot of time to make this feature available in future by saving in side server script or localstorage cheers ©donny -->
 		</div>
 	</div>
 </div>
+<script>
+	const btn = document.querySelector("#btn-toggle");
+	const theme = document.querySelector("#theme-link");
+	btn.addEventListener("click", function() {
+		// Swap out the URL for the different stylesheets
+		if (theme.getAttribute("href") == "assets/css/style.css") {
+			theme.href = "assets/css/dark.css";
+		} else {
+			theme.href = "assets/css/style.css";
+		}
+	});
+</script>

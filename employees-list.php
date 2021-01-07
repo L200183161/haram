@@ -42,7 +42,7 @@ if (!$is_login) {
 	<!-- Datetimepicker CSS -->
 	<link rel="stylesheet" href="assets/css/bootstrap-datetimepicker.min.css">
 	<!-- Main CSS -->
-	<link rel="stylesheet" href="assets/css/style.css">
+	<link rel="stylesheet" href="assets/css/style.css" id="theme-link">
 	<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
 	<!--[if lt IE 9]>
 			<script src="assets/js/html5shiv.min.js"></script>
@@ -146,8 +146,7 @@ if (!$is_login) {
 												</div>
 											</td>
 										</tr>
-
-								<?php $cnt += 1;
+								<?php
 									}
 								} ?>
 							</tbody>
@@ -582,6 +581,7 @@ if (!$is_login) {
 					[5, 10, 25, 50, "All"]
 				],
 				responsive: true,
+				"bInfo": false,
 				language: {
 					search: "_INPUT_",
 					searchPlaceholder: "Search in Here",

@@ -30,7 +30,7 @@ if (!$is_login) {
     <!-- Chart CSS -->
     <link rel="stylesheet" href="assets/plugins/morris/morris.css">
     <!-- Main CSS -->
-    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/style.css" id="theme-link">
 
     <!-- glitch SCSS -->
     <link rel="stylesheet" href="assets/css/glitch.css">

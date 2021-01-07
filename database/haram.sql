@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 07, 2021 at 01:56 PM
+-- Generation Time: Jan 08, 2021 at 02:12 AM
 -- Server version: 10.4.16-MariaDB
 -- PHP Version: 7.4.12
 
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `smarthr`
+-- Database: `haram`
 --
 
 -- --------------------------------------------------------
@@ -40,6 +40,7 @@ CREATE TABLE `assets` (
   `AssetCondition` varchar(255) NOT NULL,
   `Warranty` int(3) NOT NULL,
   `Price` int(255) NOT NULL,
+  `Employee_Id` varchar(50) NOT NULL,
   `AssetUser` varchar(255) NOT NULL,
   `Description` varchar(255) NOT NULL,
   `DateTime` datetime NOT NULL DEFAULT current_timestamp()
@@ -49,44 +50,13 @@ CREATE TABLE `assets` (
 -- Dumping data for table `assets`
 --
 
-INSERT INTO `assets` (`id`, `assetName`, `assetId`, `PurchaseDate`, `PurchaseFrom`, `Manufacturer`, `Model`, `Status`, `Supplier`, `AssetCondition`, `Warranty`, `Price`, `AssetUser`, `Description`, `DateTime`) VALUES
-(1, 'Mackbook Pro', '#AST-031256', '2020-09-23', 'Bismillah', 'Apple Inc.', '2019', 1, 'Amazon', 'In good shape', 12, 77777777, 'Faqih Eza Ammar', 'This is the description of the laptop', '2020-09-23 23:57:26'),
-(5, 'Mataram', '#AST-786032', '2020-11-16', 'Amajon', 'Hujan', 'Model Lama', 3, 'JNE', 'Rusak', 69, 20000, 'Rifqy Fauzy', 'Tolong Diapprove mas', '2020-12-26 09:56:01'),
-(11, 'Busetttttt', '#AST-198247', '2021-01-09', 'Cok', 'Kamu', 'Koyok', 2, 'Kadal', 'Buaya', 12, 101010, 'John Doe', 'hahaha', '2020-12-31 00:23:25'),
-(12, 'asuuuu', '#AST-791503', '2021-01-01', 'sempak', 'kuda', 'nil', 0, '', '', 25, 15000000, 'John Doe', 'hahahahahaahaha', '2021-01-01 01:54:46'),
-(13, 'Acer Swift 3 ADE', '#AST-679305', '2021-01-13', 'Global Usaha Masyarakat', 'ACER Inc.', 'SF314-54G', 1, 'Tokopedia', 'In good shape', 12, 8000000, 'Goerge Merchason', 'Laptop Baruu Harum Wanginya', '2021-01-01 01:55:15'),
-(15, 'Goodness', '#AST-518423', '2021-01-21', 'Ohhh god', 'hiya', 'Iya Kamu', 0, 'HAHAHAH', 'HAHAHAHAHAHAHAH', 133, 2147483647, 'Richard Miles', 'Buahhh', '2021-01-01 01:59:37'),
-(17, 'Halooo ', '#AST-953680', '2021-01-21', 'Dicoba', 'Samsung', 'SM4-3', 1, 'Reeeeeee', 'Bettulll', 999, 2147483647, 'Donny Rizal', 'Donny dicoba\r\n', '2021-01-01 20:05:02'),
-(33, 'Monitor Samsung S3-232', '#AST-721863', '07/01/2021', 'Amazon', 'Apple Inc.', 'Model Lama', 3, 'JNE', 'Dalam keadaan rusak ', 23, 2000000, 'Donny Rizal', 'Rusak Kabeh', '2021-01-07 07:55:32');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `clients`
---
-
-CREATE TABLE `clients` (
-  `id` int(11) NOT NULL,
-  `FirstName` varchar(255) NOT NULL,
-  `LastName` varchar(255) NOT NULL,
-  `UserName` varchar(255) NOT NULL,
-  `Email` varchar(255) NOT NULL,
-  `Password` varchar(225) NOT NULL,
-  `ClientId` varchar(225) NOT NULL,
-  `Phone` varchar(20) NOT NULL,
-  `Company` varchar(255) NOT NULL,
-  `Address` varchar(255) NOT NULL,
-  `Status` int(11) NOT NULL,
-  `Picture` varchar(225) NOT NULL,
-  `date` date NOT NULL DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `clients`
---
-
-INSERT INTO `clients` (`id`, `FirstName`, `LastName`, `UserName`, `Email`, `Password`, `ClientId`, `Phone`, `Company`, `Address`, `Status`, `Picture`, `date`) VALUES
-(6, 'Donny Rizal ', 'Adhi Pratama', 'dude', 'dude@gmail.com', '$2y$10$OjGRR6GlAzCl6yP/taWI7uxIB2DOwOTeA4OBDUfU5bJRUdm9SJ8FO', 'CLT-543872', '089', 'dude', 'dude', 1, 'd41d8cd98f00b204e9800998ecf8427e1609003455', '2020-12-27');
+INSERT INTO `assets` (`id`, `assetName`, `assetId`, `PurchaseDate`, `PurchaseFrom`, `Manufacturer`, `Model`, `Status`, `Supplier`, `AssetCondition`, `Warranty`, `Price`, `Employee_Id`, `AssetUser`, `Description`, `DateTime`) VALUES
+(1, 'Mackbook Pro', '#AST-031256', '2020-09-23', 'Bismillah', 'Apple Inc.', '2019', 1, 'Amazon', 'In good shape', 12, 77777777, 'EMP-186249', 'Faqih Eza Ammar', 'Ini Laptop mantap kali bujang', '2020-09-23 23:57:26'),
+(5, 'Mataram', '#AST-786032', '2020-11-16', 'Amajon', 'Hujan', 'Model Lama', 3, 'JNE', 'Rusak', 69, 20000, 'EMP-743619', 'Rifqy Fauzy', 'Tolong Diapprove mas', '2020-12-26 09:56:01'),
+(17, 'Halooo ', '#AST-953680', '2021-01-21', 'Dicoba', 'Samsung', 'SM4-3', 1, 'Reeeeeee', 'Bettulll', 999, 2147483647, 'EMP-295047', 'Donny Rizal', 'Donny dicoba\r\n', '2021-01-01 20:05:02'),
+(33, 'Monitor Samsung S3-232', '#AST-721863', '07/01/2021', 'Amazon', 'Apple Inc.', 'Model Lama', 3, 'JNE', 'Dalam keadaan rusak ', 23, 2000000, 'EMP-295047', 'Donny Rizal', 'Rusak Kabeh', '2021-01-07 07:55:32'),
+(34, 'PS5', '#AST-790541', '24/01/2021', 'PSEnterprise', 'Sony Inc.', '2020', 0, 'Shopee', 'Very well', 24, 8250000, 'EMP-160427', 'Derrick Rose', 'Demi kebersamaan dengan ini saya membuat pemesanan untuk PS5 supaya anak2 pada semangat di kantor 😁', '2021-01-08 01:04:07'),
+(35, 'PC Master', '#AST-016892', '08/01/2021', 'Amajon', 'Apple Inc.', 'Model Lama', 1, 'JNE', 'Rusak', 21, 2147483647, 'EMP-743619', 'Rifqy Fauzy', 'Ini PC bagus oleh mas rifqy', '2021-01-08 01:34:09');
 
 -- --------------------------------------------------------
 
@@ -252,16 +222,8 @@ INSERT INTO `user_role` (`role`, `id`, `date`) VALUES
 ALTER TABLE `assets`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `assetId` (`assetId`),
-  ADD UNIQUE KEY `assetId_2` (`assetId`),
-  ADD UNIQUE KEY `assetId_3` (`assetId`),
-  ADD UNIQUE KEY `assetId_4` (`assetId`);
-
---
--- Indexes for table `clients`
---
-ALTER TABLE `clients`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `ClientId` (`ClientId`);
+  ADD KEY `AssetUser` (`AssetUser`),
+  ADD KEY `Employee_Id` (`Employee_Id`);
 
 --
 -- Indexes for table `departments`
@@ -274,14 +236,19 @@ ALTER TABLE `departments`
 -- Indexes for table `designations`
 --
 ALTER TABLE `designations`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `Designation` (`Designation`),
+  ADD KEY `Department` (`Department`);
 
 --
 -- Indexes for table `employees`
 --
 ALTER TABLE `employees`
   ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `Employee_Id` (`Employee_Id`) USING BTREE;
+  ADD UNIQUE KEY `Employee_Id` (`Employee_Id`) USING BTREE,
+  ADD UNIQUE KEY `UserName` (`UserName`),
+  ADD KEY `Department` (`Department`),
+  ADD KEY `Designation` (`Designation`);
 
 --
 -- Indexes for table `salary`
@@ -313,13 +280,7 @@ ALTER TABLE `user_role`
 -- AUTO_INCREMENT for table `assets`
 --
 ALTER TABLE `assets`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
-
---
--- AUTO_INCREMENT for table `clients`
---
-ALTER TABLE `clients`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
 
 --
 -- AUTO_INCREMENT for table `departments`
@@ -360,6 +321,31 @@ ALTER TABLE `user_role`
 --
 -- Constraints for dumped tables
 --
+
+--
+-- Constraints for table `assets`
+--
+ALTER TABLE `assets`
+  ADD CONSTRAINT `assets_ibfk_1` FOREIGN KEY (`Employee_Id`) REFERENCES `employees` (`Employee_Id`);
+
+--
+-- Constraints for table `designations`
+--
+ALTER TABLE `designations`
+  ADD CONSTRAINT `designations_ibfk_1` FOREIGN KEY (`Department`) REFERENCES `departments` (`Department`);
+
+--
+-- Constraints for table `employees`
+--
+ALTER TABLE `employees`
+  ADD CONSTRAINT `employees_ibfk_1` FOREIGN KEY (`Department`) REFERENCES `departments` (`Department`),
+  ADD CONSTRAINT `employees_ibfk_2` FOREIGN KEY (`Designation`) REFERENCES `designations` (`Designation`);
+
+--
+-- Constraints for table `salary`
+--
+ALTER TABLE `salary`
+  ADD CONSTRAINT `salary_ibfk_1` FOREIGN KEY (`Employee_Id`) REFERENCES `employees` (`Employee_Id`);
 
 --
 -- Constraints for table `users`

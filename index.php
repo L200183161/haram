@@ -32,7 +32,7 @@ if (!$is_login) {
 	<!-- Chart CSS -->
 	<link rel="stylesheet" href="assets/plugins/morris/morris.css">
 	<!-- Main CSS -->
-	<link rel="stylesheet" href="assets/css/style.css">
+	<link rel="stylesheet" href="assets/css/style.css" id="theme-link">
 	<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
 	<!--[if lt IE 9]>
 			<script src="assets/js/html5shiv.min.js"></script>
@@ -61,6 +61,7 @@ if (!$is_login) {
 					<div class="row">
 						<div class="col-sm-12">
 							<h3 class="page-title">Welcome <?php $app->logged_user(); ?></h3>
+							<h4><?php $app->greetingWord(); ?></h4>
 							<ul class="breadcrumb">
 								<li class="breadcrumb-item active">Dashboard</li>
 							</ul>
@@ -85,8 +86,8 @@ if (!$is_login) {
 							<div class="card-body">
 								<span class="dash-widget-icon"><i class="fa fa-usd"></i></span>
 								<div class="dash-widget-info">
-									<h3><?php $app->get_count_from('clients'); ?></h3>
-									<span>Clients</span>
+									<h3><?php $app->get_count_from('departments'); ?></h3>
+									<span>Departments</span>
 								</div>
 							</div>
 						</div>

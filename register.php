@@ -10,7 +10,7 @@ $is_login = $app->is_user();
 if ($is_login) {
 	session_destroy();
 }
-$koneksi = new mysqli("localhost", "root", "", "smarthr");
+$koneksi = new mysqli("localhost", "root", "", "haram");
 if ($koneksi->connect_errno) {
 	echo die("Failed to connect to MySQL: " . $koneksi->connect_error);
 }
@@ -74,7 +74,7 @@ if (isset($_POST["registration"])) {
 	<!-- Fontawesome CSS -->
 	<link rel="stylesheet" href="assets/css/font-awesome.min.css">
 	<!-- Main CSS -->
-	<link rel="stylesheet" href="assets/css/style.css">
+	<link rel="stylesheet" href="assets/css/style.css" id="theme-link">
 	<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
 	<!--[if lt IE 9]>
 			<script src="assets/js/html5shiv.min.js"></script>

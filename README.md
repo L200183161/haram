@@ -10,17 +10,17 @@
 
 ### *ToDo biar ndang selesai*
 
-- [ ] Last Profile 
-- [ ] ~~Cookie belum kudu push besok~~
+- [x] ~~Last Profile ~~
+- [x] ~~Cookie belum kudu push besok~~ gak usah karena cookie bikin nganu
 - [x] ~~Edit Employees~~
 - [x] ~~Login with hash~~
 - [x] ~~Admin and Employee Session~~
 - [x] ~~Asssets sudah complete and PRINT tinggal PDF~~
 - [x] ~~Registrasi.php tolong dibetulin~~
-- [ ] Dashboard kalau mau ditambahin monggo 🙏🙏🙏
+- [x] ~~Dashboard kalau mau ditambahin monggo 🙏🙏🙏~~
 - [x] ~~Author sudah di subscription.php tinggal **rename**~~
-- [ ] CRUD Database table yang lain
-- [ ] Payroll / Payslip belum 🙃
+- [x] ~~CRUD Database table yang lain~~
+- [x] ~~Payroll / Payslip belum 🙃~~
 - [ ] Search **BELUM**
 
 #### Smarthr

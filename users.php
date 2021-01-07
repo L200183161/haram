@@ -34,7 +34,7 @@ if (!$is_login) {
 	<!-- Datetimepicker CSS -->
 	<link rel="stylesheet" href="assets/css/bootstrap-datetimepicker.min.css">
 	<!-- Main CSS -->
-	<link rel="stylesheet" href="assets/css/style.css">
+	<link rel="stylesheet" href="assets/css/style.css" id="theme-link">
 	<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
 	<!--[if lt IE 9]>
 			<script src="assets/js/html5shiv.min.js"></script>
@@ -71,7 +71,7 @@ if (!$is_login) {
 							</ul>
 						</div>
 						<div class="col-auto float-right ml-auto">
-							<a href="javascript:void(0)" class="btn add-btn" data-toggle="modal" data-target="#add_user"><i class="fa fa-plus"></i> Add User</a>
+							<!-- <a href="javascript:void(0)" class="btn add-btn" data-toggle="modal" data-target="#add_user"><i class="fa fa-plus"></i> Add User</a> -->
 						</div>
 					</div>
 				</div>
@@ -86,6 +86,7 @@ if (!$is_login) {
 							<table class="table table-striped custom-table dataTable">
 								<thead>
 									<tr>
+										<th>Number</th>
 										<th>Full Name</th>
 										<th>Email</th>
 										<th>Phone</th>
@@ -94,17 +95,19 @@ if (!$is_login) {
 										<th class="text-right">Action</th>
 									</tr>
 								</thead>
-								<?php
-								$sql = "SELECT * FROM users";
-								$query = $dbh->prepare($sql);
-								$query->execute();
-								$results = $query->fetchAll(PDO::FETCH_OBJ);
-								$cnt = 1;
-								if ($query->rowCount() > 0) {
-									foreach ($results as $result) {
-								?>
-										<tbody>
+								<tbody>
+									<?php
+									$sql = "SELECT * FROM users";
+									$query = $dbh->prepare($sql);
+									$query->execute();
+									$results = $query->fetchAll(PDO::FETCH_OBJ);
+									$cnt = 1;
+									if ($query->rowCount() > 0) {
+										foreach ($results as $result) {
+									?>
+
 											<tr>
+												<td><?php echo htmlentities($cnt++); ?></td>
 												<td>
 													<h2 class="table-avatar">
 														<a href="profile.php" class="avatar"><img src="uploads/profiles/<?php echo htmlentities($result->picture); ?>" alt="Profile Pic"></a>
@@ -120,16 +123,17 @@ if (!$is_login) {
 													<div class="dropdown dropdown-action">
 														<a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="material-icons">more_vert</i></a>
 														<div class="dropdown-menu dropdown-menu-right">
-															<a class="dropdown-item" href="#" data-toggle="modal" data-target="#edit_user"><i class="fa fa-pencil m-r-5"></i> Edit</a>
-															<a class="dropdown-item" href="#" data-toggle="modal" data-target="#delete_user"><i class="fa fa-trash-o m-r-5"></i> Delete</a>
+															<!-- <a class="dropdown-item" href="#" data-toggle="modal" data-target="#"><i class="fa fa-pencil m-r-5"></i> Edit</a>
+															<a class="dropdown-item" href="#" data-toggle="modal" data-target="#"><i class="fa fa-trash-o m-r-5"></i> Delete</a> -->
 														</div>
 													</div>
 												</td>
 											</tr>
-										</tbody>
-								<?php $cnt = $cnt + 1;
-									}
-								} ?>
+
+									<?php
+										}
+									} ?>
+								</tbody>
 							</table>
 						</div>
 					</div>
@@ -574,6 +578,7 @@ if (!$is_login) {
 					[5, 10, 25, 50, "All"]
 				],
 				responsive: true,
+				"bInfo": false,
 				language: {
 					search: "_INPUT_",
 					searchPlaceholder: "Search in Here",

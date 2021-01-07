@@ -29,7 +29,7 @@ if (!$is_login) {
 	<!-- Select2 CSS -->
 	<link rel="stylesheet" href="assets/css/select2.min.css">
 	<!-- Main CSS -->
-	<link rel="stylesheet" href="assets/css/style.css">
+	<link rel="stylesheet" href="assets/css/style.css" id="theme-link">
 	<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
 	<!--[if lt IE 9]>
 			<script src="assets/js/html5shiv.min.js"></script>
@@ -96,10 +96,9 @@ if (!$is_login) {
 												</div>
 												<ul>
 													<li><i class="fa fa-circle"></i> <b>L200183161</b></li>
-													<li><i class="fa fa-circle"></i>Backend</li>
 													<li><i class="fa fa-circle"></i>Frontend</li>
-													<li><i class="fa fa-circle"></i>Documentation</li>
-													<li style="display:none;"><i class="fa fa-circle"></i>karepmu le, kon ewaki raiso wes tak garap aku kabeh kowe ra sah ntuk nilai ya</li>
+													<li><i class="fa fa-circle"></i>Backend</li>
+													<li><i class="fa fa-circle"></i>Database</li>
 												</ul>
 												<!-- <a href="#" class="btn btn-lg btn-secondary mt-auto" data-toggle="modal" data-target="#edit_plan">Edit</a> -->
 											</div>
@@ -112,13 +111,12 @@ if (!$is_login) {
 												<div class="mb-4">
 													<h3>M. Faqih</h3>
 													<h5>Eza Ammar</h5>
-													<img src="https://scontent.fcgk9-2.fna.fbcdn.net/v/t1.0-9/67471992_2431989803560535_4023364550727303168_o.jpg?_nc_cat=101&ccb=2&_nc_sid=8bfeb9&_nc_eui2=AeEMlx1n5cBSdUhHOlu5GhRNMrBcO99FANgysFw730UA2LI2z912-gKTeB-YuWekDbhwuZmgWRnBn1KM1lTLIBnF&_nc_ohc=iw9BA7FjZ4AAX9jztQL&_nc_ht=scontent.fcgk9-2.fna&oh=8fe911280a5c40ea24096ca112f3399b&oe=600FCFB3" class="img-thumbnail display-4" aria-placeholder="gambar"></img>
+													<img src="https://scontent.fcgk9-1.fna.fbcdn.net/v/t1.0-9/135023656_3705913482834821_6838534268878914374_o.jpg?_nc_cat=102&ccb=2&_nc_sid=730e14&_nc_eui2=AeG5369-aD5rfIyvGmPsRLWydddKU4o7LxB110pTijsvEIEZaJyiP12BjczVifu5UgWq8KV_WefSxtiRp6BsMDSq&_nc_ohc=Sx2V9irB5qkAX9ZIFcG&_nc_ht=scontent.fcgk9-1.fna&oh=7e829ee0ec7b74e2c7fa8a366cbf2c3f&oe=601E0FB9" class="img-thumbnail display-4" aria-placeholder="gambar"></img>
 												</div>
 												<ul>
-													<li><i class="fa fa-check"></i> <b>1 User</b></li>
-													<li><i class="fa fa-check"></i> 5 Projects </li>
-													<li><i class="fa fa-check"></i> 5 GB Storage</li>
-													<li><i class="fa fa-check"></i> Unlimited Message</li>
+													<li><i class="fa fa-check"></i> <b>L200183178</b></li>
+													<li><i class="fa fa-check"></i> Frontend </li>
+													<li><i class="fa fa-check"></i> Database </li>
 												</ul>
 												<!-- <a href="#" class="btn btn-lg btn-secondary mt-auto" data-toggle="modal" data-target="#edit_plan">Edit</a> -->
 											</div>
@@ -131,22 +129,17 @@ if (!$is_login) {
 												<div class="mb-4">
 													<h3>M. Rifqy</h3>
 													<h5>Fauzy</h5>
-													<img src="https://scontent.fcgk8-1.fna.fbcdn.net/v/t1.0-9/128905106_197069311952501_2945952198504829428_n.jpg?_nc_cat=111&ccb=2&_nc_sid=174925&_nc_eui2=AeGjsMne5swHBVkVAhWu86eSBF7NxD1rl04EXs3EPWuXTuBWJnoIypbrPSjSZunjmY5HVMCPs-clndlqKU9DOzxd&_nc_ohc=XKHNZn8FEH0AX_VnDTr&_nc_ht=scontent.fcgk8-1.fna&oh=0ea6062982157be8bf7c27a847e9a501&oe=6012A321" class="img-thumbnail display-4" aria-placeholder="gambar"></img>
+													<img src="./assets/img/optimized-6hpw (1).jpg" class="img-thumbnail display-4" aria-placeholder="gambar"></img>
 												</div>
 												<ul>
-													<li><i class="fa fa-check"></i> <b>1 User</b></li>
-													<li><i class="fa fa-check"></i> 5 Projects </li>
-													<li><i class="fa fa-check"></i> 5 GB Storage</li>
-													<li><i class="fa fa-check"></i> Unlimited Message</li>
+													<li><i class="fa fa-check"></i> <b>L200184090</b></li>
+													<li><i class="fa fa-check"></i> Documentation</li>
+													<li><i class="fa fa-check"></i> Datahase</li>
 												</ul>
 												<!-- <a href="#" class="btn btn-lg btn-secondary mt-auto" data-toggle="modal" data-target="#edit_plan">Edit</a> -->
 											</div>
 										</div>
 									</div>
-
-
-
-
 								</div>
 							</div>
 							<!-- /Monthly Tab -->

@@ -32,6 +32,23 @@ class AppLib
       exit($e->getMessage());
     }
   }
+  public function greetingWord()
+  {
+    date_default_timezone_set('Asia/Jakarta');
+    $hour = date("G");
+
+    if ($hour > 0 && $hour < 24) {
+      if ($hour >= 0 && $hour < 6) {
+        echo "<p>Morning sunshine 🌞 <b> <br> Good Luck for Today🤗 <b></p>";
+      } else if ($hour >= 6 && $hour < 12) {
+        echo "<p>Good Morning. Have a nice day 🤙 </p>";
+      } else if ($hour >= 12 && $hour < 17) {
+        echo "<p>Good Afternoon. Good Job guys 👍 </p>";
+      } else {
+        echo "<p>Good evening. Have a nice dream tho 💤 </p>";
+      }
+    }
+  }
 
   /*
    * Check Username
@@ -85,49 +102,6 @@ class AppLib
   }
 
   /*
-       * Login
-       *
-       * @param $username, $password
-       * @return $mixed
-       * */
-
-  /*
-    * Login
-    *
-    * @param $username, $password
-    * @return $mixed
-    * */
-  public function Login($username, $password, $session)
-  {
-    try {
-      $db = DataBase();
-      $sql = "SELECT username,Password FROM users WHERE (username=:usname)";
-      $query = $db->prepare($sql);
-      $query->bindParam(':usname', $username, PDO::PARAM_STR);
-      $query->execute();
-      $results = $query->fetchAll(PDO::FETCH_OBJ);
-      if ($query->rowCount() > 0) {
-        foreach ($results as $row) {
-          $hashpass = $row->Password;
-        }
-        //verifying Password
-        if (password_verify($password, $hashpass)) {
-          $session = $username;
-          echo "<script type='text/javascript'> document.location = 'index.php'; </script>";
-        } else {
-          echo "<script>alert('You entered wrong password')</script>";
-        }
-      }
-      //if username or email not found in database
-      else {
-        echo "<script>alert('User not registered with us')</script>";
-      }
-    } catch (PDOException $e) {
-      exit($e->getMessage());
-    }
-  }
-
-  /*
    * get User Details
    *
    * @param $user_id
@@ -143,29 +117,6 @@ class AppLib
       if ($query->rowCount() > 0) {
         return $query->fetch(PDO::FETCH_OBJ);
       }
-    } catch (PDOException $e) {
-      exit($e->getMessage());
-    }
-  }
-  /*
-     * Register New Contact
-     *
-     * @param $name, $email, $username, $password
-     * @return ID
-     * */
-  public function Add_Contact($full_name, $email,  $occupation, $phone, $location)
-  {
-    try {
-      $db = DataBase();
-      $sql = "INSERT INTO users(FullName, Email, Occupation, Phone, Location) VALUES (:fname,:email,:job,:phone,:location)";
-      $query = $db->prepare($sql);
-      $query->bindParam("fname", $full_name, PDO::PARAM_STR);
-      $query->bindParam("email", $email, PDO::PARAM_STR);
-      $query->bindParam("job", $occupation, PDO::PARAM_STR);
-      $query->bindParam("phone", $phone, PDO::PARAM_STR);
-      $query->bindParam("location", $location, PDO::PARAM_STR);
-      $query->execute();
-      return $db->lastInsertId();
     } catch (PDOException $e) {
       exit($e->getMessage());
     }
@@ -232,25 +183,5 @@ class AppLib
   public function logged_user()
   {
     echo htmlentities(ucfirst($_SESSION['userlogin']));
-  }
-  public function set_company($name, $address, $country, $postal, $email, $phone)
-  {
-    $dbh = Database();
-    $sql = "INSERT INTO `Company` ( `Company`, `Address`, `Country`, `Postal_Code`, `Email`, `Phone`) VALUES (:company, :address, :country, :code, :email, :phone)";
-    $query = $dbh->prepare($sql);
-    $query->bindParam(':company', $name, PDO::PARAM_STR);
-    $query->bindParam(':address', $address, PDO::PARAM_STR);
-    $query->bindParam(':country', $country, PDO::PARAM_STR);
-    $query->bindParam(':code', $postal, PDO::PARAM_STR);
-    $query->bindParam(':email', $email, PDO::PARAM_STR);
-    $query->bindParam(':phone', $phone, PDO::PARAM_STR);
-    $query->execute();
-    $lastInsert = $dbh->lastInsertId();
-    if ($lastInsert > 0) {
-      echo "<script>alert('Company Settings Has Been Set');</script>";
-      echo "<script>window.location.href='settings.php';</script>";
-    } else {
-      echo "<script>alert('Something Went Wrong.');</script>";
-    }
   }
 }

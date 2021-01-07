@@ -35,7 +35,7 @@ if (!$is_login) {
 	<!-- Datetimepicker CSS -->
 	<link rel="stylesheet" href="assets/css/bootstrap-datetimepicker.min.css">
 	<!-- Main CSS -->
-	<link rel="stylesheet" href="assets/css/style.css">
+	<link rel="stylesheet" href="assets/css/style.css" id="theme-link">
 	<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
 	<!--[if lt IE 9]>
 			<script src="assets/js/html5shiv.min.js"></script>
@@ -148,7 +148,7 @@ if (!$is_login) {
 													<div class="dropdown dropdown-action">
 														<a href="javascript:void(0)" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="material-icons">more_vert</i></a>
 														<div class="dropdown-menu dropdown-menu-right">
-															<a class="dropdown-item" href="javascript:void(0)" id="edit_assetButton" data-id="<?php echo htmlentities($row['id']) ?>" data-assetid="<?php echo htmlentities($row['assetId']) ?>" data-name="<?php echo htmlentities($row['assetName']) ?>" data-date="<?php echo htmlentities($row['PurchaseDate']) ?>" data-from="<?php echo htmlentities($row['PurchaseFrom']) ?>" data-manufacturer="<?php echo htmlentities($row['Manufacturer']) ?>" data-mod="<?php echo htmlentities($row['Model']) ?>" data-status="<?php echo htmlentities($row['Status']) ?>" data-supplier="<?php echo htmlentities($row['Supplier']) ?>" data-assetcondition="<?php echo htmlentities($row['AssetCondition']) ?>" data-warranty="<?php echo htmlentities($row['Warranty']) ?>" data-price="<?php echo htmlentities($row['Price']) ?>" data-assetuser="<?php echo htmlentities($row['AssetUser']) ?>" data-description="<?php echo htmlentities($row['Description']) ?>" data-toggle="modal" data-target="#edit_asset"><i class="fa fa-pencil m-r-5"></i> Edit</a>
+															<a class="dropdown-item" href="javascript:void(0)" id="edit_assetButton" data-id="<?php echo htmlentities($row['id']) ?>" data-assetid="<?php echo htmlentities($row['assetId']) ?>" data-name="<?php echo htmlentities($row['assetName']) ?>" data-date="<?php echo htmlentities($row['PurchaseDate']) ?>" data-from="<?php echo htmlentities($row['PurchaseFrom']) ?>" data-manufacturer="<?php echo htmlentities($row['Manufacturer']) ?>" data-mod="<?php echo htmlentities($row['Model']) ?>" data-status="<?php echo htmlentities($row['Status']) ?>" data-supplier="<?php echo htmlentities($row['Supplier']) ?>" data-assetcondition="<?php echo htmlentities($row['AssetCondition']) ?>" data-warranty="<?php echo htmlentities($row['Warranty']) ?>" data-price="<?php echo htmlentities($row['Price']) ?>" data-employeeid="<?= htmlentities($row->FirstName) . " " . htmlentities($row->LastName); ?>" data-assetuser="<?php echo htmlentities($row['AssetUser']) ?>" data-description="<?php echo htmlentities($row['Description']) ?>" data-toggle="modal" data-target="#edit_asset"><i class="fa fa-pencil m-r-5"></i> Edit</a>
 															<!-- Jikalau memakai ->query() tolong ati2 dengan apostrhorp awal dan akhir '' -->
 															<a class="dropdown-item" href="javascript:void(0)" onclick="confirm_modal('assets.php?&delid=<?= htmlentities($row['id']); ?>');" data-id="<?php echo htmlentities($row['id']); ?>" data-toggle="modal" data-target="#delete_asset"><i class="fa fa-trash-o m-r-5"></i> Delete</a>
 														</div>
@@ -182,9 +182,10 @@ if (!$is_login) {
 				$warrant = htmlspecialchars($_POST['warranty']);
 				$price = htmlspecialchars($_POST['value']);
 				$asset_user = htmlspecialchars($_POST['asset_user']);
+				$employee_id = htmlspecialchars($_POST['employee_pilih']);
 				$description = htmlspecialchars($_POST['description']);
-				$sql = "INSERT INTO `assets` ( `assetName`, `assetId`, `PurchaseDate`, `PurchaseFrom`, `Manufacturer`, `Model`, `Status`, `Supplier`, `AssetCondition`, `Warranty`, `Price`, `AssetUser`, `Description`)
-				VALUES (:name, :id, :purchaseDate, :purchasefrom, :manufacturer, :model, :stats, :supplier, :condition, :warranty, :price, :user, :describe)";
+				$sql = "INSERT INTO `assets` ( `assetName`, `assetId`, `PurchaseDate`, `PurchaseFrom`, `Manufacturer`, `Model`, `Status`, `Supplier`, `AssetCondition`, `Warranty`, `Price`, `AssetUser`, `Employee_ID`, `Description`)
+				VALUES (:name, :id, :purchaseDate, :purchasefrom, :manufacturer, :model, :stats, :supplier, :condition, :warranty, :price, :user, :employee_id, :describe)";
 				$query = $dbh->prepare($sql);
 				$query->bindParam(':name', $asset, PDO::PARAM_STR);
 				$query->bindParam(':id', $asset_id, PDO::PARAM_STR);
@@ -198,6 +199,7 @@ if (!$is_login) {
 				$query->bindParam(':warranty', $warrant, PDO::PARAM_INT);
 				$query->bindParam(':price', $price, PDO::PARAM_INT);
 				$query->bindParam(':user', $asset_user, PDO::PARAM_STR);
+				$query->bindParam(':employee_id', $employee_id, PDO::PARAM_STR);
 				$query->bindParam(':describe', $description, PDO::PARAM_STR);
 				$query->execute();
 				$lastinserted = $dbh->lastInsertId();
@@ -320,6 +322,25 @@ if (!$is_login) {
 												<!-- <option>John Doe</option>
 												<option>Richard Miles</option> -->
 												<!-- Yeyyy berhasilll noicee -->
+											</select>
+										</div>
+									</div>
+									<div class="col-md-6">
+										<div class="form-group">
+											<label>Emoloyee ID</label>
+											<!-- Nanti dikasih selection ya don pake employees select  cek yg praktikum gudang dulu buat query-> -->
+											<select name="employee_pilih" class="select">
+												<option>Select Staff</option>
+												<?php
+												$sql2 = "SELECT * from employees";
+												$query2 = $dbh->prepare($sql2);
+												$query2->execute();
+												$result2 = $query2->fetchAll(PDO::FETCH_OBJ);
+												foreach ($result2 as $row) {
+												?>
+													<option value="<?php echo htmlentities($row->Employee_Id); ?>">
+														<?php echo htmlentities($row->FirstName) . " " . htmlentities($row->LastName); ?></option>
+												<?php } ?>
 											</select>
 										</div>
 									</div>
@@ -454,6 +475,25 @@ if (!$is_login) {
 											</select>
 										</div>
 									</div>
+									<div class="col-md-6">
+										<div class="form-group">
+											<label>Emoloyee ID</label>
+											<!-- Nanti dikasih selection ya don pake employees select  cek yg praktikum gudang dulu buat query-> -->
+											<select name="employee_pilih" class="select">
+												<option>Select Staff</option>
+												<?php
+												$sql2 = "SELECT * from employees";
+												$query2 = $dbh->prepare($sql2);
+												$query2->execute();
+												$result2 = $query2->fetchAll(PDO::FETCH_OBJ);
+												foreach ($result2 as $row) {
+												?>
+													<option value="<?php echo htmlentities($row->Employee_Id); ?>">
+														<?php echo htmlentities($row->FirstName) . " " . htmlentities($row->LastName); ?></option>
+												<?php } ?>
+											</select>
+										</div>
+									</div>
 									<div class="col-md-12">
 										<div class="form-group">
 											<label for="description">Description</label>
@@ -497,13 +537,14 @@ if (!$is_login) {
 				$warrant = htmlspecialchars($_POST['warranty']);
 				$price = htmlspecialchars($_POST['value']);
 				$user = htmlspecialchars($_POST['user']);
+				$employee_id = htmlspecialchars($_POST['employee_pilih']);
 				$description = htmlspecialchars($_POST['description']);
 				// Hati2 dengan query nya 
 				$sql = "UPDATE `assets` SET `assetName`=:name, `assetId`=:assetId, 
 				`PurchaseDate`=:purchaseDate, `PurchaseFrom`=:purchasefrom, 
 				`Manufacturer`=:manufacturer, `Model`=:model, `Status`=:stats, 
 				`Supplier`=:supplier, `AssetCondition`=:condition, 
-				`Warranty`=:warranty, `Price`=:price, `AssetUser`=:user, 
+				`Warranty`=:warranty, `Price`=:price, `AssetUser`=:user, `Employee_Id`=:employee_id, 
 				`Description`=:describe WHERE `id`=:id";
 				$query = $dbh->prepare(($sql));
 				// hati hati dengan PARAM_STR dan PARAM_INT tolong buka database buat nyocokin. semisal itu pake INT harus pakai PARAM_INT begitu juga dengan STR sesuain. okaeyyyy seemangat 💪
@@ -520,6 +561,7 @@ if (!$is_login) {
 				$query->bindParam(':warranty', $warrant, PDO::PARAM_INT);
 				$query->bindParam(':price', $price, PDO::PARAM_INT);
 				$query->bindParam(':user', $user, PDO::PARAM_STR);
+				$query->bindParam(':employee_id', $employee_id, PDO::PARAM_STR);
 				$query->bindParam(':describe', $description, PDO::PARAM_STR);
 				$query->execute();
 
@@ -626,6 +668,7 @@ if (!$is_login) {
 			let Warranty = $(this).data('warranty');
 			let Price = $(this).data('price');
 			let AssetUser = $(this).data('assetuser');
+			let employeeid = $(this).data('employeeid');
 			let Description = $(this).data('description');
 
 			// modal body ni di form edit_asset ada yang atas namanya modal-body setelah <form>
@@ -642,6 +685,7 @@ if (!$is_login) {
 			$(".modal-body #warranty").val(Warranty);
 			$(".modal-body #value").val(Price);
 			$(".modal-body #asset_user").val(AssetUser);
+			$(".modal-body #employee_pilih").val(employeeid);
 			$(".modal-body #description").val(Description);
 		});
 
@@ -654,6 +698,7 @@ if (!$is_login) {
 					[5, 10, 25, 50, "All"]
 				],
 				responsive: true,
+				"bInfo": false,
 				language: {
 					search: "_INPUT_",
 					searchPlaceholder: "Search in Here",
