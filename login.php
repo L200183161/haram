@@ -87,7 +87,6 @@ if (isset($_POST['login'])) {
 	<!-- Main Wrapper -->
 	<div class="main-wrapper">
 		<div class="account-content">
-			<a href="job-list.php" class="btn btn-primary apply-btn">Apply Job</a>
 			<div class="container">
 				<!-- Account Logo -->
 				<div class="account-logo">

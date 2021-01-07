@@ -78,45 +78,12 @@ if (!$is_login) {
 				<!-- /Page Header -->
 
 				<!-- Search Filter -->
-				<div class="row filter-row">
-					<div class="col-sm-6 col-md-3">
-						<div class="form-group form-focus">
-							<input type="text" class="form-control floating">
-							<label class="focus-label">Name</label>
-						</div>
-					</div>
-					<div class="col-sm-6 col-md-3">
-						<div class="form-group form-focus select-focus">
-							<select class="select floating">
-								<option>Select Company</option>
-								<option>Global Technologies</option>
-								<option>Delta Infotech</option>
-							</select>
-							<label class="focus-label">Company</label>
-						</div>
-					</div>
-					<div class="col-sm-6 col-md-3">
-						<div class="form-group form-focus select-focus">
-							<select class="select floating">
-								<option>Select Roll</option>
-								<option>Web Developer</option>
-								<option>Web Designer</option>
-								<option>Android Developer</option>
-								<option>Ios Developer</option>
-							</select>
-							<label class="focus-label">Role</label>
-						</div>
-					</div>
-					<div class="col-sm-6 col-md-3">
-						<a href="#" class="btn btn-success btn-block"> Search </a>
-					</div>
-				</div>
 				<!-- /Search Filter -->
 
 				<div class="row">
 					<div class="col-md-12">
 						<div class="table-responsive">
-							<table class="table table-striped custom-table datatable">
+							<table class="table table-striped custom-table dataTable">
 								<thead>
 									<tr>
 										<th>Full Name</th>
@@ -580,7 +547,8 @@ if (!$is_login) {
 	</div>
 	<!-- /Main Wrapper -->
 	<!-- jQuery -->
-	<script src="assets/js/jquery-3.2.1.min.js"></script>
+	<!-- <script src="assets/js/jquery-3.2.1.min.js"></script> -->
+	<script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
 	<!-- Bootstrap Core JS -->
 	<script src="assets/js/popper.min.js"></script>
 	<script src="assets/js/bootstrap.min.js"></script>
@@ -596,6 +564,23 @@ if (!$is_login) {
 	<script src="assets/js/dataTables.bootstrap4.min.js"></script>
 	<!-- Custom JS -->
 	<script src="assets/js/app.js"></script>
+	<script>
+		$(document).ready(function() {
+
+			$('.dataTable').DataTable({
+				"pagingType": "full_numbers",
+				"lengthMenu": [
+					[5, 10, 25, 50, -1],
+					[5, 10, 25, 50, "All"]
+				],
+				responsive: true,
+				language: {
+					search: "_INPUT_",
+					searchPlaceholder: "Search in Here",
+				}
+			});
+		});
+	</script>
 </body>
 
 </html>

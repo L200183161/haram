@@ -66,7 +66,9 @@ if (!$is_login) {
 							</ul>
 						</div>
 						<div class="col-auto float-right ml-auto">
-							<a href="javascript:void(0)" class="btn add-btn" data-toggle="modal" data-target="#add_designation"><i class="fa fa-plus"></i> Add Designation</a>
+							<?php if ($_SESSION['role'] == "admin") { ?>
+								<a href="javascript:void(0)" class="btn add-btn" data-toggle="modal" data-target="#add_designation"><i class="fa fa-plus"></i> Add Designation</a>
+							<?php } ?>
 						</div>
 					</div>
 				</div>

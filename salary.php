@@ -1,5 +1,6 @@
 ﻿<?php
 require_once 'includes/library.php';
+error_reporting(E_ALL ^ E_WARNING);
 session_start();
 $app = new AppLib();
 $dbh = Database();
@@ -78,7 +79,9 @@ if (!$is_login) {
 							</ul>
 						</div>
 						<div class="col-auto float-right ml-auto">
-							<a href="#" class="btn add-btn" data-toggle="modal" data-target="#add_salary"><i class="fa fa-plus"></i> Add Salary</a>
+							<?php if ($_SESSION['role'] == "admin") { ?>
+								<a href="#" class="btn add-btn" data-toggle="modal" data-target="#add_salary"><i class="fa fa-plus"></i> Add Salary</a>
+							<?php } ?>
 						</div>
 					</div>
 				</div>
@@ -86,7 +89,7 @@ if (!$is_login) {
 				<div class="row">
 					<div class="col-md-12">
 						<div class="table-responsive">
-							<table class="table table-striped custom-table datatable">
+							<table class="table table-striped custom-table dataTable">
 								<thead>
 									<tr>
 										<th>ID</th>
@@ -116,8 +119,8 @@ if (!$is_login) {
 												<td><?php echo htmlentities($cnt++); ?></td>
 												<td>
 													<h2 class="table-avatar">
-														<a href="profile.php" class="avatar"><img alt="picture" src="uploads/employees/<?php echo htmlentities($row->Picture); ?>"></a>
-														<a href="profile.php"><?php echo htmlentities($row->FirstName) . " " . htmlentities($row->LastName); ?><span><?php echo htmlentities($row->Designation); ?></span></a>
+														<a href="profile.php?&id=<?= htmlentities($row->Employee_Id); ?>" class="avatar"><img alt="picture" src="uploads/employees/<?php echo htmlentities($row->Picture); ?>"></a>
+														<a href="profile.php?&id=<?= htmlentities($row->Employee_Id); ?>"><?php echo htmlentities($row->FirstName) . " " . htmlentities($row->LastName); ?><span><?php echo htmlentities($row->Designation); ?></span></a>
 													</h2>
 												</td>
 												<td><?php echo htmlentities($row->Employee_Id); ?></td>
@@ -130,7 +133,7 @@ if (!$is_login) {
 													<div class="dropdown dropdown-action">
 														<a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="material-icons">more_vert</i></a>
 														<div class="dropdown-menu dropdown-menu-right">
-															<a class="dropdown-item" id="edit_employeesButton" href="javascript:void(0)" data-id="<?= htmlentities($row->id); ?>" data-firstname="<?= htmlentities($row->FirstName); ?>" data-lastname="<?= htmlentities($row->LastName); ?>" data-username="<?= htmlentities($row->UserName); ?>" data-email="<?= htmlentities($row->Email); ?>" data-password="" data-confirmpass="" data-employeeid="<?= htmlentities($row->Employee_Id); ?>" data-phone="<?= htmlentities($row->Phone); ?>" data-department="<?= htmlentities($row->Department); ?>" data-designation="<?= htmlentities($row->Designation); ?>" data-picture="<?= htmlentities($row->Picture); ?>" data-toggle="modal" data-target="#edit_employee"><i class="fa fa-pencil m-r-5"></i> Edit</a>
+															<a class="dropdown-item" id="edit_salaryButton" href="javascript:void(0)" data-id="<?= htmlentities($row->id); ?>" data-firstname="<?= htmlentities($row->FirstName); ?>" data-lastname="<?= htmlentities($row->LastName); ?>" data-employeeid="<?= htmlentities($row->FirstName) . " " . htmlentities($row->LastName); ?>" data-salary="<?= htmlentities($row->salary); ?>" data-toggle="modal" data-target="#edit_salary"><i class="fa fa-pencil m-r-5"></i> Edit</a>
 															<!-- Ini buat ambil data script dibawah dicoba dulu boi -->
 															<a class="dropdown-item disabled" href="javascript:void(0)" onclick="confirm_modal('salary.php?&delid=<?= htmlentities($row->id); ?>');" data-id="<?php echo htmlentities($row->id); ?>" data-toggle="modal" data-target="#delete_employee"><i class="fa fa-trash-o m-r-5"></i> Delete</a>
 														</div>
@@ -149,6 +152,34 @@ if (!$is_login) {
 			</div>
 		</div>
 		<!-- /Page Content -->
+		<?php
+		//adding employees code starts from here
+		if (isset($_POST['add_salary'])) {
+			$employee_id = htmlspecialchars($_POST['employee_pilih']);
+			$salary = htmlspecialchars($_POST['salary']);
+			$sql = "INSERT INTO `salary` (`Employee_Id`, `salary`, `date`)
+				VALUES (:id, :salary, DEFAULT)";
+			$query = $dbh->prepare($sql);
+			$query->bindParam(':id', $employee_id, PDO::PARAM_STR);
+			$query->bindParam(':salary', $salary, PDO::PARAM_INT);
+			$query->execute();
+			// echo $query;
+			$lastInsert = $dbh->lastInsertId();
+			if ($lastInsert > 0) {
+				echo "<script>alert('Salary succesfully Added.');</script>";
+				echo "<script>window.location.href = 'salary.php';</script>";
+			} else {
+				echo "<script>alert('Something Went Wrong');</script>";
+				echo "<script>window.location.href = 'salary.php';</script>";
+				// echo 'Error :';
+				// echo '<pre>';
+				// print_r($query->errorInfo());
+				// print_r($query->debugDumpParams());
+				// echo '</pre>';
+			}
+		}
+		?>
+		<!-- //ading employees code eds here -->
 		<!-- Add Salary Modal -->
 		<div id="add_salary" class="modal custom-modal fade" role="dialog">
 			<div class="modal-dialog modal-dialog-centered modal-lg" role="document">
@@ -160,94 +191,33 @@ if (!$is_login) {
 						</button>
 					</div>
 					<div class="modal-body">
-						<form>
+						<form method="POST">
 							<div class="row">
 								<div class="col-sm-6">
 									<div class="form-group">
-										<label>Select Staff</label>
-										<select class="select">
-											<option>John Doe</option>
-											<option>Richard Miles</option>
+										<label>Employees List</label>
+										<select class="select" name="employee_pilih">
+											<option>Select Staff</option>
+											<?php
+											$sql2 = "SELECT * from employees";
+											$query2 = $dbh->prepare($sql2);
+											$query2->execute();
+											$result2 = $query2->fetchAll(PDO::FETCH_OBJ);
+											foreach ($result2 as $row) {
+											?>
+												<option value="<?php echo htmlentities($row->Employee_Id); ?>">
+													<?php echo htmlentities($row->FirstName) . " " . htmlentities($row->LastName); ?></option>
+											<?php } ?>
 										</select>
 									</div>
 								</div>
 								<div class="col-sm-6">
-									<label>Net Salary</label>
-									<input class="form-control" type="text">
-								</div>
-							</div>
-							<div class="row">
-								<div class="col-sm-6">
-									<h4 class="text-primary">Earnings</h4>
-									<div class="form-group">
-										<label>Basic</label>
-										<input class="form-control" type="text">
-									</div>
-									<div class="form-group">
-										<label>DA(40%)</label>
-										<input class="form-control" type="text">
-									</div>
-									<div class="form-group">
-										<label>HRA(15%)</label>
-										<input class="form-control" type="text">
-									</div>
-									<div class="form-group">
-										<label>Conveyance</label>
-										<input class="form-control" type="text">
-									</div>
-									<div class="form-group">
-										<label>Allowance</label>
-										<input class="form-control" type="text">
-									</div>
-									<div class="form-group">
-										<label>Medical Allowance</label>
-										<input class="form-control" type="text">
-									</div>
-									<div class="form-group">
-										<label>Others</label>
-										<input class="form-control" type="text">
-									</div>
-									<div class="add-more">
-										<a href="#"><i class="fa fa-plus-circle"></i> Add More</a>
-									</div>
-								</div>
-								<div class="col-sm-6">
-									<h4 class="text-primary">Deductions</h4>
-									<div class="form-group">
-										<label>TDS</label>
-										<input class="form-control" type="text">
-									</div>
-									<div class="form-group">
-										<label>ESI</label>
-										<input class="form-control" type="text">
-									</div>
-									<div class="form-group">
-										<label>PF</label>
-										<input class="form-control" type="text">
-									</div>
-									<div class="form-group">
-										<label>Leave</label>
-										<input class="form-control" type="text">
-									</div>
-									<div class="form-group">
-										<label>Prof. Tax</label>
-										<input class="form-control" type="text">
-									</div>
-									<div class="form-group">
-										<label>Labour Welfare</label>
-										<input class="form-control" type="text">
-									</div>
-									<div class="form-group">
-										<label>Others</label>
-										<input class="form-control" type="text">
-									</div>
-									<div class="add-more">
-										<a href="#"><i class="fa fa-plus-circle"></i> Add More</a>
-									</div>
+									<label for="salary">Basic Salary</label>
+									<input name="salary" id="salary" class="form-control" type="text">
 								</div>
 							</div>
 							<div class="submit-section">
-								<button class="btn btn-primary submit-btn">Submit</button>
+								<button name="add_salary" class="btn btn-primary submit-btn">Submit</button>
 							</div>
 						</form>
 					</div>
@@ -255,9 +225,41 @@ if (!$is_login) {
 			</div>
 		</div>
 		<!-- /Add Salary Modal -->
+
+		<?php
+		//adding employees code starts from here
+		if (isset($_POST['edit_salary'])) {
+			$id = htmlspecialchars($_POST['id']);
+			$employee_id = htmlspecialchars($_POST['employee_pilih']);
+			$salary = htmlspecialchars($_POST['salary']);
+			$sql = "UPDATE `salary` set `id`=:id, `Employee_Id`=:employee_id, `salary`=:salary WHERE `id`=:id";
+			$query = $dbh->prepare($sql);
+			$query->bindParam(':id', $id, PDO::PARAM_STR);
+			$query->bindParam(':employee_id', $employee_id, PDO::PARAM_STR);
+			$query->bindParam(':salary', $salary, PDO::PARAM_INT);
+			$query->execute();
+			// echo $query;
+			return $query->rowCount();
+			$lastInsert = $dbh->lastInsertId();
+			if ($lastInsert > 0) {
+				echo "<script>alert('Edit Salary is success.');</script>";
+				echo "<script>window.location.href = 'salary.php';</script>";
+			} else {
+				echo "<script>alert('Something is Wrong');</script>";
+				echo "<script>window.location.href = 'salary.php';</script>";
+				// echo 'Error :';
+				// echo '<pre>';
+				// print_r($query->errorInfo());
+				// print_r($query->debugDumpParams());
+				// echo '</pre>';
+			}
+		}
+		?>
+		<!-- //ading employees code eds here -->
+
 		<!-- Edit Salary Modal -->
 		<div id="edit_salary" class="modal custom-modal fade" role="dialog">
-			<div class="modal-dialog modal-dialog-centered modal-md" role="document">
+			<div class="modal-dialog modal-dialog-centered modal-lg" role="document">
 				<div class="modal-content">
 					<div class="modal-header">
 						<h5 class="modal-title">Edit Staff Salary</h5>
@@ -266,92 +268,37 @@ if (!$is_login) {
 						</button>
 					</div>
 					<div class="modal-body">
-						<form>
+						<form method="POST">
 							<div class="row">
 								<div class="col-sm-6">
 									<div class="form-group">
-										<label>Select Staff</label>
-										<select class="select">
-											<option>John Doe</option>
-											<option>Richard Miles</option>
+										<label hidden for="id">ID</label>
+										<input hidden name="id" id="id" class="form-control" type="text">
+									</div>
+									<div class="form-group">
+										<label>Employees List</label>
+										<select class="select" name="employee_pilih">
+											<option>Select Staff</option>
+											<?php
+											$sql2 = "SELECT * from employees";
+											$query2 = $dbh->prepare($sql2);
+											$query2->execute();
+											$result2 = $query2->fetchAll(PDO::FETCH_OBJ);
+											foreach ($result2 as $row) {
+											?>
+												<option value="<?php echo htmlentities($row->Employee_Id); ?>">
+													<?php echo htmlentities($row->FirstName) . " " . htmlentities($row->LastName); ?></option>
+											<?php } ?>
 										</select>
 									</div>
 								</div>
 								<div class="col-sm-6">
-									<label>Net Salary</label>
-									<input class="form-control" type="text" value="$4000">
-								</div>
-							</div>
-							<div class="row">
-								<div class="col-sm-6">
-									<h4 class="text-primary">Earnings</h4>
-									<div class="form-group">
-										<label>Basic</label>
-										<input class="form-control" type="text" value="$6500">
-									</div>
-									<div class="form-group">
-										<label>DA(40%)</label>
-										<input class="form-control" type="text" value="$2000">
-									</div>
-									<div class="form-group">
-										<label>HRA(15%)</label>
-										<input class="form-control" type="text" value="$700">
-									</div>
-									<div class="form-group">
-										<label>Conveyance</label>
-										<input class="form-control" type="text" value="$70">
-									</div>
-									<div class="form-group">
-										<label>Allowance</label>
-										<input class="form-control" type="text" value="$30">
-									</div>
-									<div class="form-group">
-										<label>Medical Allowance</label>
-										<input class="form-control" type="text" value="$20">
-									</div>
-									<div class="form-group">
-										<label>Others</label>
-										<input class="form-control" type="text">
-									</div>
-								</div>
-								<div class="col-sm-6">
-									<h4 class="text-primary">Deductions</h4>
-									<div class="form-group">
-										<label>TDS</label>
-										<input class="form-control" type="text" value="$300">
-									</div>
-									<div class="form-group">
-										<label>ESI</label>
-										<input class="form-control" type="text" value="$20">
-									</div>
-									<div class="form-group">
-										<label>PF</label>
-										<input class="form-control" type="text" value="$20">
-									</div>
-									<div class="form-group">
-										<label>Leave</label>
-										<input class="form-control" type="text" value="$250">
-									</div>
-									<div class="form-group">
-										<label>Prof. Tax</label>
-										<input class="form-control" type="text" value="$110">
-									</div>
-									<div class="form-group">
-										<label>Labour Welfare</label>
-										<input class="form-control" type="text" value="$10">
-									</div>
-									<div class="form-group">
-										<label>Fund</label>
-										<input class="form-control" type="text" value="$40">
-									</div>
-									<div class="form-group">
-										<label>Others</label>
-										<input class="form-control" type="text" value="$15">
-									</div>
+									<label for="salary">Basic Salary</label>
+									<input name="salary" id="salary" class="form-control" type="text">
 								</div>
 							</div>
 							<div class="submit-section">
-								<button class="btn btn-primary submit-btn">Save</button>
+								<button name="edit_salary" class="btn btn-primary submit-btn">Submit</button>
 							</div>
 						</form>
 					</div>
@@ -388,7 +335,8 @@ if (!$is_login) {
 	</div>
 	<!-- /Main Wrapper -->
 	<!-- jQuery -->
-	<script src="assets/js/jquery-3.2.1.min.js"></script>
+	<!-- <script src="assets/js/jquery-3.2.1.min.js"></script> -->
+	<script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
 	<!-- Bootstrap Core JS -->
 	<script src="assets/js/popper.min.js"></script>
 	<script src="assets/js/bootstrap.min.js"></script>
@@ -404,6 +352,43 @@ if (!$is_login) {
 	<script src="assets/js/dataTables.bootstrap4.min.js"></script>
 	<!-- Custom JS -->
 	<script src="assets/js/app.js"></script>
+	<script>
+		$(document).ready(function() {
+
+			$('.dataTable').DataTable({
+				"pagingType": "full_numbers",
+				"lengthMenu": [
+					[5, 10, 25, 50, -1],
+					[5, 10, 25, 50, "All"]
+				],
+				responsive: true,
+				language: {
+					search: "_INPUT_",
+					searchPlaceholder: "Search in Here",
+				}
+			});
+		});
+
+		function printDiv(divName) {
+			var printContents = document.getElementById(divName).innerHTML;
+			var originalContents = document.body.innerHTML;
+
+			document.body.innerHTML = printContents;
+
+			window.print();
+
+			document.body.innerHTML = originalContents;
+		};
+		$(document).on("click", "#edit_salaryButton", function() {
+			let id = $(this).data('id');
+			let employeeid = $(this).data('employeeid');
+			let salary = $(this).data('salary');
+
+			$(".modal-body #id").val(id);
+			$(".modal-body #employee_pilih").val(employeeid);
+			$(".modal-body #salary").val(salary);
+		});
+	</script>
 </body>
 
 </html>

@@ -99,6 +99,7 @@ if (!$is_login) {
 						<table class="table table-striped custom-table mb-0 dataTable js-exportable">
 							<thead>
 								<tr>
+									<th class="text-left">Number</th>
 									<th class="text-left">Name</th>
 									<th class="text-left">Employee ID</th>
 									<th class="text-left">Email</th>
@@ -122,10 +123,11 @@ if (!$is_login) {
 								?>
 
 										<tr>
+											<td><?php echo htmlentities($cnt++); ?></td>
 											<td>
 												<h2 class="table-avatar">
-													<a href="profile.php" class="avatar"><img alt="picture" src="uploads/employees/<?php echo htmlentities($row->Picture); ?>"></a>
-													<a href="profile.php"><?php echo htmlentities($row->FirstName) . " " . htmlentities($row->LastName); ?><span><?php echo htmlentities($row->Designation); ?></span></a>
+													<a href="profile.php?&id=<?= htmlentities($row->Employee_Id); ?>" class="avatar"><img alt="picture" src="uploads/employees/<?php echo htmlentities($row->Picture); ?>"></a>
+													<a href="profile.php?&id=<?= htmlentities($row->Employee_Id); ?>"><?php echo htmlentities($row->FirstName) . " " . htmlentities($row->LastName); ?><span><?php echo htmlentities($row->Designation); ?></span></a>
 												</h2>
 											</td>
 											<td><?php echo htmlentities($row->Employee_Id); ?></td>
@@ -137,7 +139,7 @@ if (!$is_login) {
 												<div class="dropdown dropdown-action">
 													<a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="material-icons">more_vert</i></a>
 													<div class="dropdown-menu dropdown-menu-right">
-														<a class="dropdown-item" id="edit_employeesButton" href="javascript:void(0)" data-id="<?= htmlentities($row->id); ?>" data-firstname="<?= htmlentities($row->FirstName); ?>" data-lastname="<?= htmlentities($row->LastName); ?>" data-username="<?= htmlentities($row->UserName); ?>" data-email="<?= htmlentities($row->Email); ?>" data-password="" data-confirmpass="" data-employeeid="<?= htmlentities($row->Employee_Id); ?>" data-phone="<?= htmlentities($row->Phone); ?>" data-department="<?= htmlentities($row->Department); ?>" data-designation="<?= htmlentities($row->Designation); ?>" data-picture="<?= htmlentities($row->Picture); ?>" data-toggle="modal" data-target="#edit_employee"><i class="fa fa-pencil m-r-5"></i> Edit</a>
+														<a class="dropdown-item" id="edit_employeesButton" href="javascript:void(0)" data-id="<?= htmlentities($row->id); ?>" data-firstname="<?= htmlentities($row->FirstName); ?>" data-lastname="<?= htmlentities($row->LastName); ?>" data-username="<?= htmlentities($row->UserName); ?>" data-email="<?= htmlentities($row->Email); ?>" data-password="" data-confirmpass="" data-employeeid="<?= htmlentities($row->Employee_Id); ?>" data-phone="<?= htmlentities($row->Phone); ?>" data-department="<?= htmlentities($row->Department); ?>" data-designation="<?= htmlentities($row->Designation); ?>" data-address="<?php echo htmlentities($row->address); ?>" data-picture="<?= htmlentities($row->Picture); ?>" data-toggle="modal" data-target="#edit_employee"><i class="fa fa-pencil m-r-5"></i> Edit</a>
 														<!-- Ini buat ambil data script dibawah dicoba dulu boi -->
 														<a class="dropdown-item" href="javascript:void(0)" onclick="confirm_modal('employees-list.php?&delid=<?= htmlentities($row->id); ?>');" data-id="<?php echo htmlentities($row->id); ?>" data-toggle="modal" data-target="#delete_employee"><i class="fa fa-trash-o m-r-5"></i> Delete</a>
 													</div>
@@ -169,6 +171,7 @@ if (!$is_login) {
 				$phone = htmlspecialchars($_POST['phone']);
 				$department = htmlspecialchars($_POST['department']);
 				$designation = htmlspecialchars($_POST['designation']);
+				$address = htmlspecialchars($_POST['address']);
 				//grabbing the picture
 				$file = $_FILES['picture']['name'];
 				$file_loc = $_FILES['picture']['tmp_name'];
@@ -180,8 +183,8 @@ if (!$is_login) {
 					$image = $final_file;
 					$password = password_hash($password, PASSWORD_DEFAULT);
 				}
-				$sql = "INSERT INTO `employees` (`id`, `FirstName`, `LastName`, `UserName`, `Email`, `Password`, `Employee_Id`, `Phone`, `Department`, `Designation`, `Picture`, `DateTime`)
-				VALUES (NULL, :firstname, :lastname, :username, :email,:password, :id, :phone, :department, :designation, :pic, current_timestamp())";
+				$sql = "INSERT INTO `employees` (`id`, `FirstName`, `LastName`, `UserName`, `Email`, `address`, `Password`, `Employee_Id`, `Phone`, `Department`, `Designation`, `Picture`, `DateTime`)
+				VALUES (NULL, :firstname, :lastname, :username, :email, :address, :password, :id, :phone, :department, :designation, :pic, current_timestamp())";
 				$query = $dbh->prepare($sql);
 				$query->bindParam(':firstname', $firstname, PDO::PARAM_STR);
 				$query->bindParam(':lastname', $lastname, PDO::PARAM_STR);
@@ -192,6 +195,7 @@ if (!$is_login) {
 				$query->bindParam(':phone', $phone, PDO::PARAM_STR);
 				$query->bindParam(':department', $department, PDO::PARAM_STR);
 				$query->bindParam(':designation', $designation, PDO::PARAM_STR);
+				$query->bindParam(':address', $address, PDO::PARAM_STR);
 				$query->bindParam(':pic', $image, PDO::PARAM_STR);
 				$query->execute();
 				$lastInsert = $dbh->lastInsertId();
@@ -269,11 +273,11 @@ if (!$is_login) {
 									<div class="col-sm-6">
 										<div class="form-group">
 											<label class="col-form-label">Phone </label>
-											<input name="phone" required class="form-control" type="text">
+											<input name="phone" required class="form-control" type="text" maxlength="13">
 										</div>
 									</div>
 
-									<div class="col-md-6">
+									<div class=" col-md-6">
 										<div class="form-group">
 											<label>Department <span class="text-danger">*</span></label>
 											<select required name="department" class="select" aria-placeholder="Haluu">
@@ -311,6 +315,12 @@ if (!$is_login) {
 									</div>
 									<div class="col-md-12">
 										<div class="form-group">
+											<label for="address">Address</label>
+											<textarea required name="address" id="address" class="form-control"></textarea>
+										</div>
+									</div>
+									<div class="col-md-12">
+										<div class="form-group">
 											<label class="col-form-label">Employee Picture</label>
 											<input class="form-control" required name="picture" type="file">
 										</div>
@@ -341,6 +351,8 @@ if (!$is_login) {
 				$phone = htmlspecialchars($_POST['phone']);
 				$department = htmlspecialchars($_POST['department']);
 				$designation = htmlspecialchars($_POST['designation']);
+				$password = password_hash($password, PASSWORD_DEFAULT);
+				$address = htmlspecialchars($_POST['address']);
 				//grabbing the picture
 				$file = $_FILES['picture']['name'];
 				$file_loc = $_FILES['picture']['tmp_name'];
@@ -353,8 +365,8 @@ if (!$is_login) {
 					$password = password_hash($password, PASSWORD_DEFAULT);
 				}
 				$sql = "UPDATE `employees` SET `id`=:id, `FirstName`=:firstname, `LastName`=:lastname, `UserName`=:username,
-			 `Email`=:email, `Password`=:password, `Employee_Id`=:employee_id, `Phone`=:phone, `Department`=:department, 
-			 `Designation`=:designation, `Picture`=:pic WHERE `id`=:id";
+			 	`Email`=:email, `address`=:address `Password`=:password, `Employee_Id`=:employee_id, `Phone`=:phone, `Department`=:department, 
+			 	`Designation`=:designation, `Picture`=:pic WHERE `id`=:id";
 				$query = $dbh->prepare($sql);
 				$query->bindParam(':id', $id, PDO::PARAM_STR);
 				$query->bindParam(':firstname', $firstname, PDO::PARAM_STR);
@@ -366,6 +378,7 @@ if (!$is_login) {
 				$query->bindParam(':phone', $phone, PDO::PARAM_STR);
 				$query->bindParam(':department', $department, PDO::PARAM_STR);
 				$query->bindParam(':designation', $designation, PDO::PARAM_STR);
+				$query->bindParam(':address', $address, PDO::PARAM_STR);
 				$query->bindParam(':pic', $image, PDO::PARAM_STR);
 				$query->execute();
 				return $query->rowCount();
@@ -383,7 +396,7 @@ if (!$is_login) {
 					print_r($query->debugDumpParams());
 					echo '</pre>';
 				}
-			} ?>
+			}  ?>
 
 			<div id="edit_employee" class="modal custom-modal fade" role="dialog">
 				<div class="modal-dialog modal-dialog-centered modal-lg" role="document">
@@ -399,8 +412,8 @@ if (!$is_login) {
 								<div class="row">
 									<div class="col-sm-6">
 										<div class="form-group">
-											<label for="id">ID</label>
-											<input name="id" id="id" class="form-control" type="text">
+											<label hidden for="id">ID</label>
+											<input hidden name="id" id="id" class="form-control" type="text">
 										</div>
 										<div class="form-group">
 											<label for="firstname" class="col-form-label">First Name <span class="text-danger">*</span></label>
@@ -447,7 +460,7 @@ if (!$is_login) {
 									<div class="col-sm-6">
 										<div class="form-group">
 											<label for="phone" class="col-form-label">Phone </label>
-											<input name="phone" id="phone" required class="form-control" type="text">
+											<input name="phone" id="phone" required class="form-control" type="text" maxlength="13">
 										</div>
 									</div>
 
@@ -489,9 +502,15 @@ if (!$is_login) {
 									</div>
 									<div class="col-md-12">
 										<div class="form-group">
+											<label for="address">Address</label>
+											<textarea required name="address" id="address" class="form-control"></textarea>
+										</div>
+									</div>
+									<div class="col-md-12">
+										<div class="form-group">
 											<label for="picture" class="col-form-label"></label>
 											<img class="img-preview" src="uploads/employees/<?= $foto; ?>" alt="Foto" width="100">
-											<input class="form-control" required name="picture" id="picture" type="file">
+											<input class="form-control" name="picture" id="picture" type="file">
 										</div>
 									</div>
 								</div>
@@ -592,6 +611,7 @@ if (!$is_login) {
 			let phone = $(this).data('phone');
 			let department = $(this).data('department');
 			let designation = $(this).data('designation');
+			let address = $(this).data('address');
 			let picture = $(this).data('picture');
 
 			$(".modal-body #id").val(id);
@@ -605,6 +625,7 @@ if (!$is_login) {
 			$(".modal-body #phone").val(phone);
 			$(".modal-body #department").val(department);
 			$(".modal-body #designation").val(designation);
+			$(".modal-body #address").val(address);
 			$(".modal-body #picture").val(picture);
 
 		});
