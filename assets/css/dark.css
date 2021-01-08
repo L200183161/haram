@@ -1246,7 +1246,7 @@ table.dataTable thead>tr>td.sorting {
     transform: translate(5px, -50%);
     width: 16px;
     height: 16px;
-    background-color: #1f1f1f;
+    background-color: #152028;
     border-radius: 50%;
     transition: left 300ms ease, transform 300ms ease;
 }
@@ -1311,7 +1311,7 @@ table.dataTable thead>tr>td.sorting {
 .onoffswitch-inner:after {
     content: "ON";
     padding-right: 14px;
-    background-color: rgb(5, 5, 5);
+    background-color: #152028;
     color: #fff;
     text-align: right;
 }

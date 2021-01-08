@@ -1151,7 +1151,7 @@ table.dataTable thead>tr>td.sorting {
 }
 
 .checktoggle {
-	background-color: #1f1f1f;
+	background-color: #152028;
 	border-radius: 12px;
 	cursor: pointer;
 	display: block;
@@ -1236,13 +1236,13 @@ table.dataTable thead>tr>td.sorting {
 .onoffswitch-inner:after {
 	content: "OFF";
 	padding-right: 14px;
-	background-color: rgb(39, 39, 39);
+	background-color: #152028;
 	color: #fff;
 	text-align: right;
 }
 
 .onoffswitch-switch {
-	background: rgb(0, 0, 0);
+	background: #152028;
 	border-radius: 20px;
 	bottom: 0;
 	display: block;

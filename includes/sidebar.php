@@ -131,7 +131,7 @@
 				<!-- Dark Mode without localstorage 😭 -->
 				<div class="submenu onoffswitch">
 					<input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="btn-toggle" checked>
-					<label class="onoffswitch-label" for="btn-toggle">
+					<label class="onoffswitch-label" for="btn-toggle" title="Dark Mode Switcher" data-placement="left" data-toggle="tooltip">
 						<span class="onoffswitch-inner"></span>
 						<span class="onoffswitch-switch"></span>
 					</label>
@@ -152,4 +152,5 @@
 			theme.href = "assets/css/style.css";
 		}
 	});
+	// Locaal
 </script>
