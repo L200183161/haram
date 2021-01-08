@@ -1186,7 +1186,8 @@ table.dataTable thead>tr>td.sorting {
 }
 
 .onoffswitch {
-	margin-left: auto;
+	margin-left: 10px;
+	margin-top: 5px;
 	position: relative;
 	width: 73px;
 	-webkit-user-select: none;

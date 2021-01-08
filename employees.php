@@ -188,7 +188,10 @@ if (!$is_login) {
 				</script>";
 				} else {
 					echo "<script>
-				alert('Something Went Wrong');
+				alert('Something is Wrong');
+				</script>";
+					echo "<script>
+				window.location.href = 'employees.php';
 				</script>";
 				}
 			}
