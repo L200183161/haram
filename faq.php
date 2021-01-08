@@ -67,7 +67,7 @@ if (!$is_login) {
 					<div class="card">
 						<div class="card-header">
 							<h4 class="card-title">
-								<a class="collapsed" data-toggle="collapse" href="#collapseOne">Hello There, First time in here?</a>
+								<a class="collapsed" data-toggle="collapse" href="#collapseOne">How do I start?</a>
 							</h4>
 						</div>
 						<div id="collapseOne" class="card-collapse collapse">
@@ -80,7 +80,7 @@ if (!$is_login) {
 					<div class="card">
 						<div class="card-header">
 							<h4 class="card-title">
-								<a class="collapsed" data-toggle="collapse" href="#collapseTwo">Parsnip lotus root celery?</a>
+								<a class="collapsed" data-toggle="collapse" href="#collapseTwo">What can I do with this app?</a>
 							</h4>
 						</div>
 						<div id="collapseTwo" class="card-collapse collapse">
@@ -93,7 +93,7 @@ if (!$is_login) {
 					<div class="card">
 						<div class="card-header">
 							<h4 class="card-title">
-								<a class="collapsed" data-toggle="collapse" href="#collapseThree">Ad vegan excepteur butcher ?</a>
+								<a class="collapsed" data-toggle="collapse" href="#collapseThree">How do I add employees?</a>
 							</h4>
 						</div>
 						<div id="collapseThree" class="card-collapse collapse">
@@ -106,7 +106,7 @@ if (!$is_login) {
 					<div class="card">
 						<div class="card-header">
 							<h4 class="card-title">
-								<a class="collapsed" data-toggle="collapse" href="#collapseFour">Ad vegan excepteur butcher vice lomo?</a>
+								<a class="collapsed" data-toggle="collapse" href="#collapseFour">Are my data private and secured?</a>
 							</h4>
 						</div>
 						<div id="collapseFour" class="card-collapse collapse">
@@ -119,7 +119,7 @@ if (!$is_login) {
 					<div class="card">
 						<div class="card-header">
 							<h4 class="card-title">
-								<a class="collapsed" data-toggle="collapse" href="#collapseFive">Cupidatat skateboard dolor brunch?</a>
+								<a class="collapsed" data-toggle="collapse" href="#collapseFive">How do I change the status of an asset?</a>
 							</h4>
 						</div>
 						<div id="collapseFive" class="card-collapse collapse">
