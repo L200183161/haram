@@ -114,9 +114,9 @@ if (!$is_login) {
 													<img src="https://scontent.fcgk9-1.fna.fbcdn.net/v/t1.0-9/135023656_3705913482834821_6838534268878914374_o.jpg?_nc_cat=102&ccb=2&_nc_sid=730e14&_nc_eui2=AeG5369-aD5rfIyvGmPsRLWydddKU4o7LxB110pTijsvEIEZaJyiP12BjczVifu5UgWq8KV_WefSxtiRp6BsMDSq&_nc_ohc=Sx2V9irB5qkAX9ZIFcG&_nc_ht=scontent.fcgk9-1.fna&oh=7e829ee0ec7b74e2c7fa8a366cbf2c3f&oe=601E0FB9" class="img-thumbnail display-4" aria-placeholder="gambar"></img>
 												</div>
 												<ul>
-													<li><i class="fa fa-check"></i> <b>L200183178</b></li>
-													<li><i class="fa fa-check"></i> Frontend </li>
-													<li><i class="fa fa-check"></i> Database </li>
+													<li><i class="fa fa-circle"></i> <b>L200183178</b></li>
+													<li><i class="fa fa-circle"></i> Frontend </li>
+													<li><i class="fa fa-circle"></i> Database </li>
 												</ul>
 												<!-- <a href="#" class="btn btn-lg btn-secondary mt-auto" data-toggle="modal" data-target="#edit_plan">Edit</a> -->
 											</div>
@@ -132,9 +132,9 @@ if (!$is_login) {
 													<img src="./assets/img/optimized-6hpw (1).jpg" class="img-thumbnail display-4" aria-placeholder="gambar"></img>
 												</div>
 												<ul>
-													<li><i class="fa fa-check"></i> <b>L200184090</b></li>
-													<li><i class="fa fa-check"></i> Documentation</li>
-													<li><i class="fa fa-check"></i> Datahase</li>
+													<li><i class="fa fa-circle"></i> <b>L200184090</b></li>
+													<li><i class="fa fa-circle"></i> Documentation</li>
+													<li><i class="fa fa-circle"></i> Datahase</li>
 												</ul>
 												<!-- <a href="#" class="btn btn-lg btn-secondary mt-auto" data-toggle="modal" data-target="#edit_plan">Edit</a> -->
 											</div>
