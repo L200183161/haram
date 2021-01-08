@@ -10,7 +10,7 @@
 
 ### *ToDo biar ndang selesai*
 
-- [x] ~~Last Profile ~~
+- [x] ~~Last Profile~~
 - [x] ~~Cookie belum kudu push besok~~ gak usah karena cookie bikin nganu
 - [x] ~~Edit Employees~~
 - [x] ~~Login with hash~~
@@ -26,7 +26,7 @@
 #### HaRaM
 
 ```Login
-U : donny ##Employee
+U : donny ##Employee (or you can create by yourself using register.php)
 P : donny
 
 U : admin #Admin
@@ -42,6 +42,9 @@ P : admin
 ![Dashboard](screenshots/clients.png?raw=true "Employee Dashboard")
 
 ![Dashboard](screenshots/employees.png?raw=true "Employees List")
+
+*`## Dark Mode for slider 🕶`*
+![Dashboard](screenshots/darkmodeslider.png?raw=true "Dark Modev")
 
 ```MIT License
 

@@ -105,7 +105,7 @@ if ($query->rowCount() > 0) {
 															<small class="text-muted"><?php echo htmlentities($row->Designation); ?></small>
 															<div class="staff-id">Employee ID : <?php echo htmlentities($row->Employee_Id); ?></div>
 															<div class="small doj text-muted">Date of Join : <?php echo htmlentities($newdate); ?></div>
-															<div class="staff-msg"><a class="btn btn-custom" href="mailto:donnyrizaladhip@rocketmail.com?subject=Hello%20sir%2C%20help%20me%20plz">Send Message</a></div>
+															<div class="staff-msg"><a class="btn btn-custom" href="mailto:<?php echo htmlentities($row->Email); ?>?subject=Hello%20sir%2C%20help%20me%20plz">Send Message</a></div>
 														</div>
 													</div>
 													<div class="col-md-7">
