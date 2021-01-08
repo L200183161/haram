@@ -350,8 +350,8 @@ if (!$is_login) {
 					$password = password_hash($password, PASSWORD_DEFAULT);
 				}
 				$sql = "UPDATE `employees` SET `id`=:id, `FirstName`=:firstname, `LastName`=:lastname, `UserName`=:username,
-			 `Email`=:email, `address`=:address `Password`=:password, `Employee_Id`=:employee_id, `Phone`=:phone, `Department`=:department, 
-			 `Designation`=:designation, `Picture`=:pic WHERE `id`=:id";
+			 `Email`=:email, `address`=:address, `Password`=:password, `Employee_Id`=:employee_id, `Phone`=:phone, `Department`=:department, 
+			 `Designation`=:designation WHERE `id`=:id";
 				$query = $dbh->prepare($sql);
 				$query->bindParam(':id', $id, PDO::PARAM_STR);
 				$query->bindParam(':firstname', $firstname, PDO::PARAM_STR);
@@ -494,8 +494,8 @@ if (!$is_login) {
 									<div class="col-md-12">
 										<div class="form-group">
 											<label for="picture" class="col-form-label"></label>
-											<img class="img-preview" src="uploads/employees/<?= $foto; ?>" alt="Foto" width="100">
-											<input class="form-control" name="picture" id="picture" type="file">
+											<!-- <img class="img-preview" src="uploads/employees/<?= $foto; ?>" alt="Foto" width="100"> -->
+											<!-- <input class="form-control" name="picture" id="picture" type="file"> -->
 										</div>
 									</div>
 								</div>
