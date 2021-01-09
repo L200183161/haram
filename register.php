@@ -17,7 +17,7 @@ if ($koneksi->connect_errno) {
 
 function registration($data)
 {
-	$koneksi = new mysqli("localhost", "root", "", "smarthr");
+	global $koneksi;
 	$username = strtolower(stripslashes($data["username"]));
 	$firstname = mysqli_real_escape_string($koneksi, $data["firstname"]);
 	$lastname = mysqli_real_escape_string($koneksi, $data["lastname"]);

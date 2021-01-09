@@ -353,16 +353,16 @@ if (!$is_login) {
 				$address = htmlspecialchars($_POST['address']);
 				$password = password_hash($password, PASSWORD_DEFAULT);
 				//grabbing the picture
-				$file = $_FILES['picture']['name'];
-				$file_loc = $_FILES['picture']['tmp_name'];
-				$folder = "uploads/employees/";
-				$new_file_name = strtolower($file);
-				$final_file = str_replace(' ', '-', $new_file_name);
+				// $file = $_FILES['picture']['name'];
+				// $file_loc = $_FILES['picture']['tmp_name'];
+				// $folder = "uploads/employees/";
+				// $new_file_name = strtolower($file);
+				// $final_file = str_replace(' ', '-', $new_file_name);
 
-				if (move_uploaded_file($file_loc, $folder . $final_file) && ($password == $confirm_password)) {
-					$image = $final_file;
-					$password = password_hash($password, PASSWORD_DEFAULT);
-				}
+				// if (move_uploaded_file($file_loc, $folder . $final_file) && ($password == $confirm_password)) {
+				// 	$image = $final_file;
+				// 	$password = password_hash($password, PASSWORD_DEFAULT);
+				// }
 				$sql = "UPDATE `employees` SET `id`=:id, `FirstName`=:firstname, `LastName`=:lastname, `UserName`=:username,
 			 	`Email`=:email, `address`=:address, `Password`=:password, `Employee_Id`=:employee_id, `Phone`=:phone, `Department`=:department, 
 			 	`Designation`=:designation WHERE `id`=:id";

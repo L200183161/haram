@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 08, 2021 at 02:12 AM
+-- Generation Time: Jan 08, 2021 at 11:14 PM
 -- Server version: 10.4.16-MariaDB
 -- PHP Version: 7.4.12
 
@@ -136,7 +136,8 @@ INSERT INTO `employees` (`id`, `FirstName`, `LastName`, `UserName`, `Email`, `ad
 (6, 'Donny', 'Rizal', 'donnyrizal', 'donny@gmail.com', 'Wonorejo Permai Timur I / 71, Jawa Timur', '$2y$10$iMpn8LufI2VifXpQfG1.y.PuZT2/qHb73yX50rBQ8ZL1kt6fzyL8G', 'EMP-295047', '089959595959595', 'Web Development', 'Web Designer', '2020-12-29', 'foto.jpg', '2020-12-29 22:17:21'),
 (10, 'Takahiro', 'Moriuchi', 'taka', 'taka@gmail.com', 'Jl Daan Mogot Km 18 Pergudangan Semanan Megah,Kalideres', '$2y$10$gbC7F4Gj9Uk9LXoZ7ktiwel6QZO01x9.fWDX4niYA3rIKvWLdZJzm', 'EMP-867403', '+625353799999', 'Data Science', 'Cracker', '2021-01-02', 'main-qimg-392e83b0455422c59876d7a6270ebd1e[1].webp', '2021-01-02 22:48:25'),
 (11, 'Derrick', 'Rose', 'rose', 'rose@yahoo.com', 'Jl Mangga Dua Raya Grand Boutique Centre Bl E/19,Ancol', '$2y$10$6ydlHw5pJX3DXSixnkWwtO0vjy8HXmjonoC9Icw6yYLkFc55Tupsu', 'EMP-160427', '+62485954120', 'IT Analysts ', 'Cracker', '2021-01-07', 'unnamed.webp', '2021-01-07 09:07:12'),
-(12, 'Toru', 'Yamashita', 'toru', 'toru@gmail.com', 'JL Gereja Theresia No. 43 RT 001/04, Menteng, Central Jakarta', '$2y$10$f8hk0CKPLSoiNRNqi16i5OoW0RsQLVdgRetln/Kr7xe.Fd0rwuouW', 'EMP-621059', '+62564565456', 'IT Department', 'Web Developer', '2021-01-07', '118-1186556_sleepy-totoro-totoro-png-totoro-tumblr-studio-ghibli.ico', '2021-01-07 13:03:21');
+(12, 'Toru', 'Yamashita', 'toru', 'toru@gmail.com', 'JL Gereja Theresia No. 43 RT 001/04, Menteng, Central Jakarta', '$2y$10$f8hk0CKPLSoiNRNqi16i5OoW0RsQLVdgRetln/Kr7xe.Fd0rwuouW', 'EMP-621059', '+62564565456', 'IT Department', 'Web Developer', '2021-01-07', '118-1186556_sleepy-totoro-totoro-png-totoro-tumblr-studio-ghibli.ico', '2021-01-07 13:03:21'),
+(13, 'Dada', 'Lol', 'dadaadada', 'dadar@guna.com', 'tenan', '$2y$10$H1TdHjQnPsejzGLUzLD.6uM/DKiaCMCyuPdfG2pzW9pPVgHW7GhCC', 'EMP-657493', '52637474', 'Web Development', 'Web Developer', '2021-01-08', 'maface.jpg', '2021-01-08 19:34:04');
 
 -- --------------------------------------------------------
 
@@ -190,7 +191,8 @@ CREATE TABLE `users` (
 INSERT INTO `users` (`id`, `firstname`, `lastname`, `username`, `email`, `password`, `role`, `phone`, `address`, `picture`, `dateTime`) VALUES
 (1, 'Donny', 'Rizal', 'donny', 'donnyrizaladhip@rocketmail.com', '$2y$10$HZIJ8wvC4epQ.rTcA1h8feG2z5FfqzX21yYFq8i8Y9SJCTs4QYBqa', 'employee', '08996596007', 'Rembang, Jawa Tengah', 'avatar-19.jpg', '2020-09-21 19:04:47'),
 (2, 'Administrasi', 'Super', 'admin', 'Adminstrasibro@gmail.com', '$2y$10$.V/X26KC6UHWdSzPSyGgzuZLYpyvjrcRlxdQlpbTYqXnCPr2g2F9O', 'admin', '---', 'Nowhere', 'my-passport-photo.jpg', '2020-09-21 19:05:43'),
-(10, 'Arthur', 'Morgan', 'arthur', 'arthur@gmail.com', '$2y$10$HF1I/R4nF906x3ZU0v33ieYbDrbHTNUadknUvmt//ZEyjxgXzI7/K', 'employee', '0899662626262', 'Blackwater st. 5 block 96, Tahiti', 'IMG-20170519-WA0000.png', '2021-01-04 15:19:09');
+(10, 'Arthur', 'Morgan', 'arthur', 'arthur@gmail.com', '$2y$10$HF1I/R4nF906x3ZU0v33ieYbDrbHTNUadknUvmt//ZEyjxgXzI7/K', 'employee', '0899662626262', 'Blackwater st. 5 block 96, Tahiti', 'IMG-20170519-WA0000.png', '2021-01-04 15:19:09'),
+(11, 'cuki', 'mani', 'cukimanis', 'cukimanis@gmaisjf.com', '$2y$10$dskYqu6.6iEEsRsPZ8FxO.1B7YjX2fEivwi15GrblKPaSfA006Q4y', 'employee', '08999999', 'cuki', 'IMG-20170519-WA0000.png', '2021-01-08 20:11:00');
 
 -- --------------------------------------------------------
 
@@ -298,7 +300,7 @@ ALTER TABLE `designations`
 -- AUTO_INCREMENT for table `employees`
 --
 ALTER TABLE `employees`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `salary`
@@ -310,7 +312,7 @@ ALTER TABLE `salary`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `user_role`

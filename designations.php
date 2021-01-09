@@ -192,8 +192,8 @@ if (!$is_login) {
 						<div class="modal-body">
 							<form method="POST">
 								<div class="form-group">
-									<label for="id">ID<span class="text-danger">*</span></label>
-									<input name="id" id="id" class="form-control" type="text">
+									<label hidden for="id">ID<span class="text-danger">*</span></label>
+									<input hidden name="id" id="id" class="form-control" type="text">
 								</div>
 								<div class="form-group">
 									<label for="designation_name">Designation Name <span class="text-danger">*</span></label>
